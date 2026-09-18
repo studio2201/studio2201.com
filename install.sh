@@ -11,36 +11,15 @@ ALL_APPS="vigil snip boneyard aegis proven"
 
 # Formatting helpers
 if [ -t 1 ] && [ -z "${NO_COLOR:-}" ]; then
-  BOLD="\033[1m"
-  GREEN="\033[32m"
-  YELLOW="\033[33m"
-  RED="\033[31m"
-  CYAN="\033[36m"
-  RESET="\033[0m"
+  BOLD="\033[1m" GREEN="\033[32m" YELLOW="\033[33m" RED="\033[31m" CYAN="\033[36m" RESET="\033[0m"
 else
-  BOLD=""
-  GREEN=""
-  YELLOW=""
-  RED=""
-  CYAN=""
-  RESET=""
+  BOLD="" GREEN="" YELLOW="" RED="" CYAN="" RESET=""
 fi
 
-info() {
-  printf "${CYAN}==>${RESET} ${BOLD}%s${RESET}\n" "$1"
-}
-
-success() {
-  printf "${GREEN}==>${RESET} %s\n" "$1"
-}
-
-warn() {
-  printf "${YELLOW}warning:${RESET} %s\n" "$1" >&2
-}
-
-err() {
-  printf "${RED}error:${RESET} %s\n" "$1" >&2
-}
+info() { printf "${CYAN}==>${RESET} ${BOLD}%s${RESET}\n" "$1"; }
+success() { printf "${GREEN}==>${RESET} %s\n" "$1"; }
+warn() { printf "${YELLOW}warning:${RESET} %s\n" "$1" >&2; }
+err() { printf "${RED}error:${RESET} %s\n" "$1" >&2; }
 
 usage() {
   cat <<EOF
@@ -70,11 +49,7 @@ EOF
   exit 0
 }
 
-cleanup() {
-  if [ -n "${TMP_DIR:-}" ] && [ -d "$TMP_DIR" ]; then
-    rm -rf "$TMP_DIR"
-  fi
-}
+cleanup() { [ -n "${TMP_DIR:-}" ] && [ -d "$TMP_DIR" ] && rm -rf "$TMP_DIR"; }
 trap cleanup EXIT INT TERM
 
 detect_target() {
@@ -87,18 +62,15 @@ detect_target() {
         x86_64) TARGET="x86_64-unknown-linux-musl" ;;
         aarch64|arm64) TARGET="aarch64-unknown-linux-musl" ;;
         *) TARGET="" ;;
-      esac
-      ;;
+      esac ;;
     Darwin)
       case "$ARCH" in
         x86_64) TARGET="x86_64-apple-darwin" ;;
         arm64|aarch64) TARGET="aarch64-apple-darwin" ;;
         *) TARGET="" ;;
-      esac
-      ;;
+      esac ;;
     *)
-      TARGET=""
-      ;;
+      TARGET="" ;;
   esac
 }
 
@@ -215,7 +187,7 @@ while [ $# -gt 0 ]; do
       usage
       ;;
     -V|--version)
-      echo "studio2201 installer v0.1.0"
+      echo "studio2201 installer v0.4.3"
       exit 0
       ;;
     all)

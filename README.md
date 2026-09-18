@@ -16,6 +16,7 @@ python3 -m http.server 8000
 studio2201.com/
 ├── index.html        # The single page
 ├── styles.css        # Warm-cream report aesthetic (no framework)
+├── components.css    # UI components (buttons, product cards, detail widgets)
 ├── CNAME             # Tells GitHub Pages to serve studio2201.com
 ├── .nojekyll         # Skip Jekyll processing on GitHub Pages
 ├── assets/
