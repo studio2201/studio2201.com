@@ -147,7 +147,11 @@ install_from_source() {
 
   info "Compiling $APP from source via cargo..."
   REPO_URL="https://github.com/${REPO_OWNER}/${APP}"
-  cargo install --git "$REPO_URL" --root "${DEST_DIR%/bin}" --quiet --force
+  TMP_CARGO_ROOT="${TMP_DIR}/cargo_root_${APP}"
+  mkdir -p "$TMP_CARGO_ROOT"
+  cargo install --git "$REPO_URL" --root "$TMP_CARGO_ROOT" --quiet --force
+  cp "${TMP_CARGO_ROOT}/bin/${APP}" "${DEST_DIR}/${APP}"
+  chmod 755 "${DEST_DIR}/${APP}"
   success "Built and installed $APP to $DEST_DIR/$APP"
 }
 
