@@ -1,0 +1,30 @@
+name: CI
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  test:
+    name: Verify Website, Links & Line Counts
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Validate XML Sitemap
+        run: python3 -c "import xml.etree.ElementTree as ET; ET.parse('sitemap.xml')"
+
+      - name: Verify Installer Syntax
+        run: sh -n install.sh
+
+      - name: Verify <= 256 LOC Limit
+        run: |
+          find . -maxdepth 2 -type f \( -name "*.html" -o -name "*.css" -o -name "*.sh" -o -name "*.xml" \) | while read -r file; do
+            lines=$(wc -l < "$file")
+            if [ "$lines" -gt 256 ]; then
+              echo "Error: $file exceeds 256 lines ($lines lines)"
+              exit 1
+            fi
+          done
