@@ -1,17 +1,19 @@
 #!/bin/sh
 # studio2201 universal installer
-# Installs studio2201 tools (vigil, snip, boneyard, aegis, proven)
-# Zero root required · installs to ~/.local/bin by default
+# Installs & updates studio2201 tools (vigil, snip, boneyard, aegis, proven)
+# Zero root required · Linux XDG compliance (${XDG_BIN_HOME:-$HOME/.local/bin})
 set -e
 
-REPO_OWNER="studio2201"
-DEFAULT_DEST="${HOME}/.local/bin"
+REPO_OWNER="${REPO_OWNER:-studio2201}"
+RELEASE_BASE="${RELEASE_BASE:-https://github.com/${REPO_OWNER}}"
+UPDATE_BASE="${UPDATE_BASE:-https://studio2201.com}"
+DEFAULT_DEST="${XDG_BIN_HOME:-$HOME/.local/bin}"
 DEST_DIR="${INSTALL_DIR:-$DEFAULT_DEST}"
 ALL_APPS="vigil snip boneyard aegis proven"
 
-# Formatting helpers
 if [ -t 1 ] && [ -z "${NO_COLOR:-}" ]; then
-  BOLD="\033[1m" GREEN="\033[32m" YELLOW="\033[33m" RED="\033[31m" CYAN="\033[36m" RESET="\033[0m"
+  BOLD="\033[1m" GREEN="\033[32m" YELLOW="\033[33m"
+  RED="\033[31m" CYAN="\033[36m" RESET="\033[0m"
 else
   BOLD="" GREEN="" YELLOW="" RED="" CYAN="" RESET=""
 fi
@@ -26,27 +28,28 @@ usage() {
 studio2201 installer
 
 Usage:
-  install.sh [OPTIONS] <APP | all>
+  install.sh [OPTIONS] [COMMAND] [APP | all]
+
+Commands:
+  install   Install application(s) [default]
+  update    Update application(s) to latest release (alias: upgrade)
 
 Applications:
-  vigil     Supply-chain dormancy scanner
-  snip      Vibe-code security gate
-  boneyard  Org-wide tech-debt radar
-  aegis     PQC migration SDK (OMB M-26-15)
-  proven    PQC-signed supply-chain attestor
-  all       Install all 5 applications
+  vigil (dormancy)  snip (diff gate)    boneyard (tech-debt)
+  aegis (PQC SDK)   proven (attestor)   all (all 5 tools)
 
 Options:
-  --dest <DIR>  Install directory (default: ~/.local/bin)
+  --dest <DIR>  Install dir (default: \${XDG_BIN_HOME:-\$HOME/.local/bin})
   -h, --help    Show this help message
   -V, --version Show installer version
 
 Examples:
-  curl -fsSL https://studio2201.com/install.sh | sh -s vigil
+  sh install.sh vigil
+  sh install.sh update all
+  sh install.sh upgrade snip
   curl -fsSL https://studio2201.com/install.sh | sh -s all
-  sh install.sh --dest /usr/local/bin all
 EOF
-  exit 0
+  exit "${1:-0}"
 }
 
 cleanup() { [ -n "${TMP_DIR:-}" ] && [ -d "$TMP_DIR" ] && rm -rf "$TMP_DIR"; }
@@ -55,109 +58,64 @@ trap cleanup EXIT INT TERM
 detect_target() {
   OS="$(uname -s 2>/dev/null || true)"
   ARCH="$(uname -m 2>/dev/null || true)"
-
-  case "$OS" in
-    Linux)
-      case "$ARCH" in
-        x86_64) TARGET="x86_64-unknown-linux-musl" ;;
-        aarch64|arm64) TARGET="aarch64-unknown-linux-musl" ;;
-        *) TARGET="" ;;
-      esac ;;
-    Darwin)
-      case "$ARCH" in
-        x86_64) TARGET="x86_64-apple-darwin" ;;
-        arm64|aarch64) TARGET="aarch64-apple-darwin" ;;
-        *) TARGET="" ;;
-      esac ;;
-    *)
-      TARGET="" ;;
+  case "${OS}-${ARCH}" in
+    Linux-x86_64) TARGET="x86_64-unknown-linux-musl" ;;
+    Linux-aarch64|Linux-arm64) TARGET="aarch64-unknown-linux-musl" ;;
+    Darwin-x86_64) TARGET="x86_64-apple-darwin" ;;
+    Darwin-arm64|Darwin-aarch64) TARGET="aarch64-apple-darwin" ;;
+    *) TARGET="" ;;
   esac
 }
 
 download_file() {
-  URL="$1"
-  OUTPUT="$2"
   if command -v curl >/dev/null 2>&1; then
-    curl -fsSL "$URL" -o "$OUTPUT"
+    curl -fsSL --connect-timeout 10 "$1" -o "$2"
   elif command -v wget >/dev/null 2>&1; then
-    wget -q "$URL" -O "$OUTPUT"
+    wget -q --timeout=10 "$1" -O "$2"
   else
-    err "Neither curl nor wget found in PATH."
-    return 1
+    err "Neither curl nor wget found in PATH."; return 1
   fi
 }
 
 verify_checksum() {
-  FILE="$1"
-  EXPECTED_SHA="$2"
-  ACTUAL_SHA=""
-
-  if command -v sha256sum >/dev/null 2>&1; then
-    ACTUAL_SHA="$(sha256sum "$FILE" | awk '{print $1}')"
-  elif command -v shasum >/dev/null 2>&1; then
-    ACTUAL_SHA="$(shasum -a 256 "$FILE" | awk '{print $1}')"
-  else
-    warn "sha256sum / shasum not available; skipping checksum verification."
-    return 0
-  fi
-
-  if [ "$ACTUAL_SHA" != "$EXPECTED_SHA" ]; then
-    err "SHA-256 mismatch for $(basename "$FILE")!"
-    err "  Expected: $EXPECTED_SHA"
-    err "  Actual:   $ACTUAL_SHA"
-    return 1
-  fi
+  ACTUAL="$(sha256sum "$1" 2>/dev/null | awk '{print $1}')"
+  [ -z "$ACTUAL" ] && \
+    ACTUAL="$(shasum -a 256 "$1" 2>/dev/null | awk '{print $1}')"
+  [ -z "$ACTUAL" ] && { warn "Checksum tool missing; skipping."; return 0; }
+  [ "$ACTUAL" = "$2" ] || { err "SHA mismatch ($ACTUAL != $2)"; return 1; }
 }
 
 install_from_source() {
   APP="$1"
-  if ! command -v cargo >/dev/null 2>&1; then
-    err "Pre-compiled binary unavailable for $TARGET and cargo is missing."
-    err "Install Rust via https://rustup.rs or install on a supported platform."
-    return 1
-  fi
-
+  command -v cargo >/dev/null 2>&1 || \
+    { err "Pre-compiled binary unavailable and cargo missing."; return 1; }
   info "Compiling $APP from source via cargo..."
-  REPO_URL="https://github.com/${REPO_OWNER}/${APP}"
-  TMP_CARGO_ROOT="${TMP_DIR}/cargo_root_${APP}"
-  mkdir -p "$TMP_CARGO_ROOT"
-  cargo install --git "$REPO_URL" --root "$TMP_CARGO_ROOT" --quiet --force
-  cp "${TMP_CARGO_ROOT}/bin/${APP}" "${DEST_DIR}/${APP}"
+  TMP_ROOT="${TMP_DIR}/cargo_${APP}"
+  mkdir -p "$TMP_ROOT"
+  cargo install --git "${RELEASE_BASE}/${APP}" \
+    --root "$TMP_ROOT" --quiet --force
+  cp "${TMP_ROOT}/bin/${APP}" "${DEST_DIR}/${APP}"
   chmod 755 "${DEST_DIR}/${APP}"
-  success "Built and installed $APP to $DEST_DIR/$APP"
+  success "Built and installed $APP to ${DEST_DIR}/${APP}"
 }
 
 install_app() {
   APP="$1"
   info "Installing $APP..."
-
   mkdir -p "$DEST_DIR"
-
-  if [ -z "$TARGET" ]; then
-    warn "Unsupported pre-compiled target ($OS $ARCH)."
-    install_from_source "$APP"
-    return $?
-  fi
-
+  [ -z "$TARGET" ] && { install_from_source "$APP"; return $?; }
   ASSET="${APP}-${TARGET}.tar.gz"
-  BASE_URL="https://github.com/${REPO_OWNER}/${APP}/releases/latest/download"
-  ASSET_URL="${BASE_URL}/${ASSET}"
-  SHA_URL="${ASSET_URL}.sha256"
-
+  ASSET_URL="${RELEASE_BASE}/${APP}/releases/latest/download/${ASSET}"
   TMP_APP_DIR="${TMP_DIR}/${APP}"
   mkdir -p "$TMP_APP_DIR"
   ARCHIVE="${TMP_APP_DIR}/${ASSET}"
   SHA_FILE="${TMP_APP_DIR}/${ASSET}.sha256"
 
-  DOWNLOAD_OK=1
-  download_file "$ASSET_URL" "$ARCHIVE" || DOWNLOAD_OK=0
-
-  if [ "$DOWNLOAD_OK" -eq 1 ] && [ -s "$ARCHIVE" ]; then
-    if download_file "$SHA_URL" "$SHA_FILE" 2>/dev/null && [ -s "$SHA_FILE" ]; then
-      EXPECTED_SHA="$(awk '{print $1}' "$SHA_FILE")"
-      verify_checksum "$ARCHIVE" "$EXPECTED_SHA"
+  if download_file "$ASSET_URL" "$ARCHIVE" && [ -s "$ARCHIVE" ]; then
+    if download_file "${ASSET_URL}.sha256" "$SHA_FILE" 2>/dev/null && \
+       [ -s "$SHA_FILE" ]; then
+      verify_checksum "$ARCHIVE" "$(awk '{print $1}' "$SHA_FILE")"
     fi
-
     tar -xzf "$ARCHIVE" -C "$TMP_APP_DIR"
     if [ -f "${TMP_APP_DIR}/${APP}" ]; then
       cp "${TMP_APP_DIR}/${APP}" "${DEST_DIR}/${APP}"
@@ -166,68 +124,111 @@ install_app() {
       return 0
     fi
   fi
-
-  # Fallback to source compilation
   warn "Pre-built release not found at $ASSET_URL."
   install_from_source "$APP"
+}
+
+get_latest_version() {
+  APP="$1" LATEST=""
+  URL="${RELEASE_BASE}/${APP}/releases/latest"
+  if command -v curl >/dev/null 2>&1; then
+    LATEST="$(curl -sI --max-time 5 "$URL" 2>/dev/null | \
+      grep -i "^location:" | sed -E 's/.*tag\/v?//' | tr -d '\r\n ')"
+    [ -z "$LATEST" ] && LATEST="$(curl -fsSL --max-time 5 \
+      "${UPDATE_BASE}/VERSION" 2>/dev/null | tr -d '\r\n ')"
+  elif command -v wget >/dev/null 2>&1; then
+    LATEST="$(wget --spider -S --timeout=5 "$URL" 2>&1 | \
+      grep -i "Location:" | sed -E 's/.*tag\/v?//' | tr -d '\r\n ')"
+    [ -z "$LATEST" ] && LATEST="$(wget -qO- --timeout=5 \
+      "${UPDATE_BASE}/VERSION" 2>/dev/null | tr -d '\r\n ')"
+  fi
+  echo "$LATEST"
+}
+
+get_local_version() {
+  BIN="${DEST_DIR}/$1"
+  [ -x "$BIN" ] || return 0
+  VER="$("$BIN" -V 2>/dev/null | awk '{print $2}' || true)"
+  [ -z "$VER" ] && \
+    VER="$("$BIN" --version 2>/dev/null | awk '{print $NF}' || true)"
+  echo "$VER" | sed 's/^v//' | tr -d '\r\n '
+}
+
+update_app() {
+  APP="$1"
+  CUR="$(get_local_version "$APP")"
+  LAT="$(get_latest_version "$APP")"
+  if [ -n "$LAT" ] && [ -n "$CUR" ] && [ "$CUR" = "$LAT" ]; then
+    success "$APP is up to date (v$CUR)."
+    return 0
+  fi
+  if [ -z "$LAT" ] && [ -n "$CUR" ]; then
+    warn "Could not check latest release for $APP; keeping v$CUR."
+    return 0
+  fi
+  [ -n "$CUR" ] && info "Updating $APP (v$CUR -> v${LAT:-latest})..."
+  [ -z "$CUR" ] && info "Installing $APP (v${LAT:-latest})..."
+  install_app "$APP"
 }
 
 # Main execution
 TMP_DIR="$(mktemp -d 2>/dev/null || mktemp -d -t 'studio2201-install')"
 detect_target
-
+ACTION="install"
 TARGET_APPS=""
+
 while [ $# -gt 0 ]; do
   case "$1" in
     --dest)
-      shift
-      DEST_DIR="$1"
-      ;;
-    -h|--help)
-      usage
-      ;;
-    -V|--version)
-      echo "studio2201 installer v0.4.3"
-      exit 0
-      ;;
-    all)
-      TARGET_APPS="$ALL_APPS"
-      ;;
+      shift; [ -z "${1:-}" ] && { err "--dest missing arg"; usage 2; }
+      DEST_DIR="$1" ;;
+    -h|--help|help) usage 0 ;;
+    -V|--version|version) echo "studio2201 installer v0.4.4"; exit 0 ;;
+    install) ACTION="install" ;;
+    update|upgrade) ACTION="update" ;;
+    all) TARGET_APPS="$ALL_APPS" ;;
     vigil|snip|boneyard|aegis|proven)
-      TARGET_APPS="${TARGET_APPS}${TARGET_APPS:+ }$1"
-      ;;
-    *)
-      err "Unknown option or application: $1"
-      echo ""
-      usage
-      ;;
+      TARGET_APPS="${TARGET_APPS}${TARGET_APPS:+ }$1" ;;
+    *) err "Unknown option or application: $1"; echo "" >&2; usage 2 ;;
   esac
   shift
 done
 
 if [ -z "$TARGET_APPS" ]; then
-  usage
+  if [ "$ACTION" = "update" ]; then
+    for a in $ALL_APPS; do
+      [ -x "${DEST_DIR}/${a}" ] && \
+        TARGET_APPS="${TARGET_APPS}${TARGET_APPS:+ }$a"
+    done
+    if [ -z "$TARGET_APPS" ]; then
+      info "No installed studio2201 apps found in $DEST_DIR to update."
+      exit 0
+    fi
+  else
+    usage 0
+  fi
 fi
 
 printf "${BOLD}studio2201 universal installer${RESET}\n"
-printf "Target platform: ${CYAN}%s${RESET}\n" "${TARGET:-unknown}"
-printf "Destination:     ${CYAN}%s${RESET}\n\n" "$DEST_DIR"
+printf "Platform: %s | Dest: %s | Action: %s\n\n" \
+  "${TARGET:-unknown}" "$DEST_DIR" "$ACTION"
 
 for app in $TARGET_APPS; do
-  install_app "$app"
+  if [ "$ACTION" = "update" ]; then
+    update_app "$app"
+  else
+    install_app "$app"
+  fi
 done
 
 printf "\n"
-success "Installation process complete."
+success "Operation complete."
 
-# Check if DEST_DIR is in PATH
 case ":$PATH:" in
   *":$DEST_DIR:"*) ;;
   *)
     printf "\n"
     warn "$DEST_DIR is not currently in your PATH."
-    printf "Add it by running:\n"
-    printf "  ${BOLD}export PATH=\"%s:\$PATH\"${RESET}\n" "$DEST_DIR"
-    printf "Or add that line to your ~/.bashrc or ~/.zshrc\n\n"
+    printf "Add it: export PATH=\"%s:\$PATH\"\n\n" "$DEST_DIR"
     ;;
 esac
