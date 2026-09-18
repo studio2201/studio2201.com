@@ -11,11 +11,11 @@
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://studio2201.com/vigil" />
 <meta property="og:title" content="Vigil — supply-chain dormancy scanner · studio2201" />
-<meta property="og:description" content="Supply-chain dormancy scanner. Scores dependencies against the Necrometer fate table and emits SUPPLY-CHAIN.md." />
+<meta property="og:description" content="Supply-chain dormancy scanner. Scores dependencies by upstream commit velocity and dormancy, and emits SUPPLY-CHAIN.md." />
 <meta property="og:image" content="https://studio2201.com/assets/og-image.png" />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content="Vigil — supply-chain dormancy scanner · studio2201" />
-<meta name="twitter:description" content="Supply-chain dormancy scanner. Scores dependencies against the Necrometer fate table and emits SUPPLY-CHAIN.md." />
+<meta name="twitter:description" content="Supply-chain dormancy scanner. Scores dependencies by upstream commit velocity and dormancy, and emits SUPPLY-CHAIN.md." />
 <meta name="twitter:image" content="https://studio2201.com/assets/og-image.png" />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -39,7 +39,7 @@
       <span class="tag green">Apache-2.0</span>
     </div>
     <h1>Vigil</h1>
-    <p class="lede">Supply-chain dormancy scanner. Reads your project manifest, scores each dependency against the Necrometer/Seance fate table, and emits <code>SUPPLY-CHAIN.md</code> and a badge.</p>
+    <p class="lede">Supply-chain dormancy scanner. Reads your project manifest, scores each dependency by how long it has been since the upstream moved, and emits <code>SUPPLY-CHAIN.md</code> and a badge.</p>
     <div class="cta">
       <a class="btn primary" href="https://github.com/studio2201/vigil">View on GitHub →</a>
       <a class="btn ghost" href="https://github.com/studio2201/studio2201/blob/master/PRODUCTS/index.md">Framework Doctrine →</a>
@@ -55,8 +55,8 @@
         <p>Parses <code>package.json</code>, <code>Cargo.lock</code>, <code>pyproject.toml</code>, <code>go.mod</code>, <code>pom.xml</code>, <code>composer.json</code>, <code>pubspec.yaml</code>, and <code>Package.swift</code>.</p>
       </div>
       <div class="feature-item">
-        <h4>Necrometer Fate Table</h4>
-        <p>Cross-references dependencies against commit velocity, download trajectories, maintainer dormancy, and known vulnerability windows.</p>
+        <h4>Upstream Activity Heuristic</h4>
+        <p>Cross-references dependencies against upstream commit velocity, release cadence, maintainer activity, and dormancy thresholds.</p>
       </div>
       <div class="feature-item">
         <h4>SUPPLY-CHAIN.md</h4>
