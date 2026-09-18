@@ -42,31 +42,31 @@
 
   <section id="products">
     <p class="eyebrow num">01</p>
-    <h2>Five products. One substrate. Apache-2.0.</h2>
+    <h2>Five products. Pure Rust. Apache-2.0.</h2>
 
     <div class="products">
 
       <a class="product" href="/vigil">
         <div class="product-head">
-          <span class="tag green">v0.1.1</span>
+          <span class="tag green">v0.1.2</span>
           <h3>Vigil</h3>
         </div>
-        <p class="product-body">Supply-chain dormancy scanner. Reads your manifest (<code>package.json</code>, <code>Cargo.lock</code>, <code>pyproject.toml</code>, …), scores each dependency against the Necrometer/Seance fate table, emits <code>SUPPLY-CHAIN.md</code> and a badge.</p>
+        <p class="product-body">Supply-chain dormancy scanner. Reads your manifest (<code>package.json</code>, <code>Cargo.lock</code>, <code>pyproject.toml</code>, …), scores each dependency by dormancy, emits <code>SUPPLY-CHAIN.md</code> and a badge.</p>
         <span class="more">Overview & Specs →</span>
       </a>
 
       <a class="product" href="/proven">
         <div class="product-head">
-          <span class="tag green">v0.1.1</span>
+          <span class="tag green">v0.1.2</span>
           <h3>Proven</h3>
         </div>
-        <p class="product-body">PQC-signed supply-chain attestor. Merkle AST + ML-DSA-65 + opm. SLSA L3+ on openOODA. Air-gappable, reproducible, post-2030 valid.</p>
+        <p class="product-body">PQC-signed supply-chain attestor. Reproducible builds with byte-identity hashing keyed on (host, rustc-version, Cargo.lock). Air-gappable, post-2030 valid.</p>
         <span class="more">Overview & Specs →</span>
       </a>
 
       <a class="product" href="/aegis">
         <div class="product-head">
-          <span class="tag green">v0.1.1</span>
+          <span class="tag green">v0.1.2</span>
           <h3>Aegis</h3>
         </div>
         <p class="product-body">PQC migration SDK. Scans RSA/ECC usage, plans in OMB M-26-15 format, emits ML-KEM-768 / ML-DSA-65 replacements. Targets the Dec 31, 2030 federal deadline.</p>
@@ -75,7 +75,7 @@
 
       <a class="product" href="/snip">
         <div class="product-head">
-          <span class="tag green">v0.1.1</span>
+          <span class="tag green">v0.1.2</span>
           <h3>Snip</h3>
         </div>
         <p class="product-body">Vibe-code security gate. Audits AI-generated diffs for hardcoded credentials, missing CSP/CORS, and broken Supabase RLS. Ships as MCP server, GitHub Action, CLI, and Cursor skill pack.</p>
@@ -84,7 +84,7 @@
 
       <a class="product" href="/boneyard">
         <div class="product-head">
-          <span class="tag green">v0.1.1</span>
+          <span class="tag green">v0.1.2</span>
           <h3>Boneyard</h3>
         </div>
         <p class="product-body">Org-wide tech-debt radar. Ranks internal repos by dormancy, risk, exposure, dependency depth, and AI-agent surface. Emits remediation budgets in repo-weeks.</p>
@@ -93,7 +93,7 @@
 
     </div>
 
-    <p class="ecosystem-tag">All five are <strong>Apache-2.0</strong> and run on <a href="https://github.com/openOODA/openOODA">openOODA</a>. The substrate is sovereign and stays open. The commercial planes get sold separately.</p>
+    <p class="ecosystem-tag">All five are <strong>Apache-2.0</strong>, written in pure Rust against <code>std::</code> only. Zero crates.io dependencies. The commercial planes get sold separately.</p>
   </section>
 
   <section id="doctrine">
@@ -111,7 +111,7 @@
   </section>
 
   <footer class="foot">
-    <p>studio2201 · Apache-2.0 · no warranty · <a href="https://github.com/openOODA/openOODA">built on openOODA</a></p>
+    <p>studio2201 · Apache-2.0 · no warranty · pure Rust, std:: only</p>
     <p class="small">Last updated 2026-09-17 · source of this page: <a href="https://github.com/studio2201/studio2201.com">studio2201/studio2201.com</a></p>
   </footer>
 
