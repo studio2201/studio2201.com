@@ -127,8 +127,26 @@ git diff --staged | snip audit -q && echo "Clean diff"</code></pre>
     <a class="btn primary" href="agents.html">Read the Agent Guide →</a>
   </section>
 
-  <section id="install">
+  <section id="canary">
     <p class="eyebrow num">03</p>
+    <h2>What Failure Looks Like / The Canary Repository</h2>
+    <p class="lede small">Security tools are only as credible as their negative tests. Canary is an intentionally broken reference codebase designed to trigger hard failure verdicts across all five studio2201 tools.</p>
+    <div class="code-box">
+      <pre><code># Run the full automated negative verification testbed:
+./demo.sh
+
+# Assert deterministic exit code 1 across all five tools:
+git diff --staged | snip audit || echo "Snip: BLOCK (exit code 1)"
+vigil policy check --max-dormancy 180d || echo "Vigil: FAILED (exit code 1)"</code></pre>
+    </div>
+    <div class="cta">
+      <a class="btn primary" href="canary.html">Full Failure Breakdown →</a>
+      <a class="btn ghost" href="https://github.com/studio2201/canary">github.com/studio2201/canary →</a>
+    </div>
+  </section>
+
+  <section id="install">
+    <p class="eyebrow num">04</p>
     <h2>Installation</h2>
     <p class="lede small">Single-command installation for macOS and Linux. Zero root required; installs directly to <code>~/.local/bin</code>.</p>
     <div class="code-box">
@@ -141,14 +159,14 @@ curl -fsSL https://studio2201.com/install.sh | sh -s vigil</code></pre>
   </section>
 
   <section id="doctrine">
-    <p class="eyebrow num">04</p>
+    <p class="eyebrow num">05</p>
     <h2>Working doctrine</h2>
     <p class="lede small">Eight markdown files, ~420 lines. Rules that don't change. OODA loops that work. Security probes. Design principles. Multi-agent coordination. The doctrine is the rulebook — the products follow from it.</p>
     <a class="btn ghost" href="https://github.com/studio2201/studio2201">Read the doctrine →</a>
   </section>
 
   <section id="contact">
-    <p class="eyebrow num">05</p>
+    <p class="eyebrow num">06</p>
     <h2>Get in touch</h2>
     <p class="lede small">Commercial inquiries, partnership proposals, vendor security disclosures: open a GitHub issue or DM. Public disclosures welcome; coordinated disclosure preferred.</p>
     <a class="btn ghost" href="https://github.com/UberMetroid">github.com/UberMetroid →</a>

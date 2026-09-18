@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="description" content="studio2201 Canary — intentionally broken reference repository demonstrating fail-closed negative testing across all 5 studio2201 tools. Apache-2.0." />
+<meta name="theme-color" content="#f7f5f0" />
+<title>Canary Reference Testbed · studio2201</title>
+<link rel="canonical" href="https://studio2201.com/canary" />
+<meta property="og:site_name" content="studio2201" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://studio2201.com/canary" />
+<meta property="og:title" content="Canary Reference Testbed · studio2201" />
+<meta property="og:description" content="Intentionally broken reference repository demonstrating fail-closed negative testing across all 5 studio2201 tools." />
+<meta property="og:image" content="https://studio2201.com/assets/og-image.png" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Canary Reference Testbed · studio2201" />
+<meta name="twitter:description" content="Intentionally broken reference repository demonstrating fail-closed negative testing across all 5 studio2201 tools." />
+<meta name="twitter:image" content="https://studio2201.com/assets/og-image.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Outfit:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css" />
+<link rel="stylesheet" href="components.css" />
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png" />
+<link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png" />
+</head>
+<body>
+<main class="page">
+
+  <nav>
+    <a class="nav-back" href="/">← studio2201.com</a>
+  </nav>
+
+  <header class="hero">
+    <div class="badge-bar">
+      <span class="eyebrow" style="margin-bottom:0;">studio2201 / reference testbed</span>
+      <span class="tag green">v0.1.0</span>
+      <span class="tag green">Apache-2.0</span>
+      <span class="tag green">Negative Verification</span>
+    </div>
+    <h1>The Canary Repository</h1>
+    <p class="lede">An intentionally broken reference codebase for studio2201 tools. Validating security scanners through deterministic failure, negative testing, and fail-closed CI assertions.</p>
+    <div class="cta">
+      <a class="btn primary" href="https://github.com/studio2201/canary">View on GitHub →</a>
+      <a class="btn ghost" href="#breakdown">Failure Breakdown ↓</a>
+    </div>
+  </header>
+
+  <section id="why">
+    <p class="eyebrow num">01</p>
+    <h2>Why Canary Exists: Negative Testing</h2>
+    <p class="lede small">Security tools are only as credible as their negative tests. Canary provides realistic, deliberately flawed fixtures to verify that all five studio2201 tools reliably detect flaws and halt deployment.</p>
+    <div class="card-grid">
+      <div class="feature-item">
+        <h4>Deterministic Exit Code 1</h4>
+        <p>Every tool in the suite exits with code <code>1</code> when a policy threshold or security invariant is breached, enabling robust pre-commit hooks and CI gate assertions.</p>
+      </div>
+      <div class="feature-item">
+        <h4>Fail-Closed CI Verification</h4>
+        <p>Canary's continuous integration testbed passes green only when all five tools trigger expected failure verdicts, ensuring security rules cannot silently regress into false negatives.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="demo">
+    <p class="eyebrow num">02</p>
+    <h2>Single-Command Demonstration</h2>
+    <p class="lede small">Execute <code>./demo.sh</code> to sequentially trigger all five failures, verify exit code 1 on each, and print a 76-column terminal scorecard.</p>
+    <div class="code-box">
+      <pre><code># Clone and run the automated negative verification suite:
+git clone https://github.com/studio2201/canary.git
+cd canary
+./demo.sh</code></pre>
+    </div>
+  </section>
+
+  <section id="breakdown">
+    <p class="eyebrow num">03</p>
+    <h2>5-Tool Failure Breakdown</h2>
+    <p class="lede small">Side-by-side comparison of deliberate flaws, inspection commands, failure verdicts, exit codes, and required remediations across the studio2201 suite.</p>
+    <div class="card-grid">
+      <div class="feature-item">
+        <h4>Snip <span class="tag green">vibe-code</span></h4>
+        <p><strong>Flaw:</strong> Live Stripe/Anthropic API keys in diff and SQL migration missing RLS.<br>
+        <strong>CLI Command:</strong> <code>snip audit fixtures/snip/staged.patch</code><br>
+        <strong>Terminal Verdict:</strong> <code>BLOCK</code> (2 critical secrets, 1 high RLS omission)<br>
+        <strong>Exit Code:</strong> <code>1</code> (finding threshold exceeded)<br>
+        <strong>Remediation:</strong> Move keys to environment variables; add <code>ENABLE ROW LEVEL SECURITY</code>.</p>
+        <a class="more" href="/snip">Snip Specs →</a>
+      </div>
+
+      <div class="feature-item">
+        <h4>Vigil <span class="tag green">dormancy</span></h4>
+        <p><strong>Flaw:</strong> Manifest referencing packages dormant >450–570 days (<code>colors</code>, <code>nom</code>, <code>request</code>).<br>
+        <strong>CLI Command:</strong> <code>vigil policy check --max-dormancy 180 fixtures/vigil/package.json</code><br>
+        <strong>Terminal Verdict:</strong> <code>DORMANT</code> (avg risk score 98.4 exceeds 45.0 threshold)<br>
+        <strong>Exit Code:</strong> <code>1</code> (dormancy policy failed)<br>
+        <strong>Remediation:</strong> Replace abandoned packages with actively maintained forks.</p>
+        <a class="more" href="/vigil">Vigil Specs →</a>
+      </div>
+
+      <div class="feature-item">
+        <h4>Aegis <span class="tag green">pqc sdk</span></h4>
+        <p><strong>Flaw:</strong> Classical 1024-bit RSA keygen and ECDSA call sites violating post-2030 policy.<br>
+        <strong>CLI Command:</strong> <code>aegis policy check fixtures/aegis/legacy_crypto.rs</code><br>
+        <strong>Terminal Verdict:</strong> <code>NON-COMPLIANT</code> (10 legacy call sites exceed 0 cap)<br>
+        <strong>Exit Code:</strong> <code>1</code> (cryptographic policy failed)<br>
+        <strong>Remediation:</strong> Migrate to NIST FIPS 203/204 ML-KEM-768 and ML-DSA-65 algorithms.</p>
+        <a class="more" href="/aegis">Aegis Specs →</a>
+      </div>
+
+      <div class="feature-item">
+        <h4>Proven <span class="tag green">attestor</span></h4>
+        <p><strong>Flaw:</strong> Attested binary modified by 1 byte after attestation signing.<br>
+        <strong>CLI Command:</strong> <code>proven verify fixtures/proven/canary_artifact --attestation fixtures/proven/attestation.json</code><br>
+        <strong>Terminal Verdict:</strong> <code>TAMPERED</code> (SHA-256 and Merkle root mismatch)<br>
+        <strong>Exit Code:</strong> <code>1</code> (verification failed)<br>
+        <strong>Remediation:</strong> Re-derive binary via bit-reproducible pipeline matching attested digest.</p>
+        <a class="more" href="/proven">Proven Specs →</a>
+      </div>
+
+      <div class="feature-item">
+        <h4>Boneyard <span class="tag green">tech-debt</span></h4>
+        <p><strong>Flaw:</strong> Repo catalog average Boneyard Index 72.0 > 50.0 cap with 2 critical repos.<br>
+        <strong>CLI Command:</strong> <code>boneyard policy check --policy fixtures/boneyard/policy.toml -i fixtures/boneyard/catalog.json</code><br>
+        <strong>Terminal Verdict:</strong> <code>DEBT BREACH</code> (org index threshold exceeded)<br>
+        <strong>Exit Code:</strong> <code>1</code> (governance policy failed)<br>
+        <strong>Remediation:</strong> Pin unpinned dependencies, retire dead code, allocate debt sprints.</p>
+        <a class="more" href="/boneyard">Boneyard Specs →</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="ci">
+    <p class="eyebrow num">04</p>
+    <h2>GitHub Actions Negative Testbed</h2>
+    <p class="lede small">Continuous negative verification in <code>.github/workflows/canary.yml</code>. Runs on push and pull requests targeting <code>master</code> to assert fail-closed behavior.</p>
+    <div class="code-box">
+      <pre><code># CI installs tools via universal installer and validates failure verdicts:
+curl -fsSL https://studio2201.com/install.sh | sh -s all
+chmod +x ./demo.sh
+./demo.sh # Asserts exit code 1 across snip, vigil, aegis, proven, boneyard</code></pre>
+    </div>
+    <div class="cta">
+      <a class="btn ghost" href="https://github.com/studio2201/canary/actions">View Canary Actions →</a>
+      <a class="btn ghost" href="https://github.com/studio2201/canary/blob/master/.github/workflows/canary.yml">Workflow YAML →</a>
+    </div>
+  </section>
+
+  <footer class="foot">
+    <p>studio2201 · Apache-2.0 · pure Rust, std:: only</p>
+    <p class="small">Last updated 2026-09-18 · source: <a href="https://github.com/studio2201/canary">studio2201/canary</a></p>
+  </footer>
+
+</main>
+</body>
+</html>
