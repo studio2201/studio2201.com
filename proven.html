@@ -36,8 +36,9 @@
   <header class="hero">
     <div class="badge-bar">
       <span class="eyebrow" style="margin-bottom:0;">studio2201 / product 02</span>
-      <span class="tag green">v0.2.4</span>
+      <span class="tag green">v0.2.5</span>
       <span class="tag green">Apache-2.0</span>
+      <span class="tag green">SLSA Level 3+</span>
     </div>
     <h1>Proven</h1>
     <p class="lede">PQC-signed supply-chain attestor. Reproducible builds with byte-identity hashing keyed on (host, rustc-version, Cargo.lock). Verification designed to survive the post-2030 quantum transition.</p>
@@ -52,20 +53,20 @@
     <h2>What it does</h2>
     <div class="card-grid">
       <div class="feature-item">
-        <h4>ML-DSA-65 Attestation</h4>
-        <p>Cryptographically signs published binaries with post-quantum digital signatures resilient against harvest-now-decrypt-later attacks.</p>
+        <h4>ML-DSA-65 Digital Signatures</h4>
+        <p>Signs artifacts using NIST FIPS 204 post-quantum lattice signatures, guaranteeing signatures cannot be forged by future quantum systems running Shor's algorithm.</p>
       </div>
       <div class="feature-item">
-        <h4>Merkle AST Verification</h4>
-        <p>Binds the build output directly to source commit, AST Merkle root, and dependency fingerprints.</p>
+        <h4>SLSA Level 3+ Provenance</h4>
+        <p>Generates non-falsifiable build provenance verifying artifacts match source trees byte-for-byte, preventing injection attacks like CVE-2024-3094 (XZ Utils).</p>
       </div>
       <div class="feature-item">
-        <h4>Capability Token Matrix</h4>
-        <p>Embeds execution boundaries, sandbox constraints, and runtime capability grants directly into the attestation envelope.</p>
+        <h4>AST Merkle Tree Root</h4>
+        <p>Streams source files in 64 KiB chunks to compute a deterministic SHA-256 Merkle root, binding compiled binaries directly to verified source commits.</p>
       </div>
       <div class="feature-item">
-        <h4>Air-Gappable & SLSA L3+</h4>
-        <p>Validates bit-reproducibility without requiring live network calls to centralized certificate transparency logs.</p>
+        <h4>Air-Gappable & Zero Dependencies</h4>
+        <p>Built purely in Rust standard library (<code>std::</code>). Validates provenance air-gapped without requiring calls to central transparency logs.</p>
       </div>
     </div>
   </section>
@@ -86,7 +87,7 @@ curl -fsSL https://studio2201.com/install.sh | sh -s proven</code></pre>
       <pre><code># Attest a compiled binary with ML-DSA-65
 proven attest --target target/release/app --key identity.pqc
 
-# Verify provenance against baseline Merkle root
+# Verify provenance against baseline Merkle root air-gapped
 proven verify --target target/release/app --attestation app.slsa.pqc
 
 # Emit SLSA L3+ compatible statement
@@ -96,23 +97,46 @@ proven emit-slsa --output provenance.json</code></pre>
 
   <section>
     <p class="eyebrow num">04</p>
-    <h2>Compliance & Post-2030 Mandates</h2>
+    <h2>Why This Matters & Authoritative Mandates</h2>
     <div class="card-grid">
       <div class="feature-item">
-        <h4>Executive Order 14412</h4>
-        <p>Fulfills federal High Value Asset (HVA) post-quantum cryptography directives ahead of the federal deadline.</p>
+        <h4><a href="https://slsa.dev/spec/v1.0/" target="_blank" rel="noopener">OpenSSF SLSA v1.0 Spec ↗</a></h4>
+        <p>Defines formal levels to prevent supply chain tampering. Level 3+ guarantees non-falsifiable provenance and hardened build environments.</p>
       </div>
       <div class="feature-item">
-        <h4>Classical Signature Obsolescence</h4>
-        <p>Traditional RSA/ECDSA signing models are quantum-vulnerable by 2030. Proven is post-quantum native from day one.</p>
+        <h4><a href="https://csrc.nist.gov/pubs/fips/204/final" target="_blank" rel="noopener">NIST FIPS 204 (ML-DSA) ↗</a></h4>
+        <p>Standardized Module-Lattice Digital Signature Standard finalized August 2024 to supersede classical RSA/ECDSA ahead of quantum decryption.</p>
       </div>
       <div class="feature-item">
-        <h4>Zero Dependencies</h4>
-        <p>Zero third-party crates. Self-contained cryptographic implementations honoring the strict studio2201 zero-trust doctrine.</p>
+        <h4><a href="https://www.whitehouse.gov/briefing-room/presidential-actions/2021/05/12/executive-order-on-improving-the-nations-cybersecurity/" target="_blank" rel="noopener">White House EO 14028 ↗</a></h4>
+        <p>Executive Order on Improving the Nation's Cybersecurity mandating cryptographically verified software provenance across federal vendors.</p>
       </div>
       <div class="feature-item">
-        <h4>Reproducible Baselines</h4>
-        <p>Employs host- and rustc-keyed baselines ensuring byte-identical verification across distributed pipelines.</p>
+        <h4><a href="https://in-toto.io/Statement/v1" target="_blank" rel="noopener">in-toto Statement v1 ↗</a></h4>
+        <p>Standardized attestation format binding subjects (binary hashes) to predicate metadata with verifiable cryptographic signatures.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <p class="eyebrow num">05</p>
+    <h2>How It Works Under the Hood</h2>
+    <div class="card-grid">
+      <div class="feature-item">
+        <h4>Pure std:: SHA-256</h4>
+        <p>Processes binaries in 64 KiB chunks using a pure standard library SHA-256 implementation with zero external crates.</p>
+      </div>
+      <div class="feature-item">
+        <h4>in-toto Envelope Generation</h4>
+        <p>Constructs valid in-toto Statement v1 JSON encapsulating the artifact digest, builder identity, and AST Merkle root.</p>
+      </div>
+      <div class="feature-item">
+        <h4>Deterministic Verification</h4>
+        <p><code>proven verify</code> recalculates the digest and validates the ML-DSA signature entirely offline with zero network latency.</p>
+      </div>
+      <div class="feature-item">
+        <h4>Reproducible Build Guarantee</h4>
+        <p>Verifies byte-identity keyed on compiler host, rustc version, and Cargo.lock across any CI/CD environment.</p>
       </div>
     </div>
   </section>

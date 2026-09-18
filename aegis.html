@@ -36,8 +36,9 @@
   <header class="hero">
     <div class="badge-bar">
       <span class="eyebrow" style="margin-bottom:0;">studio2201 / product 03</span>
-      <span class="tag green">v0.2.4</span>
+      <span class="tag green">v0.2.5</span>
       <span class="tag green">Apache-2.0</span>
+      <span class="tag green">PQC Ready</span>
     </div>
     <h1>Aegis</h1>
     <p class="lede">PQC migration SDK. Scans C, C++, and Rust codebases for legacy RSA and ECC cryptography, constructs OMB M-26-15 migration plans, and emits drop-in ML-KEM and ML-DSA primitives.</p>
@@ -96,23 +97,46 @@ aegis check --policy strict-pqc</code></pre>
 
   <section>
     <p class="eyebrow num">04</p>
-    <h2>Federal Mandates & Timelines</h2>
+    <h2>Why This Matters & Authoritative Mandates</h2>
     <div class="card-grid">
       <div class="feature-item">
-        <h4>EO 14412 Deadline</h4>
-        <p>Federal HVAs must establish PQC key encapsulation by Dec 31, 2030. FAR Council rules cascade this mandate to all federal contractors.</p>
+        <h4><a href="https://www.whitehouse.gov/wp-content/uploads/2022/11/M-23-02-M-Memo-on-Migrating-to-Post-Quantum-Cryptography.pdf" target="_blank" rel="noopener">OMB M-26-15 & M-23-02 ↗</a></h4>
+        <p>White House memorandum mandating federal agencies and contractors inventory vulnerable cryptography and migrate to PQC by 2030.</p>
       </div>
       <div class="feature-item">
-        <h4>RSA/ECC Sunsetting</h4>
-        <p>Classical public-key cryptography is deprecated by 2030 and strictly disallowed across government systems by 2035.</p>
+        <h4><a href="https://www.whitehouse.gov/briefing-room/statements-releases/2022/05/04/national-security-memorandum-on-promoting-united-states-leadership-in-quantum-computing-while-mitigating-risks-to-cryptographic-and-defense-systems/" target="_blank" rel="noopener">National Security Memo 10 ↗</a></h4>
+        <p>Presidential directive (NSM-10) establishing the timeline to mitigate quantum computing risks to public-key cryptography.</p>
       </div>
       <div class="feature-item">
-        <h4>Hybrid Transition Support</h4>
-        <p>Supports dual classical/PQC negotiation during the migration window to preserve backwards compatibility.</p>
+        <h4><a href="https://csrc.nist.gov/pubs/fips/203/final" target="_blank" rel="noopener">NIST FIPS 203 / 204 ↗</a></h4>
+        <p>NIST final post-quantum standards: ML-KEM (FIPS 203) for key encapsulation and ML-DSA (FIPS 204) for digital signatures.</p>
       </div>
       <div class="feature-item">
-        <h4>Open Architecture</h4>
-        <p>All core scanning and migration tooling is completely open under Apache-2.0 with no vendor lock-in.</p>
+        <h4><a href="https://media.defense.gov/2022/Sep/07/2003071834/-1/-1/0/CSA_CNSA_2.0_ALGORITHMS_.PDF" target="_blank" rel="noopener">NSA CNSA 2.0 Timeline ↗</a></h4>
+        <p>Commercial National Security Algorithm Suite 2.0 requiring post-quantum algorithms across critical infrastructure by 2030.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <p class="eyebrow num">05</p>
+    <h2>How It Works Under the Hood</h2>
+    <div class="card-grid">
+      <div class="feature-item">
+        <h4>AST Cryptographic Sweeper</h4>
+        <p>Tokenizes C, C++, and Rust source trees looking for classical key generation, cipher negotiation, and signature verify routines.</p>
+      </div>
+      <div class="feature-item">
+        <h4>Structured OMB Roadmaps</h4>
+        <p>Generates 3-phase transition roadmaps: Phase 1 Inventory, Phase 2 Dual-Classical/PQC Hybrid, Phase 3 Pure Post-Quantum.</p>
+      </div>
+      <div class="feature-item">
+        <h4>Drop-In PQC Primitives</h4>
+        <p>Emits drop-in ML-KEM-768 and ML-DSA-65 implementations with EVP_PKEY compatibility for OpenSSL 3.0+ and Rustls.</p>
+      </div>
+      <div class="feature-item">
+        <h4>CI Regression Blocking</h4>
+        <p>Asserts deterministic exit code 1 whenever classical crypto is reintroduced without an approved migration exemption.</p>
       </div>
     </div>
   </section>

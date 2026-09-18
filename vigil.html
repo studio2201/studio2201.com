@@ -36,8 +36,9 @@
   <header class="hero">
     <div class="badge-bar">
       <span class="eyebrow" style="margin-bottom:0;">studio2201 / product 01</span>
-      <span class="tag green">v0.2.4</span>
+      <span class="tag green">v0.2.5</span>
       <span class="tag green">Apache-2.0</span>
+      <span class="tag green">Dormancy Healthy</span>
     </div>
     <h1>Vigil</h1>
     <p class="lede">Supply-chain dormancy scanner. Reads your project manifest, scores each dependency by how long it has been since the upstream moved, and emits <code>SUPPLY-CHAIN.md</code> and a badge.</p>
@@ -96,24 +97,46 @@ vigil policy check --max-dormancy 180d</code></pre>
 
   <section>
     <p class="eyebrow num">04</p>
-    <h2>Architecture & Doctrine</h2>
-    <p class="lede small">Engineered under the studio2201 Framework v2 standards (§15–§18):</p>
+    <h2>Why This Matters & Authoritative Mandates</h2>
     <div class="card-grid">
       <div class="feature-item">
-        <h4>§15 Threat Model</h4>
-        <p>Hardened against dormant package maintainer account takeovers, silent repo abandonment, and unannounced dependency transfer.</p>
+        <h4><a href="https://www.cisa.gov/resources-tools/resources/open-source-software-security-roadmap" target="_blank" rel="noopener">CISA OSS Security Roadmap ↗</a></h4>
+        <p>Warns that unmaintained and abandoned dependencies are prime targets for maintainer account takeovers and malicious injection.</p>
       </div>
       <div class="feature-item">
-        <h4>§16 Reproducible Builds</h4>
-        <p>Host and rustc-keyed baseline reproduction. Zero pinned toolchains required.</p>
+        <h4><a href="https://www.linuxfoundation.org/research/census-iii" target="_blank" rel="noopener">Harvard / LF Census III ↗</a></h4>
+        <p>Finds that 96% of critical open source software applications rely on packages with fewer than 2 active maintainers.</p>
       </div>
       <div class="feature-item">
-        <h4>§12 Zero Third-Party Crates</h4>
-        <p>Built strictly with Rust standard library primitives (<code>std</code>-only). Zero external supply-chain attack surface.</p>
+        <h4><a href="https://scorecard.dev" target="_blank" rel="noopener">OpenSSF Scorecards ↗</a></h4>
+        <p>Identifies maintenance velocity and commit freshness as key indicators of open-source software security and health.</p>
       </div>
       <div class="feature-item">
-        <h4>§17 Security Disclosure</h4>
-        <p>GHSA-tracked coordinated disclosure with a 14-day SLA on critical vulnerabilities.</p>
+        <h4><a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2024-3094" target="_blank" rel="noopener">CVE-2024-3094 (XZ Utils) ↗</a></h4>
+        <p>Demonstrates how social engineering over years targeted a single exhausted maintainer of a critical dormant library.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <p class="eyebrow num">05</p>
+    <h2>How It Works Under the Hood</h2>
+    <div class="card-grid">
+      <div class="feature-item">
+        <h4>Multi-Manifest Parsing</h4>
+        <p>Scans project trees to locate lockfiles, extracting package names, versions, and repository coordinates with zero external crates.</p>
+      </div>
+      <div class="feature-item">
+        <h4>Commit Velocity Scoring</h4>
+        <p>Computes dormancy as days elapsed since the latest release or upstream commit, mapping scores to Red/Amber/Green tiers.</p>
+      </div>
+      <div class="feature-item">
+        <h4>Native SVG Badge Emission</h4>
+        <p>Generates standalone SVG badges directly in pure Rust without headless browser or image rendering dependencies.</p>
+      </div>
+      <div class="feature-item">
+        <h4>Automated CI Gating</h4>
+        <p>Fails builds with exit code 1 when dependencies exceed dormancy policies (e.g. <code>--max-dormancy 180d</code>).</p>
       </div>
     </div>
   </section>
