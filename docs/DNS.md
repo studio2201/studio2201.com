@@ -4,7 +4,7 @@ Two-step process. **Step 1 is at your domain registrar** (where you bought the d
 
 ## At your registrar
 
-You need **two** sets of records depending on whether you want the apex (`studio2201.com`) or the `www.` subdomain (`www.studio2201.com`) or both.
+You need one set of `A` records at the apex. The `www` subdomain is handled by GitHub automatically once the apex is set up — you do **not** need a `www` CNAME record pointing at any GitHub Pages URL.
 
 ### Apex (the bare `studio2201.com`)
 
@@ -34,11 +34,9 @@ This is cleaner than the four A records because GitHub can move the IPs without 
 
 ### www subdomain
 
-```
-CNAME  www  studio2201.github.io.
-```
+**Do not add a CNAME record for `www`.** GitHub Pages automatically redirects `www.studio2201.com` to the apex (`studio2201.com`) once the CNAME file in the `studio2201/studio2201.com` repo is set. Adding a `www` CNAME pointing at any GitHub Pages URL is the legacy approach and is unnecessary under current GitHub Pages.
 
-Set one `CNAME` record with the host field set to `www`. The value is `studio2201.github.io.` (note the trailing dot — most registrars accept either with or without it; both work).
+If you previously had a `www` CNAME pointing at `studio2201.github.io`, **delete it** — it served the now-deprecated `studio2201/studio2201.github.io` org user page, which has been retired in favor of `studio2201/studio2201.com`.
 
 ## On GitHub
 
@@ -46,7 +44,7 @@ In the `studio2201/studio2201.com` repository:
 
 1. **Settings → Pages** (left sidebar).
 2. **Source**: `Deploy from a branch`.
-3. **Branch**: `main` / `(root)`. (Both product repos and the website will all be on `main`. Pages picks the one named `username.github.io`-style or with the `CNAME` file.)
+3. **Branch**: `master` / `(root)`. (Both product repos and the website will all be on `master`. Pages picks the one with the `CNAME` file.)
 4. **Custom domain**: enter `studio2201.com`. Click Save.
 5. Wait ~1 minute for GitHub to do DNS checks. A green "DNS check successful" appears.
 6. Toggle **Enforce HTTPS** once GitHub has provisioned the Let's Encrypt cert (a few minutes).
@@ -56,12 +54,14 @@ In the `studio2201/studio2201.com` repository:
 - **"DNS check in progress" forever**: usually means the `CNAME` file in this repo (`studio2201.com`) doesn't match the apex. They must agree.
 - **"Improperly configured"**: GitHub will tell you which record is missing. Usually the apex A records.
 - **HTTPS not available**: GitHub hasn't validated the apex A records yet. Wait a few hours.
+- **`www.studio2201.com` not redirecting**: confirm you have **no** `www` CNAME at your registrar; GitHub handles the redirect itself.
 
 ## What "working" looks like
 
 After both steps:
 
-- `https://studio2201.com/` — the site (also `https://www.studio2201.com/`)
+- `https://studio2201.com/` — the site
+- `https://www.studio2201.com/` — auto-redirects to the apex
 - `http://studio2201.com/` — auto-redirects to https
 - GitHub Pages panel shows "Your site is live at https://studio2201.com"
 
@@ -79,4 +79,3 @@ If you also want email at your domain, that's a separate MX + SPF + DKIM setup a
 | A | @ | 185.199.109.153 | 600 |
 | A | @ | 185.199.110.153 | 600 |
 | A | @ | 185.199.111.153 | 600 |
-| CNAME | www | studio2201.github.io. | 600 |
