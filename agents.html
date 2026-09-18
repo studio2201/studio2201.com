@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="description" content="studio2201 Agent & Automation Guide — Headless CLI flags, MCP configuration, agent rules, CI diff gates, and 5-tool matrix. Apache-2.0." />
+<meta name="theme-color" content="#f7f5f0" />
+<title>Agent & Automation Guide · studio2201</title>
+<link rel="canonical" href="https://studio2201.com/agents" />
+<meta property="og:site_name" content="studio2201" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://studio2201.com/agents" />
+<meta property="og:title" content="Agent & Automation Guide · studio2201" />
+<meta property="og:description" content="Machine-first CLI patterns, MCP server configurations, IDE agent rules, and CI/CD pipelines for autonomous loops." />
+<meta property="og:image" content="https://studio2201.com/assets/og-image.png" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Agent & Automation Guide · studio2201" />
+<meta name="twitter:description" content="Machine-first CLI patterns, MCP server configurations, IDE agent rules, and CI/CD pipelines for autonomous loops." />
+<meta name="twitter:image" content="https://studio2201.com/assets/og-image.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Outfit:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css" />
+<link rel="stylesheet" href="components.css" />
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png" />
+<link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png" />
+</head>
+<body>
+<main class="page">
+
+  <nav>
+    <a class="nav-back" href="/">← studio2201.com</a>
+  </nav>
+
+  <header class="hero">
+    <div class="badge-bar">
+      <span class="eyebrow" style="margin-bottom:0;">studio2201 / automation</span>
+      <span class="tag green">v0.4.4</span>
+      <span class="tag green">Apache-2.0</span>
+    </div>
+    <h1>Agent & Automation Guide</h1>
+    <p class="lede">Zero-dependency, machine-first security tooling for autonomous coding agents, Model Context Protocol (MCP) servers, pre-commit diff hooks, and CI/CD pipelines.</p>
+    <div class="cta">
+      <a class="btn primary" href="#matrix">5-Tool Matrix ↓</a>
+      <a class="btn ghost" href="#pipelines">CI/CD Pipelines ↓</a>
+    </div>
+  </header>
+
+  <section id="headless">
+    <p class="eyebrow num">01</p>
+    <h2>Headless & Machine CLI</h2>
+    <p class="lede small">All five tools implement a strict headless contract for programmatic integration into agent toolkits, shell pipelines, and background watchers.</p>
+    <div class="card-grid">
+      <div class="feature-item">
+        <h4>Standard Flags</h4>
+        <p><code>--format json</code> emits structured schemas; <code>-q, --quiet</code> silences stdout for clean exit status; <code>-v</code> prints stderr diagnostics; <code>-o &lt;FILE&gt;</code> writes directly to disk.</p>
+      </div>
+      <div class="feature-item">
+        <h4>Tri-State Exit Codes</h4>
+        <p><code>0</code> = Success / Clean verdict (safe to ship); <code>1</code> = Security findings / Policy threshold breached (BLOCK/FIX); <code>2</code> = Argument parse error or runtime I/O failure.</p>
+      </div>
+    </div>
+    <div class="code-box">
+      <pre><code># Stream staged diff directly to snip in machine-readable JSON:
+git diff --staged | snip audit --format json
+
+# Silent gate assertion (exits 0 on clean, 1 on violation):
+git diff --staged | snip audit -q || echo "Security violation detected"</code></pre>
+    </div>
+  </section>
+
+  <section id="mcp">
+    <p class="eyebrow num">02</p>
+    <h2>Model Context Protocol (MCP)</h2>
+    <p class="lede small">Run <code>snip serve --mcp</code> to expose real-time diff auditing and security gates directly to Claude Desktop, Cursor, and Windsurf via stdio.</p>
+    <div class="code-box">
+      <pre><code>// claude_desktop_config.json or ~/.cursor/mcp.json
+{
+  "mcpServers": {
+    "snip": {
+      "command": "snip",
+      "args": ["serve", "--mcp"]
+    }
+  }
+}</code></pre>
+    </div>
+  </section>
+
+  <section id="rules">
+    <p class="eyebrow num">03</p>
+    <h2>Agent Rules & Prompts</h2>
+    <p class="lede small">Drop these directives into your project's <code>.cursorrules</code>, <code>CLAUDE.md</code>, or agent system prompts to enforce automated security gates:</p>
+    <div class="code-box">
+      <pre><code># studio2201 Autonomous Security Rules
+- Before staging any code modifications, audit diffs: git diff --staged | snip audit --format json
+- If Snip emits exit code 1 (Block/Fix): remediate leaked secrets, broken RLS, or permissive CORS.
+- When adding dependencies to package.json, Cargo.lock, or pyproject.toml: vigil policy check --max-dormancy 180 -q
+- Reject dormant packages; verify cryptographic call sites comply with post-quantum standards via aegis.</code></pre>
+    </div>
+  </section>
+
+  <section id="pipelines">
+    <p class="eyebrow num">04</p>
+    <h2>CI/CD & Pre-Commit Pipelines</h2>
+    <p class="lede small">Gate code modifications locally before commits are created and continuously in pull request workflows.</p>
+    <div class="code-box">
+      <pre><code>#!/bin/sh
+# .git/hooks/pre-commit — Local pre-commit diff gate
+git diff --staged | snip audit -q || {
+  echo "[-] Snip pre-commit gate failed: security violations found in staged diff." >&2
+  exit 1
+}</code></pre>
+    </div>
+    <div class="code-box">
+      <pre><code># .github/workflows/security-gate.yml
+name: studio2201 Security Gate
+on: [pull_request, push]
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with: { fetch-depth: 0 }
+      - name: Install studio2201 suite
+        run: curl -fsSL https://studio2201.com/install.sh | sh -s all
+      - name: Audit PR diff with snip
+        run: git diff origin/${{ github.base_ref || 'master' }}...HEAD | snip audit --format json
+      - name: Check dependency dormancy with vigil
+        run: vigil policy check --max-dormancy 180 -q</code></pre>
+    </div>
+  </section>
+
+  <section id="matrix">
+    <p class="eyebrow num">05</p>
+    <h2>5-Tool Automation Matrix</h2>
+    <p class="lede small">How the five studio2201 tools integrate across the autonomous developer loop.</p>
+    <div class="card-grid">
+      <div class="feature-item">
+        <h4>Snip <span class="tag green">vibe-code</span></h4>
+        <p><strong>Loop Phase:</strong> Code generation & pre-commit diff review.<br>
+        <strong>Command:</strong> <code>git diff --staged | snip audit</code><br>
+        <strong>Exit Codes:</strong> <code>0</code> Ship · <code>1</code> Block/Fix · <code>2</code> Error.<br>
+        <strong>Action:</strong> Strips leaked API keys, fixes broken Supabase RLS, and remediates permissive CORS.</p>
+        <a class="more" href="/snip">Overview & Specs →</a>
+      </div>
+      <div class="feature-item">
+        <h4>Vigil <span class="tag green">dormancy</span></h4>
+        <p><strong>Loop Phase:</strong> Manifest updates & dependency addition.<br>
+        <strong>Command:</strong> <code>vigil policy check --max-dormancy 180 -q</code><br>
+        <strong>Exit Codes:</strong> <code>0</code> Pass · <code>1</code> Dormant dep · <code>2</code> Error.<br>
+        <strong>Action:</strong> Halts PRs on abandoned crates/packages; suggests actively maintained alternatives.</p>
+        <a class="more" href="/vigil">Overview & Specs →</a>
+      </div>
+      <div class="feature-item">
+        <h4>Aegis <span class="tag green">pqc sdk</span></h4>
+        <p><strong>Loop Phase:</strong> Cryptographic migration & compliance sweeps.<br>
+        <strong>Command:</strong> <code>aegis scan --format json ./src</code><br>
+        <strong>Exit Codes:</strong> <code>0</code> Compliant · <code>1</code> Classical crypto · <code>2</code> Error.<br>
+        <strong>Action:</strong> Scans RSA/ECC and emits OMB M-26-15 roadmaps with ML-KEM-768/ML-DSA-65 drop-in shims.</p>
+        <a class="more" href="/aegis">Overview & Specs →</a>
+      </div>
+      <div class="feature-item">
+        <h4>Proven <span class="tag green">attestor</span></h4>
+        <p><strong>Loop Phase:</strong> Build, packaging & artifact release.<br>
+        <strong>Command:</strong> <code>proven attest target/app --format slsa -o app.slsa.json</code><br>
+        <strong>Exit Codes:</strong> <code>0</code> Verified · <code>1</code> Tampered · <code>2</code> Error.<br>
+        <strong>Action:</strong> Signs binaries with post-quantum ML-DSA-65; attests bit-identity before runtime deployment.</p>
+        <a class="more" href="/proven">Overview & Specs →</a>
+      </div>
+      <div class="feature-item">
+        <h4>Boneyard <span class="tag green">tech-debt</span></h4>
+        <p><strong>Loop Phase:</strong> Fleet governance & scheduled org audits.<br>
+        <strong>Command:</strong> <code>boneyard enrich -i repos.json --format json</code><br>
+        <strong>Exit Codes:</strong> <code>0</code> Compliant · <code>1</code> Debt breach · <code>2</code> Error.<br>
+        <strong>Action:</strong> Ranks multi-repo catalog across 5 axes; allocates remediation budgets in repo-weeks.</p>
+        <a class="more" href="/boneyard">Overview & Specs →</a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="foot">
+    <p>studio2201 · Apache-2.0 · pure Rust, std:: only</p>
+    <p class="small">Last updated 2026-09-18 · source: <a href="https://github.com/studio2201/studio2201.com">studio2201/studio2201.com</a></p>
+  </footer>
+
+</main>
+</body>
+</html>

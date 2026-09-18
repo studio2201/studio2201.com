@@ -97,8 +97,38 @@
     <p class="ecosystem-tag">All five are <strong>Apache-2.0</strong>, written in pure Rust against <code>std::</code> only. Zero crates.io dependencies. The commercial planes get sold separately.</p>
   </section>
 
-  <section id="install">
+  <section id="agents">
     <p class="eyebrow num">02</p>
+    <h2>Agent & Automation Guide</h2>
+    <p class="lede small">Zero-dependency, machine-first security tooling built for autonomous developer loops, MCP agents, and CI pipelines.</p>
+    <div class="code-box">
+      <pre><code># Headless JSON diff audit & silent pre-commit gate:
+git diff --staged | snip audit --format json
+git diff --staged | snip audit -q && echo "Clean diff"</code></pre>
+    </div>
+    <div class="card-grid">
+      <div class="feature-item">
+        <h4>MCP Server</h4>
+        <p>Native stdio Model Context Protocol support via <code>snip serve --mcp</code> for Claude Desktop, Cursor, and Windsurf.</p>
+      </div>
+      <div class="feature-item">
+        <h4>Cursor & Claude</h4>
+        <p>Drop-in <code>.cursorrules</code> system prompts directing AI coding assistants to audit diffs and dependency updates.</p>
+      </div>
+      <div class="feature-item">
+        <h4>Pre-Commit Diff Gates</h4>
+        <p>Sub-second local git hook blocking hardcoded secrets, broken Supabase RLS, and permissive CORS before commits land.</p>
+      </div>
+      <div class="feature-item">
+        <h4>CI Pipeline Checks</h4>
+        <p>Deterministic exit codes (<code>0</code> clean, <code>1</code> findings, <code>2</code> error) and JSON outputs for GitHub Actions workflows.</p>
+      </div>
+    </div>
+    <a class="btn primary" href="agents.html">Read the Agent Guide →</a>
+  </section>
+
+  <section id="install">
+    <p class="eyebrow num">03</p>
     <h2>Installation</h2>
     <p class="lede small">Single-command installation for macOS and Linux. Zero root required; installs directly to <code>~/.local/bin</code>.</p>
     <div class="code-box">
@@ -111,14 +141,14 @@ curl -fsSL https://studio2201.com/install.sh | sh -s vigil</code></pre>
   </section>
 
   <section id="doctrine">
-    <p class="eyebrow num">03</p>
+    <p class="eyebrow num">04</p>
     <h2>Working doctrine</h2>
     <p class="lede small">Eight markdown files, ~420 lines. Rules that don't change. OODA loops that work. Security probes. Design principles. Multi-agent coordination. The doctrine is the rulebook — the products follow from it.</p>
     <a class="btn ghost" href="https://github.com/studio2201/studio2201">Read the doctrine →</a>
   </section>
 
   <section id="contact">
-    <p class="eyebrow num">04</p>
+    <p class="eyebrow num">05</p>
     <h2>Get in touch</h2>
     <p class="lede small">Commercial inquiries, partnership proposals, vendor security disclosures: open a GitHub issue or DM. Public disclosures welcome; coordinated disclosure preferred.</p>
     <a class="btn ghost" href="https://github.com/UberMetroid">github.com/UberMetroid →</a>
@@ -126,7 +156,7 @@ curl -fsSL https://studio2201.com/install.sh | sh -s vigil</code></pre>
 
   <footer class="foot">
     <p>studio2201 · Apache-2.0 · no warranty · pure Rust, std:: only</p>
-    <p class="small">Last updated 2026-09-17 · source of this page: <a href="https://github.com/studio2201/studio2201.com">studio2201/studio2201.com</a></p>
+    <p class="small">Last updated 2026-09-18 · source of this page: <a href="https://github.com/studio2201/studio2201.com">studio2201/studio2201.com</a></p>
   </footer>
 
 </main>
