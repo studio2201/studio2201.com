@@ -302,6 +302,82 @@ section {
   border-bottom-color: var(--primary);
 }
 
+/* Product Detail Pages */
+.nav-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--muted);
+  text-decoration: none;
+  margin-bottom: 24px;
+  transition: color 150ms ease;
+}
+
+.nav-back:hover {
+  color: var(--primary);
+}
+
+.badge-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+
+.code-box {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 16px 20px;
+  margin: 20px 0 28px;
+  overflow-x: auto;
+}
+
+.code-box pre {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px;
+  color: var(--ink);
+  line-height: 1.6;
+}
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 16px;
+  margin: 24px 0 36px;
+}
+
+.feature-item {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 20px;
+}
+
+.feature-item h4 {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: var(--ink);
+}
+
+.feature-item p {
+  font-size: 14px;
+  color: var(--ink-2);
+  line-height: 1.5;
+}
+
+.feature-item code {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  background: var(--line-soft);
+  padding: 1px 5px;
+  border-radius: 3px;
+}
+
 @media (max-width: 640px) {
   .page { padding: 40px 20px 64px; }
   .hero { padding-bottom: 40px; margin-bottom: 40px; }

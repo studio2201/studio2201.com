@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="description" content="Boneyard — org-wide tech-debt radar. Ranks internal repos by dormancy, risk, exposure, dependency depth, and AI-agent surface. Apache-2.0." />
+<meta name="theme-color" content="#f7f5f0" />
+<title>Boneyard — org-wide tech-debt radar · studio2201</title>
+<link rel="canonical" href="https://studio2201.com/boneyard" />
+<meta property="og:site_name" content="studio2201" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://studio2201.com/boneyard" />
+<meta property="og:title" content="Boneyard — org-wide tech-debt radar · studio2201" />
+<meta property="og:description" content="Org-wide tech-debt radar. Ranks internal repos by dormancy, risk, exposure, dependency depth, and AI-agent surface." />
+<meta property="og:image" content="https://studio2201.com/assets/og-image.png" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Boneyard — org-wide tech-debt radar · studio2201" />
+<meta name="twitter:description" content="Org-wide tech-debt radar. Ranks internal repos by dormancy, risk, exposure, dependency depth, and AI-agent surface." />
+<meta name="twitter:image" content="https://studio2201.com/assets/og-image.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Outfit:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css" />
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png" />
+<link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png" />
+</head>
+<body>
+<main class="page">
+
+  <nav>
+    <a class="nav-back" href="/">← studio2201.com</a>
+  </nav>
+
+  <header class="hero">
+    <div class="badge-bar">
+      <span class="eyebrow" style="margin-bottom:0;">studio2201 / product 05</span>
+      <span class="tag green">v0.1.1</span>
+      <span class="tag green">Apache-2.0</span>
+    </div>
+    <h1>Boneyard</h1>
+    <p class="lede">Org-wide tech-debt radar. Discovers and ranks internal repositories by dormancy, exposure, dependency depth, and AI-agent attack surface to emit actionable remediation budgets.</p>
+    <div class="cta">
+      <a class="btn primary" href="https://github.com/studio2201/boneyard">View on GitHub →</a>
+      <a class="btn ghost" href="https://github.com/studio2201/studio2201/blob/master/PRODUCTS/index.md">Framework Doctrine →</a>
+    </div>
+  </header>
+
+  <section>
+    <p class="eyebrow num">01</p>
+    <h2>What it does</h2>
+    <div class="card-grid">
+      <div class="feature-item">
+        <h4>Five-Axis Repo Scoring</h4>
+        <p>Evaluates repos across <strong>dormancy</strong> (via Necrometer), <strong>risk</strong>, <strong>exposure</strong>, <strong>dependency depth</strong>, and <strong>AI-agent surface</strong>.</p>
+      </div>
+      <div class="feature-item">
+        <h4>Composite Boneyard Index</h4>
+        <p>Computes an org-wide health score in [0, 100] categorized into unambiguous Red, Amber, and Green risk tiers.</p>
+      </div>
+      <div class="feature-item">
+        <h4>Remediation Budgets</h4>
+        <p>Quantifies tech debt into concrete engineering work units, generating estimates in <em>repo-weeks</em> for sprint planning.</p>
+      </div>
+      <div class="feature-item">
+        <h4>TOML Policy Gate</h4>
+        <p>Enforces org-wide security and maintenance policies in CI, preventing unreviewed orphan repos from going public.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <p class="eyebrow num">02</p>
+    <h2>Terminal usage</h2>
+    <div class="code-box">
+      <pre><code># Ingest org repositories and score dormancy
+boneyard enrich --input repos.json --output scored.json
+
+# Generate executive markdown report with remediation budgets
+boneyard report --input scored.json --policy policy.toml --output report.md
+
+# Assert compliance against org policy in CI
+boneyard policy check --input scored.json --policy policy.toml</code></pre>
+    </div>
+  </section>
+
+  <section>
+    <p class="eyebrow num">03</p>
+    <h2>Enterprise Governance</h2>
+    <div class="card-grid">
+      <div class="feature-item">
+        <h4>Decommission Before Compromise</h4>
+        <p>Exposes dormant internal repositories before forgotten credentials or vulnerable dependencies become attack vectors.</p>
+      </div>
+      <div class="feature-item">
+        <h4>AI Surface Discovery</h4>
+        <p>Surfaces codebases that have been rapidly altered by autonomous agents without corresponding test coverage or architectural reviews.</p>
+      </div>
+      <div class="feature-item">
+        <h4>Zero External Crates</h4>
+        <p>Zero third-party dependencies. Built in pure Rust standard library for maximum auditability and air-gapped deployment.</p>
+      </div>
+      <div class="feature-item">
+        <h4>CI & Pipeline Integration</h4>
+        <p>Runs cleanly in GitHub Actions, GitLab CI, and scheduled audit pipelines without daemon overhead.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer class="foot">
+    <p>studio2201 · Apache-2.0 · <a href="https://github.com/studio2201/boneyard">github.com/studio2201/boneyard</a></p>
+    <p class="small">Last updated 2026-09-18 · source: <a href="https://github.com/studio2201/studio2201.com">studio2201/studio2201.com</a></p>
+  </footer>
+
+</main>
+</body>
+</html>

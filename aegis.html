@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="description" content="Aegis — PQC migration SDK. Scans for RSA/ECC, plans migration in OMB M-26-15 format, emits ML-KEM and ML-DSA replacements. Apache-2.0." />
+<meta name="theme-color" content="#f7f5f0" />
+<title>Aegis — PQC migration SDK · studio2201</title>
+<link rel="canonical" href="https://studio2201.com/aegis" />
+<meta property="og:site_name" content="studio2201" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://studio2201.com/aegis" />
+<meta property="og:title" content="Aegis — PQC migration SDK · studio2201" />
+<meta property="og:description" content="PQC migration SDK. Scans RSA/ECC usage, plans in OMB M-26-15 format, emits ML-KEM-768 / ML-DSA-65 replacements." />
+<meta property="og:image" content="https://studio2201.com/assets/og-image.png" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Aegis — PQC migration SDK · studio2201" />
+<meta name="twitter:description" content="PQC migration SDK. Scans RSA/ECC usage, plans in OMB M-26-15 format, emits ML-KEM-768 / ML-DSA-65 replacements." />
+<meta name="twitter:image" content="https://studio2201.com/assets/og-image.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Outfit:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css" />
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png" />
+<link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png" />
+</head>
+<body>
+<main class="page">
+
+  <nav>
+    <a class="nav-back" href="/">← studio2201.com</a>
+  </nav>
+
+  <header class="hero">
+    <div class="badge-bar">
+      <span class="eyebrow" style="margin-bottom:0;">studio2201 / product 03</span>
+      <span class="tag green">v0.1.1</span>
+      <span class="tag green">Apache-2.0</span>
+    </div>
+    <h1>Aegis</h1>
+    <p class="lede">PQC migration SDK. Scans C, C++, and Rust codebases for legacy RSA and ECC cryptography, constructs OMB M-26-15 migration plans, and emits drop-in ML-KEM and ML-DSA primitives.</p>
+    <div class="cta">
+      <a class="btn primary" href="https://github.com/studio2201/aegis">View on GitHub →</a>
+      <a class="btn ghost" href="https://github.com/studio2201/studio2201/blob/master/PRODUCTS/index.md">Framework Doctrine →</a>
+    </div>
+  </header>
+
+  <section>
+    <p class="eyebrow num">01</p>
+    <h2>What it does</h2>
+    <div class="card-grid">
+      <div class="feature-item">
+        <h4>Classical Cryptography Scanner</h4>
+        <p>Discovers every RSA, ECC, ECDSA, DH, and Ed25519 invocation across source code, dependencies, and build scripts.</p>
+      </div>
+      <div class="feature-item">
+        <h4>OMB M-26-15 Alignment</h4>
+        <p>Automatically generates transition roadmaps formatted to federal OMB M-26-15 and NIST FIPS 203/204/205 standards.</p>
+      </div>
+      <div class="feature-item">
+        <h4>Drop-in Post-Quantum Shims</h4>
+        <p>Emits drop-in ML-KEM-768 key encapsulation and ML-DSA-65 digital signature code with standard <code>EVP_PKEY</code> compatibility.</p>
+      </div>
+      <div class="feature-item">
+        <h4>CI Regression Gate</h4>
+        <p>Halts builds on classical cryptographic regressions, asserting <code>pkey_algo ∈ {ML-KEM, ML-DSA, hybrid}</code>.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <p class="eyebrow num">02</p>
+    <h2>Terminal usage</h2>
+    <div class="code-box">
+      <pre><code># Scan repository for classical cryptography call sites
+aegis scan --src ./src
+
+# Generate OMB M-26-15 compliance plan
+aegis plan --format omb-m-26-15 --output migration.json
+
+# Gate CI pipeline on post-quantum compliance
+aegis check --policy strict-pqc</code></pre>
+    </div>
+  </section>
+
+  <section>
+    <p class="eyebrow num">03</p>
+    <h2>Federal Mandates & Timelines</h2>
+    <div class="card-grid">
+      <div class="feature-item">
+        <h4>EO 14412 Deadline</h4>
+        <p>Federal HVAs must establish PQC key encapsulation by Dec 31, 2030. FAR Council rules cascade this mandate to all federal contractors.</p>
+      </div>
+      <div class="feature-item">
+        <h4>RSA/ECC Sunsetting</h4>
+        <p>Classical public-key cryptography is deprecated by 2030 and strictly disallowed across government systems by 2035.</p>
+      </div>
+      <div class="feature-item">
+        <h4>Hybrid Transition Support</h4>
+        <p>Supports dual classical/PQC negotiation during the migration window to preserve backwards compatibility.</p>
+      </div>
+      <div class="feature-item">
+        <h4>Open Architecture</h4>
+        <p>All core scanning and migration tooling is completely open under Apache-2.0 with no vendor lock-in.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer class="foot">
+    <p>studio2201 · Apache-2.0 · <a href="https://github.com/studio2201/aegis">github.com/studio2201/aegis</a></p>
+    <p class="small">Last updated 2026-09-18 · source: <a href="https://github.com/studio2201/studio2201.com">studio2201/studio2201.com</a></p>
+  </footer>
+
+</main>
+</body>
+</html>

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="description" content="Snip — vibe-code security gate. Audits AI-generated diffs for hardcoded credentials, missing CSP/CORS, and broken Supabase RLS. Apache-2.0." />
+<meta name="theme-color" content="#f7f5f0" />
+<title>Snip — vibe-code security gate · studio2201</title>
+<link rel="canonical" href="https://studio2201.com/snip" />
+<meta property="og:site_name" content="studio2201" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://studio2201.com/snip" />
+<meta property="og:title" content="Snip — vibe-code security gate · studio2201" />
+<meta property="og:description" content="Vibe-code security gate. Audits AI-generated diffs for hardcoded credentials, missing CSP/CORS, and broken Supabase RLS." />
+<meta property="og:image" content="https://studio2201.com/assets/og-image.png" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Snip — vibe-code security gate · studio2201" />
+<meta name="twitter:description" content="Vibe-code security gate. Audits AI-generated diffs for hardcoded credentials, missing CSP/CORS, and broken Supabase RLS." />
+<meta name="twitter:image" content="https://studio2201.com/assets/og-image.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Outfit:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css" />
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png" />
+<link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png" />
+</head>
+<body>
+<main class="page">
+
+  <nav>
+    <a class="nav-back" href="/">← studio2201.com</a>
+  </nav>
+
+  <header class="hero">
+    <div class="badge-bar">
+      <span class="eyebrow" style="margin-bottom:0;">studio2201 / product 04</span>
+      <span class="tag green">v0.1.1</span>
+      <span class="tag green">Apache-2.0</span>
+    </div>
+    <h1>Snip</h1>
+    <p class="lede">Vibe-code security gate. Real-time pre-deploy audit for AI-generated code diffs, catching leaked credentials, broken RLS, and missing security headers at the moment of generation.</p>
+    <div class="cta">
+      <a class="btn primary" href="https://github.com/studio2201/snip">View on GitHub →</a>
+      <a class="btn ghost" href="https://github.com/studio2201/studio2201/blob/master/PRODUCTS/index.md">Framework Doctrine →</a>
+    </div>
+  </header>
+
+  <section>
+    <p class="eyebrow num">01</p>
+    <h2>What it does</h2>
+    <div class="card-grid">
+      <div class="feature-item">
+        <h4>Secret & Key Pattern Detection</h4>
+        <p>Flags hardcoded API keys and token shapes for Stripe, OpenAI, Anthropic, AWS, and GitHub before commits are staged.</p>
+      </div>
+      <div class="feature-item">
+        <h4>Supabase & DB RLS Audit</h4>
+        <p>Detects missing or flawed Row Level Security (RLS) policies that inadvertently expose database tables to anonymous callers.</p>
+      </div>
+      <div class="feature-item">
+        <h4>Web Security Headers</h4>
+        <p>Verifies Content Security Policy (CSP), CORS configurations, and unauthenticated public API routes.</p>
+      </div>
+      <div class="feature-item">
+        <h4>Ship / Fix / Block Verdict</h4>
+        <p>Emits an instantaneous verdict formatted directly into the AI editor or coding agent's chat interface.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <p class="eyebrow num">02</p>
+    <h2>Distribution & Delivery</h2>
+    <div class="card-grid">
+      <div class="feature-item">
+        <h4>MCP Server</h4>
+        <p>Exposes security linting tools directly to Cursor, Claude Desktop, Windsurf, and other Model Context Protocol clients.</p>
+      </div>
+      <div class="feature-item">
+        <h4>GitHub Action</h4>
+        <p>Automated PR gate running on pull requests to prevent AI-generated security regressions from merging.</p>
+      </div>
+      <div class="feature-item">
+        <h4>CLI Tool</h4>
+        <p>Standalone binary for local pre-commit hooks and command-line diff auditing: <code>git diff | snip</code>.</p>
+      </div>
+      <div class="feature-item">
+        <h4>Cursor Skill Pack</h4>
+        <p>Drop-in prompt rules and tool hooks designed specifically for Cursor Composer and agent workflows.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <p class="eyebrow num">03</p>
+    <h2>Terminal usage</h2>
+    <div class="code-box">
+      <pre><code># Audit git staging area diff
+git diff --staged | snip audit
+
+# Run as an MCP server for AI coding assistants
+snip serve --mcp
+
+# Check specific generated file or directory
+snip check --path ./src/api</code></pre>
+    </div>
+  </section>
+
+  <footer class="foot">
+    <p>studio2201 · Apache-2.0 · <a href="https://github.com/studio2201/snip">github.com/studio2201/snip</a></p>
+    <p class="small">Last updated 2026-09-18 · source: <a href="https://github.com/studio2201/studio2201.com">studio2201/studio2201.com</a></p>
+  </footer>
+
+</main>
+</body>
+</html>

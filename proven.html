@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="description" content="Proven — PQC-signed supply-chain attestor. Merkle AST + ML-DSA-65 + opm. SLSA L3+ on openOODA. Apache-2.0." />
+<meta name="theme-color" content="#f7f5f0" />
+<title>Proven — PQC-signed supply-chain attestor · studio2201</title>
+<link rel="canonical" href="https://studio2201.com/proven" />
+<meta property="og:site_name" content="studio2201" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://studio2201.com/proven" />
+<meta property="og:title" content="Proven — PQC-signed supply-chain attestor · studio2201" />
+<meta property="og:description" content="PQC-signed supply-chain attestor. Merkle AST + ML-DSA-65 + opm. SLSA L3+. Air-gappable, reproducible." />
+<meta property="og:image" content="https://studio2201.com/assets/og-image.png" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Proven — PQC-signed supply-chain attestor · studio2201" />
+<meta name="twitter:description" content="PQC-signed supply-chain attestor. Merkle AST + ML-DSA-65 + opm. SLSA L3+. Air-gappable, reproducible." />
+<meta name="twitter:image" content="https://studio2201.com/assets/og-image.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Outfit:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css" />
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png" />
+<link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png" />
+</head>
+<body>
+<main class="page">
+
+  <nav>
+    <a class="nav-back" href="/">← studio2201.com</a>
+  </nav>
+
+  <header class="hero">
+    <div class="badge-bar">
+      <span class="eyebrow" style="margin-bottom:0;">studio2201 / product 02</span>
+      <span class="tag green">v0.1.1</span>
+      <span class="tag green">Apache-2.0</span>
+    </div>
+    <h1>Proven</h1>
+    <p class="lede">PQC-signed supply-chain attestor. Merkle AST + ML-DSA-65 + opm. SLSA L3+ verification designed to survive the post-2030 quantum transition.</p>
+    <div class="cta">
+      <a class="btn primary" href="https://github.com/studio2201/proven">View on GitHub →</a>
+      <a class="btn ghost" href="https://github.com/studio2201/studio2201/blob/master/PRODUCTS/index.md">Framework Doctrine →</a>
+    </div>
+  </header>
+
+  <section>
+    <p class="eyebrow num">01</p>
+    <h2>What it does</h2>
+    <div class="card-grid">
+      <div class="feature-item">
+        <h4>ML-DSA-65 Attestation</h4>
+        <p>Cryptographically signs published binaries with post-quantum digital signatures resilient against harvest-now-decrypt-later attacks.</p>
+      </div>
+      <div class="feature-item">
+        <h4>Merkle AST Verification</h4>
+        <p>Binds the build output directly to source commit, AST Merkle root, and dependency fingerprints.</p>
+      </div>
+      <div class="feature-item">
+        <h4>Capability Token Matrix</h4>
+        <p>Embeds execution boundaries, sandbox constraints, and runtime capability grants directly into the attestation envelope.</p>
+      </div>
+      <div class="feature-item">
+        <h4>Air-Gappable & SLSA L3+</h4>
+        <p>Validates bit-reproducibility without requiring live network calls to centralized certificate transparency logs.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <p class="eyebrow num">02</p>
+    <h2>Terminal usage</h2>
+    <div class="code-box">
+      <pre><code># Attest a compiled binary with ML-DSA-65
+proven attest --target target/release/app --key identity.pqc
+
+# Verify provenance against baseline Merkle root
+proven verify --target target/release/app --attestation app.slsa.pqc
+
+# Emit SLSA L3+ compatible statement
+proven emit-slsa --output provenance.json</code></pre>
+    </div>
+  </section>
+
+  <section>
+    <p class="eyebrow num">03</p>
+    <h2>Compliance & Post-2030 Mandates</h2>
+    <div class="card-grid">
+      <div class="feature-item">
+        <h4>Executive Order 14412</h4>
+        <p>Fulfills federal High Value Asset (HVA) post-quantum cryptography directives ahead of the federal deadline.</p>
+      </div>
+      <div class="feature-item">
+        <h4>Classical Signature Obsolescence</h4>
+        <p>Traditional RSA/ECDSA signing models are quantum-vulnerable by 2030. Proven is post-quantum native from day one.</p>
+      </div>
+      <div class="feature-item">
+        <h4>Zero Dependencies</h4>
+        <p>Zero third-party crates. Self-contained cryptographic implementations honoring the strict studio2201 zero-trust doctrine.</p>
+      </div>
+      <div class="feature-item">
+        <h4>Reproducible Baselines</h4>
+        <p>Employs host- and rustc-keyed baselines ensuring byte-identical verification across distributed pipelines.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer class="foot">
+    <p>studio2201 · Apache-2.0 · <a href="https://github.com/studio2201/proven">github.com/studio2201/proven</a></p>
+    <p class="small">Last updated 2026-09-18 · source: <a href="https://github.com/studio2201/studio2201.com">studio2201/studio2201.com</a></p>
+  </footer>
+
+</main>
+</body>
+</html>
