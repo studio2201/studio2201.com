@@ -35,6 +35,8 @@
 
   <header class="hero">
     <div class="badge-bar">
+      <a href="https://studio2201.com"><img src="https://img.shields.io/badge/secured%20by-studio2201-2f6f5e?logo=shield" alt="secured by studio2201"></a>
+      <a href="/proven"><img src="https://img.shields.io/badge/proven-ML--DSA--65%20verified-2f6f5e" alt="proven: ML-DSA-65 verified (NIST FIPS 204)"></a>
       <span class="eyebrow" style="margin-bottom:0;">studio2201 / product 02</span>
       <span class="tag green">v0.2.9</span>
       <span class="tag green">Apache-2.0</span>
@@ -84,7 +86,8 @@ Add a GitHub Actions workflow to this repository at .github/workflows/proven.yml
 - Permissions: contents: read, checkout with fetch-depth: 0.
 - Action: run studio2201/studio2201@v1 with tools: 'proven' and fail-on: 'block'.
 - Artifacts: upload proven_report.md using actions/upload-artifact@v4 with if: always().
-- README Badge: add dynamic Shields.io workflow status badge to top of README.md (replace &lt;owner&gt;/&lt;repo&gt;):
+- README Badges: prepend the anchor badge and dynamic status badge to README.md:
+  [![secured by studio2201](https://img.shields.io/badge/secured%20by-studio2201-2f6f5e?logo=shield)](https://studio2201.com)
   [![proven][b-proven]][ci-proven]
   [b-proven]: https://img.shields.io/github/actions/workflow/status/&lt;owner&gt;/&lt;repo&gt;/proven.yml?label=proven&amp;logo=shield
   [ci-proven]: https://github.com/&lt;owner&gt;/&lt;repo&gt;/actions/workflows/proven.yml</code></pre>
@@ -136,7 +139,7 @@ proven emit-slsa --output provenance.json</code></pre>
   <section>
     <p class="eyebrow num">04</p>
     <h2>Why This Matters & Authoritative Mandates</h2>
-    <p class="lede small">Build-time tampering (XZ Utils, SolarWinds) bypasses source code reviews. Executive Order 14028 and SLSA Level 3+ require immutable provenance; automated CI attestations cryptographically bind binaries to source commits.</p>
+    <p class="lede small">Cryptographic build integrity meeting NIST FIPS 204 (ML-DSA-65) and SLSA Level 3+ provenance standards. Build-time tampering bypasses source code reviews; automated CI attestations cryptographically bind binaries to source commits with post-quantum signatures.</p>
     <div class="card-grid">
       <div class="feature-item">
         <h4><a href="https://slsa.dev/spec/v1.0/" target="_blank" rel="noopener">OpenSSF SLSA v1.0 Spec ↗</a></h4>

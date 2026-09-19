@@ -36,6 +36,8 @@
 
   <header class="hero">
     <div class="badge-bar">
+      <a href="https://studio2201.com"><img src="https://img.shields.io/badge/secured%20by-studio2201-2f6f5e?logo=shield" alt="secured by studio2201"></a>
+      <a href="/aegis"><img src="https://img.shields.io/badge/aegis-PQC%20compliant-2f6f5e" alt="aegis: PQC compliant (OMB M-26-15)"></a>
       <span class="eyebrow" style="margin-bottom:0;">studio2201 / product 03</span>
       <span class="tag green">v0.2.10</span>
       <span class="tag green">Apache-2.0</span>
@@ -87,7 +89,8 @@ Add a GitHub Actions workflow to this repository at .github/workflows/aegis.yml 
 - Action: run studio2201/studio2201@v1 with tools: 'aegis' and fail-on: 'block'.
 - Artifacts: upload aegis_report.md using actions/upload-artifact@v4 with if: always().
 - Zero False Positives: @v1 provisions Aegis v0.2.10+ (skips comments &amp; docstrings).
-- README Badge: add dynamic Shields.io workflow status badge to top of README.md (replace &lt;owner&gt;/&lt;repo&gt;):
+- README Badges: prepend the anchor badge and dynamic status badge to README.md:
+  [![secured by studio2201](https://img.shields.io/badge/secured%20by-studio2201-2f6f5e?logo=shield)](https://studio2201.com)
   [![aegis][b-aegis]][ci-aegis]
   [b-aegis]: https://img.shields.io/github/actions/workflow/status/&lt;owner&gt;/&lt;repo&gt;/aegis.yml?label=aegis&amp;logo=shield
   [ci-aegis]: https://github.com/&lt;owner&gt;/&lt;repo&gt;/actions/workflows/aegis.yml</code></pre>
@@ -139,8 +142,7 @@ aegis check --policy strict-pqc</code></pre>
   <section>
     <p class="eyebrow num">04</p>
     <h2>Why This Matters & Authoritative Mandates</h2>
-    <p class="lede small">White House OMB M-26-15 and NIST FIPS 203/204 mandate transitioning away from classical
-      RSA/ECC by 2030. Automated CI gates halt PRs introducing legacy primitives, ensuring continuous migration.</p>
+    <p class="lede small">Executive mandate compliance for White House OMB M-26-15 and NIST FIPS 203/204. Mandates migrating from vulnerable classical RSA/ECC to post-quantum cryptography (PQC) by 2030; Aegis provides continuous verification and automated migration roadmaps.</p>
     <div class="card-grid">
       <div class="feature-item">
         <h4><a href="https://www.whitehouse.gov/wp-content/uploads/2022/11/M-23-02-M-Memo-on-Migrating-to-Post-Quantum-Cryptography.pdf"

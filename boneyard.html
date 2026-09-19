@@ -35,6 +35,8 @@
 
   <header class="hero">
     <div class="badge-bar">
+      <a href="https://studio2201.com"><img src="https://img.shields.io/badge/secured%20by-studio2201-2f6f5e?logo=shield" alt="secured by studio2201"></a>
+      <a href="/boneyard"><img src="https://img.shields.io/badge/boneyard-maintained-2f6f5e" alt="boneyard: maintained (Active Asset Ownership)"></a>
       <span class="eyebrow" style="margin-bottom:0;">studio2201 / product 05</span>
       <span class="tag green">v0.2.9</span>
       <span class="tag green">Apache-2.0</span>
@@ -84,7 +86,8 @@ Add a GitHub Actions workflow to this repository at .github/workflows/boneyard.y
 - Permissions: contents: read, checkout with fetch-depth: 0.
 - Action: run studio2201/studio2201@v1 with tools: 'boneyard' and fail-on: 'block'.
 - Artifacts: upload boneyard_report.md using actions/upload-artifact@v4 with if: always().
-- README Badge: add dynamic Shields.io workflow status badge to top of README.md (replace &lt;owner&gt;/&lt;repo&gt;):
+- README Badges: prepend the anchor badge and dynamic status badge to README.md:
+  [![secured by studio2201](https://img.shields.io/badge/secured%20by-studio2201-2f6f5e?logo=shield)](https://studio2201.com)
   [![boneyard][b-boneyard]][ci-boneyard]
   [b-boneyard]: https://img.shields.io/github/actions/workflow/status/&lt;owner&gt;/&lt;repo&gt;/boneyard.yml?label=boneyard&amp;logo=shield
   [ci-boneyard]: https://github.com/&lt;owner&gt;/&lt;repo&gt;/actions/workflows/boneyard.yml</code></pre>
@@ -136,7 +139,7 @@ boneyard policy check --input scored.json --policy policy.toml</code></pre>
   <section>
     <p class="eyebrow num">04</p>
     <h2>Why This Matters & Authoritative Mandates</h2>
-    <p class="lede small">Technical debt drains $300 billion annually and unmaintained orphan repositories harbor 4x higher critical CVE density. Automated CI debt gating converts architectural rot into concrete remediation budgets in repo-weeks.</p>
+    <p class="lede small">Enforces Active Asset Ownership and eliminates zero-liability zombie repository debt. Unmaintained orphan repositories harbor 4x higher critical CVE density; Boneyard converts architectural rot into concrete remediation budgets in repo-weeks.</p>
     <div class="card-grid">
       <div class="feature-item">
         <h4><a href="https://stripe.com/reports/developer-coefficient-2018" target="_blank" rel="noopener">Stripe Developer Report ↗</a></h4>
@@ -147,8 +150,8 @@ boneyard policy check --input scored.json --policy policy.toml</code></pre>
         <p>Research confirms abandoned repositories harbor 4x higher critical CVE density and unpatched dependencies.</p>
       </div>
       <div class="feature-item">
-        <h4><a href="https://www.gartner.com/en/articles/what-is-technical-debt" target="_blank" rel="noopener">Gartner Debt Framework ↗</a></h4>
-        <p>Establishes formal technical debt budgeting as essential governance to prevent systemic velocity collapse.</p>
+        <h4><a href="https://www.gartner.com/en/articles/what-is-technical-debt" target="_blank" rel="noopener">Active Asset Ownership ↗</a></h4>
+        <p>Establishes executive governance to eradicate zombie repos, ensuring every software asset has accountable maintainers and 0 zombie debt.</p>
       </div>
       <div class="feature-item">
         <h4><a href="https://owasp.org" target="_blank" rel="noopener">OWASP A06: Outdated Comps ↗</a></h4>

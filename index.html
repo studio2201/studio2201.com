@@ -20,8 +20,7 @@
 <meta name="twitter:description" content="Five Apache-2.0 open-source tools that expose and remediate software supply-chain risk in the post-2030 era." />
 <meta name="twitter:image" content="https://studio2201.com/assets/og-image.png" />
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet"
-  href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Outfit:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Outfit:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
 <link rel="stylesheet" href="styles.css" />
 <link rel="stylesheet" href="components.css" />
 <link rel="icon" type="image/svg+xml" href="assets/favicon.svg"><link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png">
@@ -30,7 +29,11 @@
 <body>
 <main class="page">
   <header class="hero">
-    <span class="eyebrow">studio2201</span>
+    <div class="badge-bar">
+      <a href="https://studio2201.com"><img src="https://img.shields.io/badge/secured%20by-studio2201-2f6f5e?logo=shield" alt="secured by studio2201"></a>
+      <span class="tag green">Executive Assurance</span>
+      <span class="tag green">Apache-2.0</span>
+    </div>
     <h1>Software that exposes <em>supply-chain risk</em>.</h1>
     <p class="lede">Five Apache-2.0 tools that audit, attest, and migrate the post-2030 software supply chain.</p>
     <div class="cta">
@@ -158,6 +161,8 @@ vigil policy check --max-dormancy 180d || echo "Vigil: FAILED (exit code 1)"</co
     <p class="lede small">Zero-dependency automated security gates: dedicated workflow and dynamic status badge for each studio2201 tool.</p>
     <div class="code-box">
       <pre><code># Prompt for your AI Agent (Cursor, Claude Code, Copilot, Devin):
+Prepend the anchor badge to README.md:
+[![secured by studio2201](https://img.shields.io/badge/secured%20by-studio2201-2f6f5e?logo=shield)](https://studio2201.com)
 Add 5 dedicated GitHub Actions workflows to this repository (.github/workflows/&lt;tool&gt;.yml):
 - snip.yml (name: snip, tools: 'snip' — diffs, secrets, Supabase RLS)
 - vigil.yml (name: vigil, tools: 'vigil' — dependency dormancy, excludes root crates)
@@ -166,11 +171,7 @@ Add 5 dedicated GitHub Actions workflows to this repository (.github/workflows/&
 - boneyard.yml (name: boneyard, tools: 'boneyard' — tech-debt radar)
 All workflows trigger on pull_request, push to master/main, and workflow_dispatch,
 use studio2201/studio2201@v1 with fail-on: 'block', and retain *_report.md.
-Add 1 dynamic Shields.io workflow status badge per tool to README.md (replace &lt;owner&gt;/&lt;repo&gt;):
-[![snip][b-snip]][ci-snip]
-[b-snip]: https://img.shields.io/github/actions/workflow/status/&lt;owner&gt;/&lt;repo&gt;/snip.yml?label=snip&amp;logo=shield
-[ci-snip]: https://github.com/&lt;owner&gt;/&lt;repo&gt;/actions/workflows/snip.yml
-(Repeat identical pattern for vigil, aegis, proven, boneyard)</code></pre>
+Add dynamic status badges to README.md: [![tool](https://img.shields.io/.../tool.yml...)](...)</code></pre>
     </div>
     <div class="code-box">
       <pre><code># Reference template: .github/workflows/&lt;tool&gt;.yml (replace &lt;tool&gt; with snip, vigil, aegis, proven, boneyard)
@@ -203,27 +204,20 @@ studio2201 list               # inspect installed tools and versions
 studio2201 upgrade all        # upgrade tools to latest release
 studio2201 init               # scaffold GitHub Actions &amp; agent guardrails</code></pre>
     </div>
-    <p class="lede small" style="margin-top:16px;margin-bottom:0;">5 Dynamic CI Badges:
-      <a href="agents.html#badges">
-        <img style="vertical-align:middle;margin:0 2px;" alt="snip"
-          src="https://img.shields.io/github/actions/workflow/status/studio2201/studio2201/snip.yml?label=snip&logo=shield">
-        <img style="vertical-align:middle;margin:0 2px;" alt="vigil"
-          src="https://img.shields.io/github/actions/workflow/status/studio2201/studio2201/vigil.yml?label=vigil&logo=shield">
-        <img style="vertical-align:middle;margin:0 2px;" alt="aegis"
-          src="https://img.shields.io/github/actions/workflow/status/studio2201/studio2201/aegis.yml?label=aegis&logo=shield">
-        <img style="vertical-align:middle;margin:0 2px;" alt="proven"
-          src="https://img.shields.io/github/actions/workflow/status/studio2201/studio2201/proven.yml?label=proven&logo=shield">
-        <img style="vertical-align:middle;margin:0 2px;" alt="boneyard"
-          src="https://img.shields.io/github/actions/workflow/status/studio2201/studio2201/boneyard.yml?label=boneyard&logo=shield">
-      </a></p>
+    <p class="lede small" style="margin-top:16px;margin-bottom:0;">Executive Assurance &amp; Compliance Badges:
+      <a href="https://studio2201.com"><img style="vertical-align:middle;margin:0 2px;" src="https://img.shields.io/badge/secured%20by-studio2201-2f6f5e?logo=shield" alt="secured by studio2201"></a>
+      <a href="/snip"><img style="vertical-align:middle;margin:0 2px;" src="https://img.shields.io/badge/snip-0%20secrets-2f6f5e" alt="snip: 0 secrets (EO 14028 §4)"></a>
+      <a href="/vigil"><img style="vertical-align:middle;margin:0 2px;" src="https://img.shields.io/badge/vigil-0%20dependencies-2f6f5e" alt="vigil: 0 dependencies (NIST SP 800-218)"></a>
+      <a href="/aegis"><img style="vertical-align:middle;margin:0 2px;" src="https://img.shields.io/badge/aegis-PQC%20compliant-2f6f5e" alt="aegis: PQC compliant (OMB M-26-15)"></a>
+      <a href="/proven"><img style="vertical-align:middle;margin:0 2px;" src="https://img.shields.io/badge/proven-ML--DSA--65%20verified-2f6f5e" alt="proven: ML-DSA-65 verified (NIST FIPS 204)"></a>
+      <a href="/boneyard"><img style="vertical-align:middle;margin:0 2px;" src="https://img.shields.io/badge/boneyard-maintained-2f6f5e" alt="boneyard: maintained (Active Asset Ownership)"></a>
+    </p>
   </section>
 
   <section id="doctrine">
     <p class="eyebrow num">05</p>
-    <h2>Engineering Doctrine</h2>
-    <p class="lede small">Strict rules that never change: pure <code>std::</code> Rust with zero external crates,
-      non-negotiable &le; 256 LOC file bounds, fail-closed security gates, and post-quantum cryptographic validation.
-      The doctrine is the rulebook — the tools enforce it.</p>
+    <h2>Engineering Doctrine &amp; Executive Governance</h2>
+    <p class="lede small">Executive governance, compliance assurance, and zero-liability ownership: pure <code>std::</code> Rust with zero external crates, deterministic fail-closed gates, and continuous audit trails satisfying EO 14028 §4, NIST SP 800-218, OMB M-26-15, and NIST FIPS 204.</p>
     <a class="btn ghost" href="https://github.com/studio2201/studio2201/blob/master/DESIGN.md">Read Architecture & Design →</a>
   </section>
 

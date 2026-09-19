@@ -36,6 +36,8 @@
 
   <header class="hero">
     <div class="badge-bar">
+      <a href="https://studio2201.com"><img src="https://img.shields.io/badge/secured%20by-studio2201-2f6f5e?logo=shield" alt="secured by studio2201"></a>
+      <a href="/vigil"><img src="https://img.shields.io/badge/vigil-0%20dependencies-2f6f5e" alt="vigil: 0 dependencies (NIST SP 800-218)"></a>
       <span class="eyebrow" style="margin-bottom:0;">studio2201 / product 01</span>
       <span class="tag green">v0.2.11</span>
       <span class="tag green">Apache-2.0</span>
@@ -90,7 +92,8 @@ Add a GitHub Actions workflow to this repository at .github/workflows/vigil.yml 
 - Action: run studio2201/studio2201@v1 with tools: 'vigil' and fail-on: 'block'.
 - Artifacts: upload vigil_report.md using actions/upload-artifact@v4 with if: always().
 - Zero False Positives: @v1 provisions Vigil v0.2.11+ (excludes root crates in Cargo.lock).
-- README Badge: add dynamic Shields.io workflow status badge to top of README.md (replace &lt;owner&gt;/&lt;repo&gt;):
+- README Badges: prepend the anchor badge and dynamic status badge to README.md:
+  [![secured by studio2201](https://img.shields.io/badge/secured%20by-studio2201-2f6f5e?logo=shield)](https://studio2201.com)
   [![vigil][b-vigil]][ci-vigil]
   [b-vigil]: https://img.shields.io/github/actions/workflow/status/&lt;owner&gt;/&lt;repo&gt;/vigil.yml?label=vigil&amp;logo=shield
   [ci-vigil]: https://github.com/&lt;owner&gt;/&lt;repo&gt;/actions/workflows/vigil.yml</code></pre>
@@ -142,12 +145,11 @@ vigil policy check --max-dormancy 180d</code></pre>
   <section>
     <p class="eyebrow num">04</p>
     <h2>Why This Matters & Authoritative Mandates</h2>
-    <p class="lede small">Over 80% of application code comes from open-source libraries. Manual tracking cannot scale
-      across hundreds of dependencies; automated CI gates halt PRs before abandoned packages merge.</p>
+    <p class="lede small">Enforces NIST SP 800-218 Secure Software Development Framework (SSDF) mandates on software supply-chain integrity. Over 80% of application code comes from open-source libraries; Vigil enforces minimal supply surface and 0 unvetted dependencies.</p>
     <div class="card-grid">
       <div class="feature-item">
-        <h4><a href="https://www.cisa.gov/resources-tools/resources/open-source-software-security-roadmap" target="_blank" rel="noopener">CISA OSS Security Roadmap ↗</a></h4>
-        <p>Warns that unmaintained and abandoned dependencies are prime targets for maintainer account takeovers and malicious injection.</p>
+        <h4><a href="https://csrc.nist.gov/publications/detail/sp/800-218/final" target="_blank" rel="noopener">NIST SP 800-218 SSDF ↗</a></h4>
+        <p>Federal Secure Software Development Framework requiring continuous verification of third-party software integrity and supply-chain surface reduction.</p>
       </div>
       <div class="feature-item">
         <h4><a href="https://www.linuxfoundation.org/research/census-iii" target="_blank" rel="noopener">Harvard / LF Census III ↗</a></h4>

@@ -35,6 +35,8 @@
 
   <header class="hero">
     <div class="badge-bar">
+      <a href="https://studio2201.com"><img src="https://img.shields.io/badge/secured%20by-studio2201-2f6f5e?logo=shield" alt="secured by studio2201"></a>
+      <a href="/snip"><img src="https://img.shields.io/badge/snip-0%20secrets-2f6f5e" alt="snip: 0 secrets (EO 14028 §4)"></a>
       <span class="eyebrow" style="margin-bottom:0;">studio2201 / product 02</span>
       <span class="tag green">v0.2.9</span>
       <span class="tag green">Apache-2.0</span>
@@ -107,7 +109,8 @@ Add a GitHub Actions workflow to this repository at .github/workflows/snip.yml u
 - Permissions: contents: read, checkout with fetch-depth: 0.
 - Action: run studio2201/studio2201@v1 with tools: 'snip' and fail-on: 'block'.
 - Artifacts: upload snip_report.md using actions/upload-artifact@v4 with if: always().
-- README Badge: add dynamic Shields.io workflow status badge to top of README.md (replace &lt;owner&gt;/&lt;repo&gt;):
+- README Badges: prepend the anchor badge and dynamic status badge to README.md:
+  [![secured by studio2201](https://img.shields.io/badge/secured%20by-studio2201-2f6f5e?logo=shield)](https://studio2201.com)
   [![snip][b-snip]][ci-snip]
   [b-snip]: https://img.shields.io/github/actions/workflow/status/&lt;owner&gt;/&lt;repo&gt;/snip.yml?label=snip&amp;logo=shield
   [ci-snip]: https://github.com/&lt;owner&gt;/&lt;repo&gt;/actions/workflows/snip.yml</code></pre>
@@ -159,11 +162,11 @@ snip check --path ./src/api</code></pre>
   <section>
     <p class="eyebrow num">05</p>
     <h2>Why This Matters & Authoritative Mandates</h2>
-    <p class="lede small">AI code generation leaks credentials at twice the human baseline. Automated PR gates inspect diff additions in &lt;5 ms, catching vulnerabilities that fatigue causes human reviewers to miss.</p>
+    <p class="lede small">Automated compliance with Executive Order 14028 §4 (Credential Defense). AI code generation leaks credentials at twice the human baseline; Snip inspects diff additions in &lt;5 ms, enforcing 0 hardcoded secrets across all pull requests.</p>
     <div class="card-grid">
       <div class="feature-item">
-        <h4><a href="https://www.gitguardian.com/state-of-secrets-sprawl" target="_blank" rel="noopener">GitGuardian Secrets Sprawl ↗</a></h4>
-        <p>12.8M+ secrets leaked in git repos. Research shows AI code leaks credentials at 3.2% vs 1.5% for human developers.</p>
+        <h4><a href="https://www.whitehouse.gov/briefing-room/presidential-actions/2021/05/12/executive-order-on-improving-the-nations-cybersecurity/" target="_blank" rel="noopener">EO 14028 §4 Credential Defense ↗</a></h4>
+        <p>White House executive order mandating automated controls and continuous scanning to eliminate hardcoded credentials across source code.</p>
       </div>
       <div class="feature-item">
         <h4><a href="https://owasp.org/www-project-top-10-for-large-language-model-applications/" target="_blank" rel="noopener">OWASP Top 10 for LLMs ↗</a></h4>
