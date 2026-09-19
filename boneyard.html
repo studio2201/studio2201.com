@@ -73,9 +73,32 @@
 
   <section>
     <p class="eyebrow num">02</p>
-    <h2>Installation</h2>
+    <h2>GitHub Actions & CI Enforcement</h2>
+    <p class="lede small">Audit repository debt catalogs on pull requests and scheduled cron runs using the Boneyard action.</p>
     <div class="code-box">
-      <pre><code># Install Boneyard via the studio2201 installer:
+      <pre><code># Prompt for your AI Agent (Cursor, Claude Code, Copilot, Devin):
+Add a GitHub Actions workflow at .github/workflows/boneyard.yml using studio2201/boneyard@master. Run on pull requests and a weekly schedule, evaluate repository catalogs against technical debt policies, calculate remediation budgets, and fail if the Boneyard Index exceeds allowed limits.</code></pre>
+    </div>
+    <div class="code-box">
+      <pre><code># .github/workflows/boneyard.yml
+name: Boneyard Tech-Debt Radar
+on:
+  schedule:
+    - cron: '0 0 * * 1'
+  pull_request:
+    branches: [ master, main ]
+jobs:
+  boneyard-audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Audit Repository Debt
+        uses: studio2201/boneyard@master
+        with:
+          input: 'catalog.json'</code></pre>
+    </div>
+    <div class="code-box">
+      <pre><code># Workstation CLI installation (unprivileged, installs to ~/.local/bin):
 curl -fsSL https://studio2201.com/install.sh | sh -s boneyard</code></pre>
     </div>
   </section>
@@ -98,6 +121,7 @@ boneyard policy check --input scored.json --policy policy.toml</code></pre>
   <section>
     <p class="eyebrow num">04</p>
     <h2>Why This Matters & Authoritative Mandates</h2>
+    <p class="lede small">Technical debt drains $300 billion annually and unmaintained orphan repositories harbor 4x higher critical CVE density. Automated CI debt gating converts architectural rot into concrete remediation budgets in repo-weeks.</p>
     <div class="card-grid">
       <div class="feature-item">
         <h4><a href="https://stripe.com/reports/developer-coefficient-2018" target="_blank" rel="noopener">Stripe Developer Report ↗</a></h4>
@@ -143,7 +167,7 @@ boneyard policy check --input scored.json --policy policy.toml</code></pre>
 
   <footer class="foot">
     <p>studio2201 · Apache-2.0 · <a href="https://github.com/studio2201/boneyard">github.com/studio2201/boneyard</a></p>
-    <p class="small">Last updated 2026-09-18 · source: <a href="https://github.com/studio2201/studio2201.com">studio2201/studio2201.com</a></p>
+    <p class="small">Last updated 2026-09-19 · source: <a href="https://github.com/studio2201/studio2201.com">studio2201/studio2201.com</a></p>
   </footer>
 
 </main>

@@ -36,7 +36,7 @@
   <header class="hero">
     <div class="badge-bar">
       <span class="eyebrow" style="margin-bottom:0;">studio2201 / automation</span>
-      <span class="tag green">v0.4.8</span>
+      <span class="tag green">v0.4.10</span>
       <span class="tag green">Apache-2.0</span>
     </div>
     <h1>Agent & Automation Guide</h1>
@@ -113,21 +113,24 @@ git diff --staged | snip audit -q || {
 }</code></pre>
     </div>
     <div class="code-box">
+      <pre><code># Prompt for your AI Agent (Cursor, Claude Code, Copilot, Devin):
+Add a GitHub Actions workflow at .github/workflows/studio2201.yml using studio2201/studio2201@master. Configure it to trigger on PRs and master pushes, auditing PR diffs with Snip, dependencies with Vigil, and crypto with Aegis, outputting scorecards to $GITHUB_STEP_SUMMARY and failing on violations.</code></pre>
+    </div>
+    <div class="code-box">
       <pre><code># .github/workflows/security-gate.yml
 name: studio2201 Security Gate
 on: [pull_request, push]
 jobs:
-  audit:
+  security-gate:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
         with: { fetch-depth: 0 }
-      - name: Install studio2201 suite
-        run: curl -fsSL https://studio2201.com/install.sh | sh -s all
-      - name: Audit PR diff with snip
-        run: git diff origin/${{ github.base_ref || 'master' }}...HEAD | snip audit --format json
-      - name: Check dependency dormancy with vigil
-        run: vigil policy check --max-dormancy 180 -q</code></pre>
+      - name: Run studio2201 Security Gate
+        uses: studio2201/studio2201@master
+        with:
+          tools: 'all'
+          fail-on: 'block'</code></pre>
     </div>
 
     <h3>Tool Badges for CI & READMEs</h3>
@@ -200,7 +203,7 @@ jobs:
 
   <footer class="foot">
     <p>studio2201 · Apache-2.0 · pure Rust, std:: only</p>
-    <p class="small">Last updated 2026-09-18 · source: <a href="https://github.com/studio2201/studio2201.com">studio2201/studio2201.com</a></p>
+    <p class="small">Last updated 2026-09-19 · source: <a href="https://github.com/studio2201/studio2201.com">studio2201/studio2201.com</a></p>
   </footer>
 
 </main>

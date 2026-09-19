@@ -88,7 +88,7 @@ cd canary
     <h2>5-Tool Failure Breakdown</h2>
     <p class="lede small">Side-by-side comparison of deliberate flaws, inspection commands, failure verdicts, exit codes, and required remediations across the studio2201 suite.</p>
     <div class="card-grid">
-      <div class="feature-item">
+      <div class="feature-item" id="snip">
         <h4>Snip <span class="tag green">vibe-code</span></h4>
         <p><strong>Flaw:</strong> Live Stripe/Anthropic API keys in diff and SQL migration missing RLS.<br>
         <strong>CLI Command:</strong> <code>snip audit fixtures/snip/staged.patch</code><br>
@@ -98,7 +98,7 @@ cd canary
         <a class="more" href="/snip">Snip Specs →</a>
       </div>
 
-      <div class="feature-item">
+      <div class="feature-item" id="vigil">
         <h4>Vigil <span class="tag green">dormancy</span></h4>
         <p><strong>Flaw:</strong> Manifest referencing packages dormant >450–570 days (<code>colors</code>, <code>nom</code>, <code>request</code>).<br>
         <strong>CLI Command:</strong> <code>vigil policy check --max-dormancy 180 fixtures/vigil/package.json</code><br>
@@ -108,7 +108,7 @@ cd canary
         <a class="more" href="/vigil">Vigil Specs →</a>
       </div>
 
-      <div class="feature-item">
+      <div class="feature-item" id="aegis">
         <h4>Aegis <span class="tag green">pqc sdk</span></h4>
         <p><strong>Flaw:</strong> Classical 1024-bit RSA keygen and ECDSA call sites violating post-2030 policy.<br>
         <strong>CLI Command:</strong> <code>aegis policy check fixtures/aegis/legacy_crypto.rs</code><br>
@@ -118,7 +118,7 @@ cd canary
         <a class="more" href="/aegis">Aegis Specs →</a>
       </div>
 
-      <div class="feature-item">
+      <div class="feature-item" id="proven">
         <h4>Proven <span class="tag green">attestor</span></h4>
         <p><strong>Flaw:</strong> Attested binary modified by 1 byte after attestation signing.<br>
         <strong>CLI Command:</strong> <code>proven verify fixtures/proven/canary_artifact --attestation fixtures/proven/attestation.json</code><br>
@@ -128,7 +128,7 @@ cd canary
         <a class="more" href="/proven">Proven Specs →</a>
       </div>
 
-      <div class="feature-item">
+      <div class="feature-item" id="boneyard">
         <h4>Boneyard <span class="tag green">tech-debt</span></h4>
         <p><strong>Flaw:</strong> Repo catalog average Boneyard Index 72.0 > 50.0 cap with 2 critical repos.<br>
         <strong>CLI Command:</strong> <code>boneyard policy check --policy fixtures/boneyard/policy.toml -i fixtures/boneyard/catalog.json</code><br>
@@ -145,6 +145,10 @@ cd canary
     <h2>GitHub Actions Negative Testbed</h2>
     <p class="lede small">Continuous negative verification in <code>.github/workflows/canary.yml</code>. Runs on push and pull requests targeting <code>master</code> to assert fail-closed behavior.</p>
     <div class="code-box">
+      <pre><code># Prompt for your AI Agent (Cursor, Claude Code, Copilot, Devin):
+Add a GitHub Actions workflow at .github/workflows/canary.yml that executes the Canary negative testbed (./demo.sh) on every push and pull request. The workflow must assert that all 5 studio2201 security tools correctly intercept their deliberate failure fixtures and exit with code 1, verifying fail-closed enforcement.</code></pre>
+    </div>
+    <div class="code-box">
       <pre><code># CI installs tools via universal installer and validates failure verdicts:
 curl -fsSL https://studio2201.com/install.sh | sh -s all
 chmod +x ./demo.sh
@@ -158,7 +162,7 @@ chmod +x ./demo.sh
 
   <footer class="foot">
     <p>studio2201 · Apache-2.0 · pure Rust, std:: only</p>
-    <p class="small">Last updated 2026-09-18 · source: <a href="https://github.com/studio2201/canary">studio2201/canary</a></p>
+    <p class="small">Last updated 2026-09-19 · source: <a href="https://github.com/studio2201/canary">studio2201/canary</a></p>
   </footer>
 
 </main>

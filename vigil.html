@@ -73,9 +73,29 @@
 
   <section>
     <p class="eyebrow num">02</p>
-    <h2>Installation</h2>
+    <h2>GitHub Actions & CI Enforcement</h2>
+    <p class="lede small">Automate dependency dormancy checks on every pull request and push using the Vigil GitHub Action.</p>
     <div class="code-box">
-      <pre><code># Install Vigil via the studio2201 installer:
+      <pre><code># Prompt for your AI Agent (Cursor, Claude Code, Copilot, Devin):
+Add a GitHub Actions workflow at .github/workflows/vigil.yml using studio2201/vigil@master. Trigger on PRs and master pushes, scan dependency manifests for packages dormant over 180 days, write a dormancy scorecard to $GITHUB_STEP_SUMMARY, and fail the build if abandoned dependencies are detected.</code></pre>
+    </div>
+    <div class="code-box">
+      <pre><code># .github/workflows/vigil.yml
+name: Vigil Supply-Chain Gate
+on: [pull_request, push]
+jobs:
+  vigil-scan:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Audit Dependency Dormancy
+        uses: studio2201/vigil@master
+        with:
+          path: '.'
+          max-dormancy: '180'</code></pre>
+    </div>
+    <div class="code-box">
+      <pre><code># Workstation CLI installation (unprivileged, installs to ~/.local/bin):
 curl -fsSL https://studio2201.com/install.sh | sh -s vigil</code></pre>
     </div>
   </section>
@@ -98,6 +118,7 @@ vigil policy check --max-dormancy 180d</code></pre>
   <section>
     <p class="eyebrow num">04</p>
     <h2>Why This Matters & Authoritative Mandates</h2>
+    <p class="lede small">Over 80% of application code comes from open-source libraries. Manual tracking cannot scale across hundreds of dependencies; automated CI gates halt pull requests before abandoned packages merge.</p>
     <div class="card-grid">
       <div class="feature-item">
         <h4><a href="https://www.cisa.gov/resources-tools/resources/open-source-software-security-roadmap" target="_blank" rel="noopener">CISA OSS Security Roadmap ↗</a></h4>
@@ -143,7 +164,7 @@ vigil policy check --max-dormancy 180d</code></pre>
 
   <footer class="foot">
     <p>studio2201 · Apache-2.0 · <a href="https://github.com/studio2201/vigil">github.com/studio2201/vigil</a></p>
-    <p class="small">Last updated 2026-09-18 · source: <a href="https://github.com/studio2201/studio2201.com">studio2201/studio2201.com</a></p>
+    <p class="small">Last updated 2026-09-19 · source: <a href="https://github.com/studio2201/studio2201.com">studio2201/studio2201.com</a></p>
   </footer>
 
 </main>

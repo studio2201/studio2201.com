@@ -73,9 +73,29 @@
 
   <section>
     <p class="eyebrow num">02</p>
-    <h2>Installation</h2>
+    <h2>GitHub Actions & CI Enforcement</h2>
+    <p class="lede small">Prevent classical cryptographic regressions and enforce NIST FIPS 203/204 compliance on every PR.</p>
     <div class="code-box">
-      <pre><code># Install Aegis via the studio2201 installer:
+      <pre><code># Prompt for your AI Agent (Cursor, Claude Code, Copilot, Devin):
+Add a GitHub Actions workflow at .github/workflows/aegis.yml using studio2201/aegis@master. Trigger on PRs and master pushes, scan source code for classical RSA and ECC cryptographic call sites, verify compliance against NIST FIPS 203/204 post-quantum standards, and fail on legacy regressions.</code></pre>
+    </div>
+    <div class="code-box">
+      <pre><code># .github/workflows/aegis.yml
+name: Aegis PQC Migration Gate
+on: [pull_request, push]
+jobs:
+  aegis-scan:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Scan Classical Cryptography
+        uses: studio2201/aegis@master
+        with:
+          path: '.'
+          policy: 'strict-pqc'</code></pre>
+    </div>
+    <div class="code-box">
+      <pre><code># Workstation CLI installation (unprivileged, installs to ~/.local/bin):
 curl -fsSL https://studio2201.com/install.sh | sh -s aegis</code></pre>
     </div>
   </section>
@@ -98,6 +118,7 @@ aegis check --policy strict-pqc</code></pre>
   <section>
     <p class="eyebrow num">04</p>
     <h2>Why This Matters & Authoritative Mandates</h2>
+    <p class="lede small">White House OMB M-26-15 and NIST FIPS 203/204 mandate transitioning away from classical RSA/ECC by 2030. Automated CI gates halt pull requests introducing legacy primitives, ensuring continuous quantum-safe migration.</p>
     <div class="card-grid">
       <div class="feature-item">
         <h4><a href="https://www.whitehouse.gov/wp-content/uploads/2022/11/M-23-02-M-Memo-on-Migrating-to-Post-Quantum-Cryptography.pdf" target="_blank" rel="noopener">OMB M-26-15 & M-23-02 ↗</a></h4>
@@ -143,7 +164,7 @@ aegis check --policy strict-pqc</code></pre>
 
   <footer class="foot">
     <p>studio2201 · Apache-2.0 · <a href="https://github.com/studio2201/aegis">github.com/studio2201/aegis</a></p>
-    <p class="small">Last updated 2026-09-18 · source: <a href="https://github.com/studio2201/studio2201.com">studio2201/studio2201.com</a></p>
+    <p class="small">Last updated 2026-09-19 · source: <a href="https://github.com/studio2201/studio2201.com">studio2201/studio2201.com</a></p>
   </footer>
 
 </main>

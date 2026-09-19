@@ -147,14 +147,31 @@ vigil policy check --max-dormancy 180d || echo "Vigil: FAILED (exit code 1)"</co
 
   <section id="install">
     <p class="eyebrow num">04</p>
-    <h2>Installation</h2>
-    <p class="lede small">Single-command installation for macOS and Linux. Zero root required; installs directly to <code>~/.local/bin</code>.</p>
+    <h2>CI/CD & GitHub Actions Enforcement</h2>
+    <p class="lede small">Zero-dependency automated security gates on every pull request and push using the unified composite action.</p>
     <div class="code-box">
-      <pre><code># Install all five tools:
-curl -fsSL https://studio2201.com/install.sh | sh -s all
-
-# Or install an individual tool:
-curl -fsSL https://studio2201.com/install.sh | sh -s vigil</code></pre>
+      <pre><code># Prompt for your AI Agent (Cursor, Claude Code, Copilot, Devin):
+Add a GitHub Actions workflow at .github/workflows/studio2201.yml using studio2201/studio2201@master. Configure it to trigger on pull requests and pushes to master, auditing PR diffs with Snip, dependencies with Vigil, and crypto with Aegis, outputting scorecards to $GITHUB_STEP_SUMMARY and failing on security violations.</code></pre>
+    </div>
+    <div class="code-box">
+      <pre><code># .github/workflows/studio2201.yml
+name: studio2201 Security Gate
+on: [pull_request, push]
+jobs:
+  security-gate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with: { fetch-depth: 0 }
+      - name: Run studio2201 Multi-Tool Security Gate
+        uses: studio2201/studio2201@master
+        with:
+          tools: 'all'
+          fail-on: 'block'</code></pre>
+    </div>
+    <div class="code-box">
+      <pre><code># Workstation CLI installation (unprivileged, installs to ~/.local/bin):
+curl -fsSL https://studio2201.com/install.sh | sh -s all</code></pre>
     </div>
   </section>
 
@@ -174,7 +191,7 @@ curl -fsSL https://studio2201.com/install.sh | sh -s vigil</code></pre>
 
   <footer class="foot">
     <p>studio2201 · Apache-2.0 · no warranty · pure Rust, std:: only</p>
-    <p class="small">Last updated 2026-09-18 · source of this page: <a href="https://github.com/studio2201/studio2201.com">studio2201/studio2201.com</a></p>
+    <p class="small">Last updated 2026-09-19 · source of this page: <a href="https://github.com/studio2201/studio2201.com">studio2201/studio2201.com</a></p>
   </footer>
 
 </main>

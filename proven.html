@@ -73,9 +73,32 @@
 
   <section>
     <p class="eyebrow num">02</p>
-    <h2>Installation</h2>
+    <h2>GitHub Actions & CI Enforcement</h2>
+    <p class="lede small">Verify artifact bit-reproducibility and attach post-quantum ML-DSA-65 attestations in CI.</p>
     <div class="code-box">
-      <pre><code># Install Proven via the studio2201 installer:
+      <pre><code># Prompt for your AI Agent (Cursor, Claude Code, Copilot, Devin):
+Add a GitHub Actions workflow at .github/workflows/proven.yml using studio2201/proven@master. Trigger on release tags and pull requests, verify bit-reproducibility of compiled artifacts, generate SLSA Level 3+ build provenance, and sign binaries with post-quantum ML-DSA-65 attestations.</code></pre>
+    </div>
+    <div class="code-box">
+      <pre><code># .github/workflows/proven.yml
+name: Proven Supply-Chain Attestor
+on:
+  push:
+    tags: [ 'v*' ]
+  pull_request:
+    branches: [ master, main ]
+jobs:
+  proven-attest:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Attest Artifact Provenance
+        uses: studio2201/proven@master
+        with:
+          path: '.'</code></pre>
+    </div>
+    <div class="code-box">
+      <pre><code># Workstation CLI installation (unprivileged, installs to ~/.local/bin):
 curl -fsSL https://studio2201.com/install.sh | sh -s proven</code></pre>
     </div>
   </section>
@@ -98,6 +121,7 @@ proven emit-slsa --output provenance.json</code></pre>
   <section>
     <p class="eyebrow num">04</p>
     <h2>Why This Matters & Authoritative Mandates</h2>
+    <p class="lede small">Build-time tampering (XZ Utils, SolarWinds) bypasses source code reviews. Executive Order 14028 and SLSA Level 3+ require immutable provenance; automated CI attestations cryptographically bind binaries to source commits.</p>
     <div class="card-grid">
       <div class="feature-item">
         <h4><a href="https://slsa.dev/spec/v1.0/" target="_blank" rel="noopener">OpenSSF SLSA v1.0 Spec ↗</a></h4>
@@ -143,7 +167,7 @@ proven emit-slsa --output provenance.json</code></pre>
 
   <footer class="foot">
     <p>studio2201 · Apache-2.0 · <a href="https://github.com/studio2201/proven">github.com/studio2201/proven</a></p>
-    <p class="small">Last updated 2026-09-18 · source: <a href="https://github.com/studio2201/studio2201.com">studio2201/studio2201.com</a></p>
+    <p class="small">Last updated 2026-09-19 · source: <a href="https://github.com/studio2201/studio2201.com">studio2201/studio2201.com</a></p>
   </footer>
 
 </main>

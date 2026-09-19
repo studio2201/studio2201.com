@@ -96,9 +96,30 @@
 
   <section>
     <p class="eyebrow num">03</p>
-    <h2>Installation</h2>
+    <h2>GitHub Actions & CI Enforcement</h2>
+    <p class="lede small">Block leaked API keys, missing RLS, and permissive CORS in pull request diffs before code merges.</p>
     <div class="code-box">
-      <pre><code># Install Snip via the studio2201 installer:
+      <pre><code># Prompt for your AI Agent (Cursor, Claude Code, Copilot, Devin):
+Add a GitHub Actions workflow at .github/workflows/snip.yml using studio2201/snip@master. Trigger on PRs and master pushes, audit git diffs for hardcoded secrets, missing Supabase RLS, and permissive CORS, publish the findings to $GITHUB_STEP_SUMMARY, and block PRs that fail the security gate.</code></pre>
+    </div>
+    <div class="code-box">
+      <pre><code># .github/workflows/snip.yml
+name: Snip Vibe-Code Security Gate
+on: [pull_request, push]
+jobs:
+  snip-audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with: { fetch-depth: 0 }
+      - name: Run Snip Diff Audit
+        uses: studio2201/snip@master
+        with:
+          path: '.'
+          format: 'markdown'</code></pre>
+    </div>
+    <div class="code-box">
+      <pre><code># Workstation CLI installation (unprivileged, installs to ~/.local/bin):
 curl -fsSL https://studio2201.com/install.sh | sh -s snip</code></pre>
     </div>
   </section>
@@ -121,6 +142,7 @@ snip check --path ./src/api</code></pre>
   <section>
     <p class="eyebrow num">05</p>
     <h2>Why This Matters & Authoritative Mandates</h2>
+    <p class="lede small">AI code generation leaks credentials at twice the human baseline. Automated PR gates inspect diff additions in &lt;5 ms, catching vulnerabilities that fatigue causes human reviewers to miss.</p>
     <div class="card-grid">
       <div class="feature-item">
         <h4><a href="https://www.gitguardian.com/state-of-secrets-sprawl" target="_blank" rel="noopener">GitGuardian Secrets Sprawl ↗</a></h4>
@@ -166,7 +188,7 @@ snip check --path ./src/api</code></pre>
 
   <footer class="foot">
     <p>studio2201 · Apache-2.0 · <a href="https://github.com/studio2201/snip">github.com/studio2201/snip</a></p>
-    <p class="small">Last updated 2026-09-18 · source: <a href="https://github.com/studio2201/studio2201.com">studio2201/studio2201.com</a></p>
+    <p class="small">Last updated 2026-09-19 · source: <a href="https://github.com/studio2201/studio2201.com">studio2201/studio2201.com</a></p>
   </footer>
 
 </main>
