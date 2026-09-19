@@ -79,24 +79,41 @@
     <p class="lede small">Prevent classical cryptographic regressions and enforce NIST FIPS 203/204 compliance on every PR.</p>
     <div class="code-box">
       <pre><code># Prompt for your AI Agent (Cursor, Claude Code, Copilot, Devin):
-Add a GitHub Actions workflow at .github/workflows/aegis.yml using studio2201/aegis@master.
-Trigger on PRs and master pushes, scan source code for classical RSA and ECC cryptographic call sites,
-verify compliance against NIST FIPS 203/204 post-quantum standards, and fail on legacy regressions.</code></pre>
+Add a GitHub Actions workflow to this repository at .github/workflows/aegis.yml using studio2201/studio2201@v1:
+- Name: aegis
+- Triggers: pull_request, push to default branch (master/main), and workflow_dispatch.
+- Concurrency: group ${{ github.workflow }}-${{ github.ref }} with cancel-in-progress on pull_request.
+- Permissions: contents: read, checkout with fetch-depth: 0.
+- Action: run studio2201/studio2201@v1 with tools: 'aegis' and fail-on: 'block'.
+- Artifacts: upload aegis_report.md using actions/upload-artifact@v4 with if: always().
+- Zero False Positives: @v1 provisions Aegis v0.2.10+ (skips comments &amp; docstrings).
+- README Badge: add dynamic Shields.io workflow status badge to top of README.md (replace &lt;owner&gt;/&lt;repo&gt;):
+  [![aegis][b-aegis]][ci-aegis]
+  [b-aegis]: https://img.shields.io/github/actions/workflow/status/&lt;owner&gt;/&lt;repo&gt;/aegis.yml?label=aegis&amp;logo=shield
+  [ci-aegis]: https://github.com/&lt;owner&gt;/&lt;repo&gt;/actions/workflows/aegis.yml</code></pre>
     </div>
     <div class="code-box">
       <pre><code># .github/workflows/aegis.yml
-name: Aegis PQC Migration Gate
-on: [pull_request, push]
+name: aegis
+on:
+  push: { branches: [ master, main ] }
+  pull_request: { branches: [ master, main ] }
+  workflow_dispatch:
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+permissions: { contents: read }
 jobs:
-  aegis-scan:
+  aegis:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Scan Classical Cryptography
-        uses: studio2201/aegis@master
-        with:
-          path: '.'
-          policy: 'strict-pqc'</code></pre>
+        with: { fetch-depth: 0 }
+      - uses: studio2201/studio2201@v1
+        with: { tools: 'aegis', fail-on: 'block' }
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with: { name: aegis-report, path: aegis_report.md, if-no-files-found: ignore }</code></pre>
     </div>
     <div class="code-box">
       <pre><code># Workstation CLI installation (unprivileged, installs to ~/.local/bin):

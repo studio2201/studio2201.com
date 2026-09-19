@@ -154,78 +154,68 @@ vigil policy check --max-dormancy 180d || echo "Vigil: FAILED (exit code 1)"</co
 
   <section id="install">
     <p class="eyebrow num">04</p>
-    <h2>Agent Instructions & CI/CD Enforcement</h2>
-    <p class="lede small">Zero-dependency automated security gates on every pull request and push using the unified composite action.</p>
+    <h2>Agent Instructions — 1 Badge & Workflow Per App</h2>
+    <p class="lede small">Zero-dependency automated security gates: dedicated workflow and dynamic status badge for each studio2201 tool.</p>
     <div class="code-box">
       <pre><code># Prompt for your AI Agent (Cursor, Claude Code, Copilot, Devin):
-Add a GitHub Actions workflow to this repository at .github/workflows/studio2201.yml using studio2201/studio2201@v1:
-- Triggers: pull_request, push to default branch (master/main), and workflow_dispatch.
-- Concurrency: group ${{ github.workflow }}-${{ github.ref }} with cancel-in-progress on pull_request.
-- Permissions: contents: read, checkout with fetch-depth: 0.
-- Action: run studio2201/studio2201@v1 with tools: 'snip,vigil,aegis' and fail-on: 'block'.
-- Artifacts: upload *_report.md using actions/upload-artifact@v4 with if: always().
-- Zero False Positives: @v1 provisions Vigil v0.2.11+ (excludes root crates) & Aegis v0.2.10+ (skips comments).
-- README Badge: add dynamic Shields.io workflow status badge to top of README.md (replace &lt;owner&gt;/&lt;repo&gt;):
-  [![studio2201][badge]][ci]
-  [badge]: https://img.shields.io/github/actions/workflow/status/&lt;owner&gt;/&lt;repo&gt;/studio2201.yml?label=studio2201&amp;logo=shield
-  [ci]: https://github.com/&lt;owner&gt;/&lt;repo&gt;/actions/workflows/studio2201.yml</code></pre>
+Add 5 dedicated GitHub Actions workflows to this repository (.github/workflows/&lt;tool&gt;.yml):
+- snip.yml (name: snip, tools: 'snip' — diffs, secrets, Supabase RLS)
+- vigil.yml (name: vigil, tools: 'vigil' — dependency dormancy, excludes root crates)
+- aegis.yml (name: aegis, tools: 'aegis' — post-quantum crypto, skips comments)
+- proven.yml (name: proven, tools: 'proven' — ML-DSA-65 attestations)
+- boneyard.yml (name: boneyard, tools: 'boneyard' — tech-debt radar)
+All workflows trigger on pull_request, push to master/main, and workflow_dispatch,
+use studio2201/studio2201@v1 with fail-on: 'block', and retain *_report.md.
+Add 1 dynamic Shields.io workflow status badge per tool to README.md (replace &lt;owner&gt;/&lt;repo&gt;):
+[![snip][b-snip]][ci-snip]
+[b-snip]: https://img.shields.io/github/actions/workflow/status/&lt;owner&gt;/&lt;repo&gt;/snip.yml?label=snip&amp;logo=shield
+[ci-snip]: https://github.com/&lt;owner&gt;/&lt;repo&gt;/actions/workflows/snip.yml
+(Repeat identical pattern for vigil, aegis, proven, boneyard)</code></pre>
     </div>
     <div class="code-box">
-      <pre><code># .github/workflows/studio2201.yml
-name: studio2201 Security Gate
+      <pre><code># Reference template: .github/workflows/&lt;tool&gt;.yml (replace &lt;tool&gt; with snip, vigil, aegis, proven, boneyard)
+name: snip
 on:
-  push:
-    branches: [ master, main ]
-  pull_request:
-    branches: [ master, main ]
+  push: { branches: [ master, main ] }
+  pull_request: { branches: [ master, main ] }
   workflow_dispatch:
-
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: ${{ github.event_name == 'pull_request' }}
-
-permissions:
-  contents: read
-
+permissions: { contents: read }
 jobs:
-  security-gate:
-    name: studio2201 Security Gate
+  snip:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-
-      - name: Run studio2201 Security Gate
-        uses: studio2201/studio2201@v1
-        with:
-          tools: 'snip,vigil,aegis'
-          fail-on: 'block'
-
-      - name: Retain Audit Findings
-        uses: actions/upload-artifact@v4
+      - uses: actions/checkout@v4
+        with: { fetch-depth: 0 }
+      - uses: studio2201/studio2201@v1
+        with: { tools: 'snip', fail-on: 'block' }
+      - uses: actions/upload-artifact@v4
         if: always()
-        with:
-          name: studio2201-audit-findings
-          path: |
-            *_report.md
-          if-no-files-found: ignore</code></pre>
+        with: { name: snip-report, path: snip_report.md, if-no-files-found: ignore }</code></pre>
     </div>
     <div class="code-box">
       <pre><code># Install the unified CLI and all tools into ~/.local/bin:
 curl -fsSL https://studio2201.com/install.sh | sh -s all
-
-# Local pre-commit audit & toolchain management:
 studio2201 check              # run multi-tool audit suite locally
 studio2201 list               # inspect installed tools and versions
 studio2201 upgrade all        # upgrade tools to latest release
-studio2201 init               # scaffold GitHub Action & agent guardrails</code></pre>
+studio2201 init               # scaffold GitHub Actions &amp; agent guardrails</code></pre>
     </div>
-    <p class="lede small" style="margin-top:16px;margin-bottom:0;">Dynamic CI badge:
+    <p class="lede small" style="margin-top:16px;margin-bottom:0;">5 Dynamic CI Badges:
       <a href="agents.html#badges">
-        <img src="https://img.shields.io/github/actions/workflow/status/bumtrips/beatniks-bumtrips-bullshit/studio2201.yml?branch=master&label=studio2201&logo=shield"
-          alt="studio2201" style="vertical-align:middle;margin-left:6px;"></a></p>
+        <img style="vertical-align:middle;margin:0 2px;" alt="snip"
+          src="https://img.shields.io/github/actions/workflow/status/studio2201/studio2201/snip.yml?label=snip&logo=shield">
+        <img style="vertical-align:middle;margin:0 2px;" alt="vigil"
+          src="https://img.shields.io/github/actions/workflow/status/studio2201/studio2201/vigil.yml?label=vigil&logo=shield">
+        <img style="vertical-align:middle;margin:0 2px;" alt="aegis"
+          src="https://img.shields.io/github/actions/workflow/status/studio2201/studio2201/aegis.yml?label=aegis&logo=shield">
+        <img style="vertical-align:middle;margin:0 2px;" alt="proven"
+          src="https://img.shields.io/github/actions/workflow/status/studio2201/studio2201/proven.yml?label=proven&logo=shield">
+        <img style="vertical-align:middle;margin:0 2px;" alt="boneyard"
+          src="https://img.shields.io/github/actions/workflow/status/studio2201/studio2201/boneyard.yml?label=boneyard&logo=shield">
+      </a></p>
   </section>
 
   <section id="doctrine">

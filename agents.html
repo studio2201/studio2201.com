@@ -94,114 +94,108 @@ git diff --staged | snip audit -q || { echo "[-] Snip pre-commit gate failed" >&
     </div>
     <div class="code-box">
       <pre><code># Prompt for your AI Agent (Cursor, Claude Code, Copilot, Devin):
-Add a GitHub Actions workflow to this repository at .github/workflows/studio2201.yml using studio2201/studio2201@v1:
-- Triggers: pull_request, push to default branch (master/main), and workflow_dispatch.
-- Concurrency: group ${{ github.workflow }}-${{ github.ref }} with cancel-in-progress on pull_request.
-- Permissions: contents: read, checkout with fetch-depth: 0.
-- Action: run studio2201/studio2201@v1 with tools: 'snip,vigil,aegis' and fail-on: 'block'.
-- Artifacts: upload *_report.md using actions/upload-artifact@v4 with if: always().
-- Zero False Positives: @v1 provisions Vigil v0.2.11+ (excludes root crates) & Aegis v0.2.10+ (skips comments).
-- README Badge: add dynamic Shields.io workflow status badge to top of README.md (replace &lt;owner&gt;/&lt;repo&gt;):
-  [![studio2201][badge]][ci]
-  [badge]: https://img.shields.io/github/actions/workflow/status/&lt;owner&gt;/&lt;repo&gt;/studio2201.yml?label=studio2201&amp;logo=shield
-  [ci]: https://github.com/&lt;owner&gt;/&lt;repo&gt;/actions/workflows/studio2201.yml</code></pre>
+Add 5 dedicated GitHub Actions workflows to this repository (.github/workflows/&lt;tool&gt;.yml):
+- snip.yml (name: snip, tools: 'snip' — diffs, secrets, Supabase RLS)
+- vigil.yml (name: vigil, tools: 'vigil' — dependency dormancy, excludes root crates)
+- aegis.yml (name: aegis, tools: 'aegis' — post-quantum crypto, skips comments)
+- proven.yml (name: proven, tools: 'proven' — ML-DSA-65 attestations)
+- boneyard.yml (name: boneyard, tools: 'boneyard' — tech-debt radar)
+All workflows trigger on pull_request, push to master/main, and workflow_dispatch,
+use studio2201/studio2201@v1 with fail-on: 'block', and retain *_report.md.
+Add all 5 dynamic Shields.io workflow status badges to README.md (replace &lt;owner&gt;/&lt;repo&gt;):
+[![snip][b-snip]][ci-snip]
+[b-snip]: https://img.shields.io/github/actions/workflow/status/&lt;owner&gt;/&lt;repo&gt;/snip.yml?label=snip&amp;logo=shield
+[ci-snip]: https://github.com/&lt;owner&gt;/&lt;repo&gt;/actions/workflows/snip.yml
+(Repeat identical pattern for vigil, aegis, proven, boneyard)</code></pre>
     </div>
     <div class="code-box">
-      <pre><code># .github/workflows/studio2201.yml
-name: studio2201 Security Gate
+      <pre><code># Reference template: .github/workflows/&lt;tool&gt;.yml (replace &lt;tool&gt; with snip, vigil, aegis, proven, boneyard)
+name: snip
 on:
-  push:
-    branches: [ master, main ]
-  pull_request:
-    branches: [ master, main ]
+  push: { branches: [ master, main ] }
+  pull_request: { branches: [ master, main ] }
   workflow_dispatch:
-
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: ${{ github.event_name == 'pull_request' }}
-
-permissions:
-  contents: read
-
+permissions: { contents: read }
 jobs:
-  security-gate:
-    name: studio2201 Security Gate
+  snip:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-
-      - name: Run studio2201 Security Gate
-        uses: studio2201/studio2201@v1
-        with:
-          tools: 'snip,vigil,aegis'
-          fail-on: 'block'
-
-      - name: Retain Audit Findings
-        uses: actions/upload-artifact@v4
+      - uses: actions/checkout@v4
+        with: { fetch-depth: 0 }
+      - uses: studio2201/studio2201@v1
+        with: { tools: 'snip', fail-on: 'block' }
+      - uses: actions/upload-artifact@v4
         if: always()
-        with:
-          name: studio2201-audit-findings
-          path: |
-            *_report.md
-          if-no-files-found: ignore</code></pre>
+        with: { name: snip-report, path: snip_report.md, if-no-files-found: ignore }</code></pre>
     </div>
   </section>
   <section id="badges">
     <p class="eyebrow num">05</p>
     <h2>Repository Badges & Scorecards</h2>
-    <p class="lede small">Showcase verified security posture in your README with a clean unified suite badge or detailed scorecard.</p>
+    <p class="lede small">1 dynamic Shields.io status badge for each of the 5 apps, updated live from CI runs.</p>
     <div class="card-grid">
       <div class="feature-item">
-        <h4>Option 1: Dynamic Workflow Status Badge</h4>
-        <p style="margin: 8px 0 12px;"><a href="https://github.com/bumtrips/beatniks-bumtrips-bullshit/actions/workflows/studio2201.yml">
-          <img src="https://img.shields.io/github/actions/workflow/status/bumtrips/beatniks-bumtrips-bullshit/studio2201.yml?branch=master&label=studio2201&logo=shield"
-            alt="studio2201"></a></p>
-        <p>Live, dynamic CI status from Shields.io. Updates automatically to passing (green) or failing (red).</p>
-        <div class="code-box" style="margin:12px 0 0;"><pre><code>[![studio2201][badge]][ci]
-[badge]: https://img.shields.io/github/actions/workflow/status/&lt;owner&gt;/&lt;repo&gt;/studio2201.yml?branch=master&amp;label=studio2201&amp;logo=shield
-[ci]: https://github.com/&lt;owner&gt;/&lt;repo&gt;/actions/workflows/studio2201.yml</code></pre></div>
+        <h4>Option 1: 5 Dynamic Badges</h4>
+        <div style="margin:8px 0 12px;display:flex;gap:4px;flex-wrap:wrap;">
+          <img style="vertical-align:middle;" alt="snip"
+            src="https://img.shields.io/github/actions/workflow/status/studio2201/studio2201/snip.yml?label=snip&logo=shield">
+          <img style="vertical-align:middle;" alt="vigil"
+            src="https://img.shields.io/github/actions/workflow/status/studio2201/studio2201/vigil.yml?label=vigil&logo=shield">
+          <img style="vertical-align:middle;" alt="aegis"
+            src="https://img.shields.io/github/actions/workflow/status/studio2201/studio2201/aegis.yml?label=aegis&logo=shield">
+          <img style="vertical-align:middle;" alt="proven"
+            src="https://img.shields.io/github/actions/workflow/status/studio2201/studio2201/proven.yml?label=proven&logo=shield">
+          <img style="vertical-align:middle;" alt="boneyard"
+            src="https://img.shields.io/github/actions/workflow/status/studio2201/studio2201/boneyard.yml?label=boneyard&logo=shield">
+        </div>
+        <p>Dynamic status per tool. Updates to passing (green) or failing (red).</p>
+        <div class="code-box" style="margin:12px 0 0;"><pre><code>[![snip][b-snip]][ci-snip]
+[![vigil][b-vigil]][ci-vigil]
+[![aegis][b-aegis]][ci-aegis]
+[![proven][b-proven]][ci-proven]
+[![boneyard][b-boneyard]][ci-boneyard]
+
+[b-snip]: https://img.shields.io/github/actions/workflow/status/&lt;owner&gt;/&lt;repo&gt;/snip.yml?label=snip&amp;logo=shield
+[ci-snip]: https://github.com/&lt;owner&gt;/&lt;repo&gt;/actions/workflows/snip.yml
+[b-vigil]: https://img.shields.io/github/actions/workflow/status/&lt;owner&gt;/&lt;repo&gt;/vigil.yml?label=vigil&amp;logo=shield
+[ci-vigil]: https://github.com/&lt;owner&gt;/&lt;repo&gt;/actions/workflows/vigil.yml
+[b-aegis]: https://img.shields.io/github/actions/workflow/status/&lt;owner&gt;/&lt;repo&gt;/aegis.yml?label=aegis&amp;logo=shield
+[ci-aegis]: https://github.com/&lt;owner&gt;/&lt;repo&gt;/actions/workflows/aegis.yml
+[b-proven]: https://img.shields.io/github/actions/workflow/status/&lt;owner&gt;/&lt;repo&gt;/proven.yml?label=proven&amp;logo=shield
+[ci-proven]: https://github.com/&lt;owner&gt;/&lt;repo&gt;/actions/workflows/proven.yml
+[b-boneyard]: https://img.shields.io/github/actions/workflow/status/&lt;owner&gt;/&lt;repo&gt;/boneyard.yml?label=boneyard&amp;logo=shield
+[ci-boneyard]: https://github.com/&lt;owner&gt;/&lt;repo&gt;/actions/workflows/boneyard.yml</code></pre></div>
       </div>
       <div class="feature-item">
-        <h4>Option 2: Detailed Governance Scorecard</h4>
+        <h4>Option 2: Collapsible Governance Scorecard</h4>
         <p style="margin: 8px 0 12px;">Expandable <code>&lt;details&gt;</code> summary scorecard displaying granular tool findings:</p>
         <details style="margin: 6px 0 10px; cursor: pointer;">
-          <summary><img src="https://img.shields.io/github/actions/workflow/status/bumtrips/beatniks-bumtrips-bullshit/studio2201.yml?branch=master&label=studio2201&logo=shield"
-            alt="studio2201"></summary>
+          <summary><b>Detailed 5-Tool Governance Scorecard</b></summary>
           <div style="margin-top: 6px; font-size: 0.85rem; display:flex; gap:6px; flex-wrap:wrap;">
-            <img src="https://img.shields.io/badge/vibe--safe-SHIP-brightgreen.svg" alt="vibe-safe">
-            <img src="https://img.shields.io/badge/dormancy-healthy-2f6f5e.svg" alt="dormancy">
-            <img src="https://img.shields.io/badge/PQC-Quantum--Safe-blueviolet.svg" alt="PQC">
-            <img src="https://img.shields.io/badge/SLSA-Level%203%2B-blue.svg" alt="SLSA L3+">
-            <img src="https://img.shields.io/badge/boneyard%20index-0%2F100-brightgreen.svg" alt="boneyard">
+            <img src="https://img.shields.io/github/actions/workflow/status/studio2201/studio2201/snip.yml?label=snip&logo=shield" alt="snip">
+            <img src="https://img.shields.io/github/actions/workflow/status/studio2201/studio2201/vigil.yml?label=vigil&logo=shield" alt="vigil">
+            <img src="https://img.shields.io/github/actions/workflow/status/studio2201/studio2201/aegis.yml?label=aegis&logo=shield" alt="aegis">
+            <img src="https://img.shields.io/github/actions/workflow/status/studio2201/studio2201/proven.yml?label=proven&logo=shield" alt="proven">
+            <img src="https://img.shields.io/github/actions/workflow/status/studio2201/studio2201/boneyard.yml?label=boneyard&logo=shield" alt="boneyard">
           </div>
         </details>
         <div class="code-box" style="margin:12px 0 0;"><pre><code>&lt;details&gt;
-&lt;summary&gt;&lt;a href="https://github.com/&lt;owner&gt;/&lt;repo&gt;/actions/workflows/studio2201.yml"&gt;
-  &lt;img src="https://img.shields.io/github/actions/workflow/status/&lt;owner&gt;/&lt;repo&gt;/studio2201.yml?branch=master&amp;label=studio2201&amp;logo=shield"
-    alt="studio2201"&gt;
-&lt;/a&gt; &lt;b&gt;Detailed Governance Scorecard&lt;/b&gt;&lt;/summary&gt;
+&lt;summary&gt;&lt;b&gt;Detailed 5-Tool Governance Scorecard&lt;/b&gt;&lt;/summary&gt;
 
-| Tool | Focus | Status | Badge |
-| :--- | :--- | :---: | :---: |
-| Snip | Vibe-Code | Pass | [![Vibe-Safe](https://img.shields.io/badge/vibe--safe-SHIP-brightgreen.svg)](https://studio2201.com/snip) |
-| Vigil | Dormancy | Pass | [![Dormancy](https://img.shields.io/badge/dormancy-healthy-2f6f5e.svg)](https://studio2201.com/vigil) |
-| Aegis | PQC Migration | Pass | [![PQC](https://img.shields.io/badge/PQC-Quantum--Safe-blueviolet.svg)](https://studio2201.com/aegis) |
-| Proven | SLSA L3+ | Pass | [![SLSA](https://img.shields.io/badge/SLSA-Level%203%2B-blue.svg)](https://studio2201.com/proven) |
-| Boneyard | Debt Radar | Pass | [![Boneyard](https://img.shields.io/badge/boneyard%20index-0%2F100-brightgreen.svg)](https://studio2201.com/boneyard) |
+| Tool | Domain | Workflow Status |
+| :--- | :--- | :---: |
+| [Snip](https://studio2201.com/snip) | Vibe-Code | [![snip][b-snip]][ci-snip] |
+| [Vigil](https://studio2201.com/vigil) | Dormancy | [![vigil][b-vigil]][ci-vigil] |
+| [Aegis](https://studio2201.com/aegis) | PQC | [![aegis][b-aegis]][ci-aegis] |
+| [Proven](https://studio2201.com/proven) | SLSA | [![proven][b-proven]][ci-proven] |
+| [Boneyard](https://studio2201.com/boneyard) | Debt | [![boneyard][b-boneyard]][ci-boneyard] |
 
 &lt;/details&gt;</code></pre></div>
       </div>
     </div>
-    <h3>Individual Tool Badges</h3>
-    <p class="lede small" style="margin-bottom:12px;">Per-tool badges for standalone actions and granular verification:</p>
-    <div class="code-box"><pre><code>[![Vibe-Safe](https://img.shields.io/badge/vibe--safe-SHIP-brightgreen.svg)](https://studio2201.com/snip)
-[![Dormancy](https://img.shields.io/badge/dormancy-healthy-2f6f5e.svg)](https://studio2201.com/vigil)
-[![PQC](https://img.shields.io/badge/PQC-Quantum--Safe-blueviolet.svg)](https://studio2201.com/aegis)
-[![SLSA](https://img.shields.io/badge/SLSA-Level%203%2B-blue.svg)](https://studio2201.com/proven)
-[![Boneyard](https://img.shields.io/badge/boneyard%20index-0%2F100-brightgreen.svg)](https://studio2201.com/boneyard)</code></pre></div>
   </section>
   <section id="matrix">
     <p class="eyebrow num">06</p>

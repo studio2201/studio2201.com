@@ -77,25 +77,40 @@
     <p class="lede small">Verify artifact bit-reproducibility and attach post-quantum ML-DSA-65 attestations in CI.</p>
     <div class="code-box">
       <pre><code># Prompt for your AI Agent (Cursor, Claude Code, Copilot, Devin):
-Add a GitHub Actions workflow at .github/workflows/proven.yml using studio2201/proven@master. Trigger on release tags and pull requests, verify bit-reproducibility of compiled artifacts, generate SLSA Level 3+ build provenance, and sign binaries with post-quantum ML-DSA-65 attestations.</code></pre>
+Add a GitHub Actions workflow to this repository at .github/workflows/proven.yml using studio2201/studio2201@v1:
+- Name: proven
+- Triggers: pull_request, push to default branch (master/main), and workflow_dispatch.
+- Concurrency: group ${{ github.workflow }}-${{ github.ref }} with cancel-in-progress on pull_request.
+- Permissions: contents: read, checkout with fetch-depth: 0.
+- Action: run studio2201/studio2201@v1 with tools: 'proven' and fail-on: 'block'.
+- Artifacts: upload proven_report.md using actions/upload-artifact@v4 with if: always().
+- README Badge: add dynamic Shields.io workflow status badge to top of README.md (replace &lt;owner&gt;/&lt;repo&gt;):
+  [![proven][b-proven]][ci-proven]
+  [b-proven]: https://img.shields.io/github/actions/workflow/status/&lt;owner&gt;/&lt;repo&gt;/proven.yml?label=proven&amp;logo=shield
+  [ci-proven]: https://github.com/&lt;owner&gt;/&lt;repo&gt;/actions/workflows/proven.yml</code></pre>
     </div>
     <div class="code-box">
       <pre><code># .github/workflows/proven.yml
-name: Proven Supply-Chain Attestor
+name: proven
 on:
-  push:
-    tags: [ 'v*' ]
-  pull_request:
-    branches: [ master, main ]
+  push: { branches: [ master, main ] }
+  pull_request: { branches: [ master, main ] }
+  workflow_dispatch:
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+permissions: { contents: read }
 jobs:
-  proven-attest:
+  proven:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Attest Artifact Provenance
-        uses: studio2201/proven@master
-        with:
-          path: '.'</code></pre>
+        with: { fetch-depth: 0 }
+      - uses: studio2201/studio2201@v1
+        with: { tools: 'proven', fail-on: 'block' }
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with: { name: proven-report, path: proven_report.md, if-no-files-found: ignore }</code></pre>
     </div>
     <div class="code-box">
       <pre><code># Workstation CLI installation (unprivileged, installs to ~/.local/bin):
