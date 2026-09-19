@@ -9,7 +9,7 @@ RELEASE_BASE="${RELEASE_BASE:-https://github.com/${REPO_OWNER}}"
 UPDATE_BASE="${UPDATE_BASE:-https://studio2201.com}"
 DEFAULT_DEST="${XDG_BIN_HOME:-$HOME/.local/bin}"
 DEST_DIR="${INSTALL_DIR:-$DEFAULT_DEST}"
-ALL_APPS="vigil snip boneyard aegis proven"
+ALL_APPS="vigil snip boneyard aegis proven cli"
 
 if [ -t 1 ] && [ -z "${NO_COLOR:-}" ]; then
   BOLD="\033[1m" GREEN="\033[32m" YELLOW="\033[33m"
@@ -36,7 +36,8 @@ Commands:
 
 Applications:
   vigil (dormancy)  snip (diff gate)    boneyard (tech-debt)
-  aegis (PQC SDK)   proven (attestor)   all (all 5 tools)
+  aegis (PQC SDK)   proven (attestor)   cli (studio2201 CLI)
+  all (all 6 tools)
 
 Options:
   --dest <DIR>  Install dir (default: \${XDG_BIN_HOME:-\$HOME/.local/bin})
@@ -85,28 +86,35 @@ verify_checksum() {
   [ "$ACTUAL" = "$2" ] || { err "SHA mismatch ($ACTUAL != $2)"; return 1; }
 }
 
+resolve_app() {
+  case "$1" in
+    cli|studio2201) APP_REPO="cli"; APP_BIN="studio2201" ;;
+    *) APP_REPO="$1"; APP_BIN="$1" ;;
+  esac
+}
+
 install_from_source() {
-  APP="$1"
+  resolve_app "$1"
   command -v cargo >/dev/null 2>&1 || \
     { err "Pre-compiled binary unavailable and cargo missing."; return 1; }
-  info "Compiling $APP from source via cargo..."
-  TMP_ROOT="${TMP_DIR}/cargo_${APP}"
+  info "Compiling $APP_BIN from source via cargo..."
+  TMP_ROOT="${TMP_DIR}/cargo_${APP_REPO}"
   mkdir -p "$TMP_ROOT"
-  cargo install --git "${RELEASE_BASE}/${APP}" \
+  cargo install --git "${RELEASE_BASE}/${APP_REPO}" \
     --root "$TMP_ROOT" --quiet --force
-  cp "${TMP_ROOT}/bin/${APP}" "${DEST_DIR}/${APP}"
-  chmod 755 "${DEST_DIR}/${APP}"
-  success "Built and installed $APP to ${DEST_DIR}/${APP}"
+  cp "${TMP_ROOT}/bin/${APP_BIN}" "${DEST_DIR}/${APP_BIN}"
+  chmod 755 "${DEST_DIR}/${APP_BIN}"
+  success "Built and installed $APP_BIN to ${DEST_DIR}/${APP_BIN}"
 }
 
 install_app() {
-  APP="$1"
-  info "Installing $APP..."
+  resolve_app "$1"
+  info "Installing $APP_BIN..."
   mkdir -p "$DEST_DIR"
-  [ -z "$TARGET" ] && { install_from_source "$APP"; return $?; }
-  ASSET="${APP}-${TARGET}.tar.gz"
-  ASSET_URL="${RELEASE_BASE}/${APP}/releases/latest/download/${ASSET}"
-  TMP_APP_DIR="${TMP_DIR}/${APP}"
+  [ -z "$TARGET" ] && { install_from_source "$1"; return $?; }
+  ASSET="${APP_BIN}-${TARGET}.tar.gz"
+  ASSET_URL="${RELEASE_BASE}/${APP_REPO}/releases/latest/download/${ASSET}"
+  TMP_APP_DIR="${TMP_DIR}/${APP_REPO}"
   mkdir -p "$TMP_APP_DIR"
   ARCHIVE="${TMP_APP_DIR}/${ASSET}"
   SHA_FILE="${TMP_APP_DIR}/${ASSET}.sha256"
@@ -117,20 +125,21 @@ install_app() {
       verify_checksum "$ARCHIVE" "$(awk '{print $1}' "$SHA_FILE")"
     fi
     tar -xzf "$ARCHIVE" -C "$TMP_APP_DIR"
-    if [ -f "${TMP_APP_DIR}/${APP}" ]; then
-      cp "${TMP_APP_DIR}/${APP}" "${DEST_DIR}/${APP}"
-      chmod 755 "${DEST_DIR}/${APP}"
-      success "Installed $APP to ${DEST_DIR}/${APP}"
+    if [ -f "${TMP_APP_DIR}/${APP_BIN}" ]; then
+      cp "${TMP_APP_DIR}/${APP_BIN}" "${DEST_DIR}/${APP_BIN}"
+      chmod 755 "${DEST_DIR}/${APP_BIN}"
+      success "Installed $APP_BIN to ${DEST_DIR}/${APP_BIN}"
       return 0
     fi
   fi
   warn "Pre-built release not found at $ASSET_URL."
-  install_from_source "$APP"
+  install_from_source "$1"
 }
 
 get_latest_version() {
-  APP="$1" LATEST=""
-  URL="${RELEASE_BASE}/${APP}/releases/latest"
+  resolve_app "$1"
+  LATEST=""
+  URL="${RELEASE_BASE}/${APP_REPO}/releases/latest"
   if command -v curl >/dev/null 2>&1; then
     LATEST="$(curl -sI --max-time 5 "$URL" 2>/dev/null | \
       grep -i "^location:" | sed -E 's/.*tag\/v?//' | tr -d '\r\n ')"
@@ -146,7 +155,8 @@ get_latest_version() {
 }
 
 get_local_version() {
-  BIN="${DEST_DIR}/$1"
+  resolve_app "$1"
+  BIN="${DEST_DIR}/$APP_BIN"
   [ -x "$BIN" ] || return 0
   VER="$("$BIN" -V 2>/dev/null | awk '{print $2}' || true)"
   [ -z "$VER" ] && \
