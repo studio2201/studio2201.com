@@ -19,19 +19,16 @@
 <meta name="twitter:title" content="studio2201 — supply-chain risk, exposed" />
 <meta name="twitter:description" content="Five Apache-2.0 open-source tools that expose and remediate software supply-chain risk in the post-2030 era." />
 <meta name="twitter:image" content="https://studio2201.com/assets/og-image.png" />
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet"
   href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Outfit:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
 <link rel="stylesheet" href="styles.css" />
 <link rel="stylesheet" href="components.css" />
-<link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
-<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png" />
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg"><link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png">
 <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png" />
 </head>
 <body>
 <main class="page">
-
   <header class="hero">
     <span class="eyebrow">studio2201</span>
     <h1>Software that exposes <em>supply-chain risk</em>.</h1>
@@ -41,7 +38,6 @@
       <a class="btn ghost" href="https://github.com/studio2201">github.com/studio2201 →</a>
     </div>
   </header>
-
   <section id="products">
     <p class="eyebrow num">01</p>
     <h2>Five products. Pure Rust. Apache-2.0.</h2>
@@ -164,12 +160,15 @@ vigil policy check --max-dormancy 180d || echo "Vigil: FAILED (exit code 1)"</co
     <p class="lede small">Zero-dependency automated security gates on every pull request and push using the unified composite action.</p>
     <div class="code-box">
       <pre><code># Prompt for your AI Agent (Cursor, Claude Code, Copilot, Devin):
-Add a GitHub Actions workflow to this repository at .github/workflows/studio2201.yml using studio2201/studio2201@master.
+Add a GitHub Actions workflow to this repository at .github/workflows/studio2201.yml using studio2201/studio2201@v1.
 Trigger on pull_request and push to master/main, and workflow_dispatch.
-Configure concurrency with cancel-in-progress on pull requests.
-Set permissions to contents: read, checkout with fetch-depth: 0, run studio2201/studio2201@master with tools: 'all' and fail-on: 'block'.
-Retain audit findings using actions/upload-artifact@v4 with if: always().
-Finally, add the Option 1 Single Suite Badge or Option 2 Governance Scorecard to README.md.</code></pre>
+Configure concurrency group ${{ github.workflow }}-${{ github.ref }} with cancel-in-progress on pull requests.
+Set permissions contents: read, checkout with fetch-depth: 0, run studio2201/studio2201@v1 with tools: 'snip,vigil,aegis' and fail-on: 'block'.
+Retain audit findings by uploading *_report.md using actions/upload-artifact@v4 with if: always().
+Finally, add a dynamic Shields.io workflow status badge to README.md reflecting actual CI verdict:
+[![studio2201][badge]][ci]
+[badge]: https://img.shields.io/github/actions/workflow/status/&lt;owner&gt;/&lt;repo&gt;/studio2201.yml?branch=master&amp;label=studio2201&amp;logo=shield
+[ci]: https://github.com/&lt;owner&gt;/&lt;repo&gt;/actions/workflows/studio2201.yml</code></pre>
     </div>
     <div class="code-box">
       <pre><code># .github/workflows/studio2201.yml
@@ -199,9 +198,9 @@ jobs:
           fetch-depth: 0
 
       - name: Run studio2201 Security Gate
-        uses: studio2201/studio2201@master
+        uses: studio2201/studio2201@v1
         with:
-          tools: 'all'
+          tools: 'snip,vigil,aegis'
           fail-on: 'block'
 
       - name: Retain Audit Findings
@@ -223,9 +222,10 @@ studio2201 list               # inspect installed tools and versions
 studio2201 upgrade all        # upgrade tools to latest release
 studio2201 init               # scaffold GitHub Action & agent guardrails</code></pre>
     </div>
-    <p class="lede small" style="margin-top:16px;margin-bottom:0;">Verification badge:
-      <a href="agents.html#badges"><img src="https://img.shields.io/badge/studio2201-5%2F5%20Verified-2f6f5e?logo=shield"
-        alt="studio2201 Suite" style="vertical-align:middle;margin-left:6px;"></a></p>
+    <p class="lede small" style="margin-top:16px;margin-bottom:0;">Dynamic CI badge:
+      <a href="agents.html#badges">
+        <img src="https://img.shields.io/github/actions/workflow/status/bumtrips/beatniks-bumtrips-bullshit/studio2201.yml?branch=master&label=studio2201&logo=shield"
+          alt="studio2201" style="vertical-align:middle;margin-left:6px;"></a></p>
   </section>
 
   <section id="doctrine">
@@ -249,7 +249,6 @@ studio2201 init               # scaffold GitHub Action & agent guardrails</code>
     <p>studio2201 · Apache-2.0 · no warranty · pure Rust, std:: only</p>
     <p class="small">Last updated 2026-09-19 · source of this page: <a href="https://github.com/studio2201/studio2201.com">studio2201/studio2201.com</a></p>
   </footer>
-
 </main>
 </body>
 </html>

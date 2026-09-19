@@ -28,7 +28,7 @@
   <header class="hero">
     <div class="badge-bar">
       <span class="eyebrow" style="margin-bottom:0;">studio2201 / automation</span>
-      <span class="tag green">v0.4.17</span>
+      <span class="tag green">v0.4.18</span>
       <span class="tag green">Apache-2.0</span>
     </div>
     <h1>Agent & Automation Guide</h1>
@@ -43,13 +43,12 @@
     <div class="card-grid">
       <div class="feature-item">
         <h4>Standard Flags</h4>
-        <p><code>--format json</code> emits structured schemas; <code>-q, --quiet</code> silences stdout;
+        <p><code>--format json</code> emits structured schemas; <code>-q, --quiet</code> silences stdout;<br>
           <code>-v</code> prints stderr; <code>-o &lt;FILE&gt;</code> writes to disk.</p>
       </div>
       <div class="feature-item">
         <h4>Tri-State Exit Codes</h4>
-        <p><code>0</code> = Clean verdict (ship); <code>1</code> = Security findings (BLOCK/FIX);
-          <code>2</code> = Argument parse error or runtime I/O failure.</p>
+        <p><code>0</code> = Clean verdict (ship); <code>1</code> = Security findings (BLOCK/FIX); <code>2</code> = Argument parse error or runtime I/O failure.</p>
       </div>
     </div>
     <div class="code-box">
@@ -98,12 +97,15 @@ git diff --staged | snip audit -q || { echo "[-] Snip pre-commit gate failed" >&
     </div>
     <div class="code-box">
       <pre><code># Prompt for your AI Agent (Cursor, Claude Code, Copilot, Devin):
-Add a GitHub Actions workflow to this repository at .github/workflows/studio2201.yml using studio2201/studio2201@master.
+Add a GitHub Actions workflow to this repository at .github/workflows/studio2201.yml using studio2201/studio2201@v1.
 Trigger on pull_request and push to master/main, and workflow_dispatch.
-Configure concurrency with cancel-in-progress on pull requests.
-Set permissions to contents: read, checkout with fetch-depth: 0, run studio2201/studio2201@master with tools: 'all' and fail-on: 'block'.
-Retain audit findings using actions/upload-artifact@v4 with if: always().
-Finally, add the Option 1 Single Suite Badge or Option 2 Governance Scorecard to README.md.</code></pre>
+Configure concurrency group ${{ github.workflow }}-${{ github.ref }} with cancel-in-progress on pull requests.
+Set permissions contents: read, checkout with fetch-depth: 0, run studio2201/studio2201@v1 with tools: 'snip,vigil,aegis' and fail-on: 'block'.
+Retain audit findings by uploading *_report.md using actions/upload-artifact@v4 with if: always().
+Finally, add a dynamic Shields.io workflow status badge to README.md reflecting actual CI verdict:
+[![studio2201][badge]][ci]
+[badge]: https://img.shields.io/github/actions/workflow/status/&lt;owner&gt;/&lt;repo&gt;/studio2201.yml?branch=master&amp;label=studio2201&amp;logo=shield
+[ci]: https://github.com/&lt;owner&gt;/&lt;repo&gt;/actions/workflows/studio2201.yml</code></pre>
     </div>
     <div class="code-box">
       <pre><code># .github/workflows/studio2201.yml
@@ -133,9 +135,9 @@ jobs:
           fetch-depth: 0
 
       - name: Run studio2201 Security Gate
-        uses: studio2201/studio2201@master
+        uses: studio2201/studio2201@v1
         with:
-          tools: 'all'
+          tools: 'snip,vigil,aegis'
           fail-on: 'block'
 
       - name: Retain Audit Findings
@@ -154,19 +156,21 @@ jobs:
     <p class="lede small">Showcase verified security posture in your README with a clean unified suite badge or detailed scorecard.</p>
     <div class="card-grid">
       <div class="feature-item">
-        <h4>Option 1: Minimalist Single Suite Badge</h4>
-        <p style="margin: 8px 0 12px;"><a href="https://studio2201.com/agents#badges">
-          <img src="https://img.shields.io/badge/studio2201-5%2F5%20Verified-2f6f5e?logo=shield" alt="studio2201 Suite"></a></p>
-        <p>Certifies all 5 tools (Snip, Vigil, Aegis, Proven, Boneyard) passed in a single clean badge.</p>
-        <div class="code-box" style="margin:12px 0 0;">
-          <pre><code>[![studio2201 Suite](https://img.shields.io/badge/studio2201-5%2F5%20Verified-2f6f5e?logo=shield)](https://studio2201.com/agents#badges)</code></pre>
-        </div>
+        <h4>Option 1: Dynamic Workflow Status Badge</h4>
+        <p style="margin: 8px 0 12px;"><a href="https://github.com/bumtrips/beatniks-bumtrips-bullshit/actions/workflows/studio2201.yml">
+          <img src="https://img.shields.io/github/actions/workflow/status/bumtrips/beatniks-bumtrips-bullshit/studio2201.yml?branch=master&label=studio2201&logo=shield"
+            alt="studio2201"></a></p>
+        <p>Live, dynamic CI status from Shields.io. Updates automatically to passing (green) or failing (red).</p>
+        <div class="code-box" style="margin:12px 0 0;"><pre><code>[![studio2201][badge]][ci]
+[badge]: https://img.shields.io/github/actions/workflow/status/&lt;owner&gt;/&lt;repo&gt;/studio2201.yml?branch=master&amp;label=studio2201&amp;logo=shield
+[ci]: https://github.com/&lt;owner&gt;/&lt;repo&gt;/actions/workflows/studio2201.yml</code></pre></div>
       </div>
       <div class="feature-item">
         <h4>Option 2: Detailed Governance Scorecard</h4>
         <p style="margin: 8px 0 12px;">Expandable <code>&lt;details&gt;</code> summary scorecard displaying granular tool findings:</p>
         <details style="margin: 6px 0 10px; cursor: pointer;">
-          <summary><img src="https://img.shields.io/badge/studio2201-5%2F5%20Verified-2f6f5e?logo=shield" alt="studio2201 Suite"></summary>
+          <summary><img src="https://img.shields.io/github/actions/workflow/status/bumtrips/beatniks-bumtrips-bullshit/studio2201.yml?branch=master&label=studio2201&logo=shield"
+            alt="studio2201"></summary>
           <div style="margin-top: 6px; font-size: 0.85rem; display:flex; gap:6px; flex-wrap:wrap;">
             <img src="https://img.shields.io/badge/vibe--safe-SHIP-brightgreen.svg" alt="vibe-safe">
             <img src="https://img.shields.io/badge/dormancy-healthy-2f6f5e.svg" alt="dormancy">
@@ -176,8 +180,9 @@ jobs:
           </div>
         </details>
         <div class="code-box" style="margin:12px 0 0;"><pre><code>&lt;details&gt;
-&lt;summary&gt;&lt;a href="https://studio2201.com/agents#badges"&gt;
-  &lt;img src="https://img.shields.io/badge/studio2201-5%2F5%20Verified-2f6f5e?logo=shield" alt="studio2201 Suite"&gt;
+&lt;summary&gt;&lt;a href="https://github.com/&lt;owner&gt;/&lt;repo&gt;/actions/workflows/studio2201.yml"&gt;
+  &lt;img src="https://img.shields.io/github/actions/workflow/status/&lt;owner&gt;/&lt;repo&gt;/studio2201.yml?branch=master&amp;label=studio2201&amp;logo=shield"
+    alt="studio2201"&gt;
 &lt;/a&gt; &lt;b&gt;Detailed Governance Scorecard&lt;/b&gt;&lt;/summary&gt;
 
 | Tool | Focus | Status | Badge |
