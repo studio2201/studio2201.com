@@ -36,14 +36,14 @@
   <header class="hero">
     <div class="badge-bar">
       <span class="eyebrow" style="margin-bottom:0;">studio2201 / automation</span>
-      <span class="tag green">v0.4.10</span>
+      <span class="tag green">v0.4.11</span>
       <span class="tag green">Apache-2.0</span>
     </div>
     <h1>Agent & Automation Guide</h1>
     <p class="lede">Zero-dependency, machine-first security tooling for autonomous coding agents, Model Context Protocol (MCP) servers, pre-commit diff hooks, and CI/CD pipelines.</p>
     <div class="cta">
-      <a class="btn primary" href="#matrix">5-Tool Matrix ↓</a>
-      <a class="btn ghost" href="#pipelines">CI/CD Pipelines ↓</a>
+      <a class="btn primary" href="#badges">Badges & Scorecards ↓</a>
+      <a class="btn ghost" href="#matrix">5-Tool Matrix ↓</a>
     </div>
   </header>
 
@@ -131,30 +131,52 @@ jobs:
         with:
           tools: 'all'
           fail-on: 'block'</code></pre>
-    </div>
+  </section>
 
-    <h3>Tool Badges for CI & READMEs</h3>
-    <p class="lede small">Embed live verification and certification badges directly in your repository README:</p>
-    <div class="code-wrap">
-      <pre><code>&lt;!-- Snip Vibe-Safe Security Gate --&gt;
+  <section id="badges">
+    <p class="eyebrow num">05</p>
+    <h2>Repository Badges & Scorecards</h2>
+    <p class="lede small">Showcase verified security posture in your README with a clean unified suite badge or detailed scorecard.</p>
+    <div class="card-grid">
+      <div class="feature-item">
+        <h4>Option 1: Minimalist Single Suite Badge</h4>
+        <p style="margin: 8px 0 12px;"><a href="https://studio2201.com/agents#badges"><img src="https://img.shields.io/badge/studio2201-5%2F5%20Verified-2f6f5e?logo=shield" alt="studio2201 Suite"></a></p>
+        <p>Certifies all 5 tools (Snip, Vigil, Aegis, Proven, Boneyard) passed in a single clean badge.</p>
+        <div class="code-box" style="margin:12px 0 0;"><pre><code>[![studio2201 Suite](https://img.shields.io/badge/studio2201-5%2F5%20Verified-2f6f5e?logo=shield)](https://studio2201.com/agents#badges)</code></pre></div>
+      </div>
+      <div class="feature-item">
+        <h4>Option 2: Detailed Governance Scorecard</h4>
+        <p style="margin: 8px 0 12px;">Expandable <code>&lt;details&gt;</code> summary scorecard displaying granular tool findings:</p>
+        <div class="code-box" style="margin:12px 0 0;"><pre><code>&lt;details&gt;&lt;summary&gt;[![studio2201 Suite](https://img.shields.io/badge/studio2201-5%2F5%20Verified-2f6f5e?logo=shield)](https://studio2201.com/agents#badges)&lt;/summary&gt;
+
+| Tool | Focus | Status | Badge |
+| :--- | :--- | :---: | :---: |
+| Snip | Vibe-Code | PASS | [![Vibe-Safe](https://img.shields.io/badge/vibe--safe-SHIP-brightgreen.svg)](https://studio2201.com/snip) |
+| Vigil | Dormancy | PASS | [![Dormancy](https://img.shields.io/badge/dormancy-healthy-2f6f5e.svg)](https://studio2201.com/vigil) |
+| Aegis | PQC Migration | PASS | [![PQC](https://img.shields.io/badge/PQC-Quantum--Safe-blueviolet.svg)](https://studio2201.com/aegis) |
+| Proven | SLSA L3+ | PASS | [![SLSA](https://img.shields.io/badge/SLSA-Level%203%2B-blue.svg)](https://studio2201.com/proven) |
+| Boneyard | Debt Radar | PASS | [![Boneyard](https://img.shields.io/badge/boneyard%20index-0%2F100-brightgreen.svg)](https://studio2201.com/boneyard) |
+
+&lt;/details&gt;</code></pre></div>
+      </div>
+    </div>
+    <h3>Individual Tool Badges</h3>
+    <p class="lede small" style="margin-bottom:12px;">Per-tool badges for standalone actions and granular verification:</p>
+    <p style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px;"><img src="https://img.shields.io/badge/vibe--safe-SHIP-brightgreen.svg" alt="vibe-safe"> <img src="https://img.shields.io/badge/dormancy-healthy-2f6f5e.svg" alt="dormancy"> <img src="https://img.shields.io/badge/PQC-Quantum--Safe-blueviolet.svg" alt="PQC"> <img src="https://img.shields.io/badge/SLSA-Level%203%2B-blue.svg" alt="SLSA L3+"> <img src="https://img.shields.io/badge/boneyard%20index-0%2F100-brightgreen.svg" alt="boneyard index"></p>
+    <div class="code-box"><pre><code>&lt;!-- vibe-safe (Snip) --&gt;
 [![Vibe-Safe](https://img.shields.io/badge/vibe--safe-SHIP-brightgreen.svg)](https://studio2201.com/snip)
-
-&lt;!-- Vigil Supply-Chain Dormancy --&gt;
+&lt;!-- dormancy (Vigil) --&gt;
 [![Dormancy](https://img.shields.io/badge/dormancy-healthy-2f6f5e.svg)](https://studio2201.com/vigil)
-
-&lt;!-- Aegis PQC Migration Readiness --&gt;
+&lt;!-- PQC (Aegis) --&gt;
 [![PQC](https://img.shields.io/badge/PQC-Quantum--Safe-blueviolet.svg)](https://studio2201.com/aegis)
-
-&lt;!-- Proven SLSA Level 3+ Attestation --&gt;
+&lt;!-- SLSA L3+ (Proven) --&gt;
 [![SLSA](https://img.shields.io/badge/SLSA-Level%203%2B-blue.svg)](https://studio2201.com/proven)
-
-&lt;!-- Boneyard Tech-Debt Index --&gt;
-[![Boneyard](https://img.shields.io/badge/boneyard%20index-0%2F100-brightgreen.svg)](https://studio2201.com/boneyard)</code></pre>
-    </div>
+&lt;!-- boneyard index (Boneyard) --&gt;
+[![Boneyard](https://img.shields.io/badge/boneyard%20index-0%2F100-brightgreen.svg)](https://studio2201.com/boneyard)</code></pre></div>
   </section>
 
   <section id="matrix">
-    <p class="eyebrow num">05</p>
+    <p class="eyebrow num">06</p>
     <h2>5-Tool Automation Matrix</h2>
     <p class="lede small">How the five studio2201 tools integrate across the autonomous developer loop.</p>
     <div class="card-grid">
