@@ -129,8 +129,8 @@ jobs:
   </section>
   <section id="badges">
     <p class="eyebrow num">05</p>
-    <h2>Repository Badges &amp; Scorecards</h2>
-    <p class="lede small">What the security scorecard looks like, and how to embed it into your repository README.</p>
+    <h2>Repository Governance Scorecard</h2>
+    <p class="lede small">Standardized 2-column scorecard centered in your README. Drop-in markdown with zero placeholders:</p>
 
     <div class="scorecard-wrap">
       <div class="scorecard-container">
@@ -158,11 +158,9 @@ jobs:
         </table>
       </div>
     </div>
-    <div class="card-grid">
-      <div class="feature-item">
-        <h4>Option 2: Centered Scorecard (Recommended)</h4>
-        <p>Drop-in markdown table centered with &lt;div align="center"&gt;:</p>
-        <div class="code-box" style="margin:10px 0 0;"><pre><code>&lt;div align="center"&gt;
+    <div class="code-box">
+      <pre><code>&lt;div align="center"&gt;
+
 | Security Pillar | Verification Badge |
 | :--- | :---: |
 | **Platform Standard** | [![secured by studio2201][b-studio]][u-home] |
@@ -184,27 +182,8 @@ jobs:
 [u-proven]: https://studio2201.com/proven
 [b-boneyard]: https://img.shields.io/badge/boneyard-maintained-2f6f5e?logo=shield
 [u-boneyard]: https://studio2201.com/boneyard
-&lt;/div&gt;</code></pre></div>
-      </div>
-      <div class="feature-item">
-        <h4>Option 1: Dynamic Badges (Alternative)</h4>
-        <div style="margin:8px 0;">
-          <a href="/"><img src="https://img.shields.io/badge/secured%20by-studio2201-2f6f5e?logo=shield" alt="secured by studio2201"></a>
-          <img alt="snip" src="https://img.shields.io/github/actions/workflow/status/studio2201/studio2201/snip.yml?label=snip&logo=shield">
-          <img alt="vigil" src="https://img.shields.io/github/actions/workflow/status/studio2201/studio2201/vigil.yml?label=vigil&logo=shield">
-          <img alt="aegis" src="https://img.shields.io/github/actions/workflow/status/studio2201/studio2201/aegis.yml?label=aegis&logo=shield">
-          <img alt="proven" src="https://img.shields.io/github/actions/workflow/status/studio2201/studio2201/proven.yml?label=proven&logo=shield">
-          <img alt="boneyard" src="https://img.shields.io/github/actions/workflow/status/studio2201/studio2201/boneyard.yml?label=boneyard&logo=shield">
-        </div>
-        <p>Dynamic workflow status per tool (green passing, red failing):</p>
-        <div class="code-box" style="margin:10px 0 0;">
-          <pre><code>[![secured by studio2201](https://img.shields.io/badge/secured%20by-studio2201-2f6f5e?logo=shield)](https://studio2201.com)
-[![snip](https://img.shields.io/github/actions/workflow/status/&lt;owner&gt;/&lt;repo&gt;/snip.yml?label=snip&amp;logo=shield)](...)
-[![vigil](https://img.shields.io/github/actions/workflow/status/&lt;owner&gt;/&lt;repo&gt;/vigil.yml?label=vigil&amp;logo=shield)](...)
-[![aegis](https://img.shields.io/github/actions/workflow/status/&lt;owner&gt;/&lt;repo&gt;/aegis.yml?label=aegis&amp;logo=shield)](...)
-[![proven](https://img.shields.io/github/actions/workflow/status/&lt;owner&gt;/&lt;repo&gt;/proven.yml?label=proven&amp;logo=shield)](...)
-[![boneyard](https://img.shields.io/github/actions/workflow/status/&lt;owner&gt;/&lt;repo&gt;/boneyard.yml?label=boneyard&amp;logo=shield)](...)</code></pre></div>
-      </div>
+
+&lt;/div&gt;</code></pre>
     </div>
   </section>
   <section id="matrix">

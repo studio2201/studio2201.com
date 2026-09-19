@@ -184,16 +184,15 @@ vigil policy check --max-dormancy 180d || echo "Vigil: FAILED (exit code 1)"</co
     </div>
     <div class="code-box">
       <pre><code># Prompt for your AI Agent (Cursor, Claude Code, Copilot, Devin):
-Embed security verification badges as a centered 2-column scorecard table using &lt;div align="center"&gt;:
-[![secured by studio2201](https://img.shields.io/badge/secured%20by-studio2201-2f6f5e?logo=shield)](https://studio2201.com)
 Add 5 dedicated GitHub Actions workflows to this repository (.github/workflows/&lt;tool&gt;.yml):
-- snip.yml (name: snip, tools: 'snip' — diffs, secrets, Supabase RLS)
-- vigil.yml (name: vigil, tools: 'vigil' — dependency dormancy, excludes root crates)
-- aegis.yml (name: aegis, tools: 'aegis' — post-quantum crypto, skips comments)
-- proven.yml (name: proven, tools: 'proven' — ML-DSA-65 attestations)
-- boneyard.yml (name: boneyard, tools: 'boneyard' — tech-debt radar)
+- snip.yml (tools: 'snip' — diffs, secrets, Supabase RLS)
+- vigil.yml (tools: 'vigil' — dependency dormancy, excludes root crates)
+- aegis.yml (tools: 'aegis' — post-quantum crypto, skips comments)
+- proven.yml (tools: 'proven' — ML-DSA-65 attestations)
+- boneyard.yml (tools: 'boneyard' — tech-debt radar)
 All workflows trigger on pull_request, push to master/main, and workflow_dispatch,
-use studio2201/studio2201@v1 with fail-on: 'block', and retain *_report.md.</code></pre>
+use studio2201/studio2201@v1 with fail-on: 'block', and retain *_report.md.
+Embed the studio2201 Governance Scorecard table centered at the top of README.md (specs: studio2201.com/agents).</code></pre>
     </div>
     <div class="code-box">
       <pre><code># Reference template: .github/workflows/&lt;tool&gt;.yml (replace &lt;tool&gt; with snip, vigil, aegis, proven, boneyard)
