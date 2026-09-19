@@ -35,7 +35,7 @@
     <p class="lede">Five Apache-2.0 tools that audit, attest, and migrate the post-2030 software supply chain.</p>
     <div class="cta">
       <a class="btn primary" href="#products">See the products →</a>
-      <a class="btn ghost" href="https://github.com/studio2201">github.com/studio2201 →</a>
+      <a class="btn ghost" href="#install">Agent Instructions ↓</a>
     </div>
   </header>
   <section id="products">
@@ -63,7 +63,6 @@
           keyed on (host, rustc-version, Cargo.lock). Post-2030 valid.</p>
         <span class="more">Overview & Specs →</span>
       </a>
-
       <a class="product" href="/aegis">
         <div class="product-head">
           <span class="tag green">v0.2.10</span>
@@ -73,7 +72,6 @@
           emits ML-KEM-768 / ML-DSA-65 replacements for the 2030 federal deadline.</p>
         <span class="more">Overview & Specs →</span>
       </a>
-
       <a class="product" href="/snip">
         <div class="product-head">
           <span class="tag green">v0.2.9</span>
@@ -130,8 +128,8 @@ git diff --staged | snip audit --format json</code></pre>
       </div>
     </div>
     <div class="cta" style="margin-top:20px;">
-      <a class="btn primary" href="agents.html">Read the Agent Guide →</a>
-      <a class="btn ghost" href="agents.html#badges">Badges & Scorecards →</a>
+      <a class="btn primary" href="#install">Agent Instructions ↓</a>
+      <a class="btn ghost" href="agents.html">Read the Agent Guide →</a>
     </div>
   </section>
 
@@ -156,19 +154,21 @@ vigil policy check --max-dormancy 180d || echo "Vigil: FAILED (exit code 1)"</co
 
   <section id="install">
     <p class="eyebrow num">04</p>
-    <h2>CI/CD & GitHub Actions Enforcement</h2>
+    <h2>Agent Instructions & CI/CD Enforcement</h2>
     <p class="lede small">Zero-dependency automated security gates on every pull request and push using the unified composite action.</p>
     <div class="code-box">
       <pre><code># Prompt for your AI Agent (Cursor, Claude Code, Copilot, Devin):
-Add a GitHub Actions workflow to this repository at .github/workflows/studio2201.yml using studio2201/studio2201@v1.
-Trigger on pull_request and push to master/main, and workflow_dispatch.
-Configure concurrency group ${{ github.workflow }}-${{ github.ref }} with cancel-in-progress on pull requests.
-Set permissions contents: read, checkout with fetch-depth: 0, run studio2201/studio2201@v1 with tools: 'snip,vigil,aegis' and fail-on: 'block'.
-Retain audit findings by uploading *_report.md using actions/upload-artifact@v4 with if: always().
-Finally, add a dynamic Shields.io workflow status badge to README.md reflecting actual CI verdict:
-[![studio2201][badge]][ci]
-[badge]: https://img.shields.io/github/actions/workflow/status/&lt;owner&gt;/&lt;repo&gt;/studio2201.yml?branch=master&amp;label=studio2201&amp;logo=shield
-[ci]: https://github.com/&lt;owner&gt;/&lt;repo&gt;/actions/workflows/studio2201.yml</code></pre>
+Add a GitHub Actions workflow to this repository at .github/workflows/studio2201.yml using studio2201/studio2201@v1:
+- Triggers: pull_request, push to default branch (master/main), and workflow_dispatch.
+- Concurrency: group ${{ github.workflow }}-${{ github.ref }} with cancel-in-progress on pull_request.
+- Permissions: contents: read, checkout with fetch-depth: 0.
+- Action: run studio2201/studio2201@v1 with tools: 'snip,vigil,aegis' and fail-on: 'block'.
+- Artifacts: upload *_report.md using actions/upload-artifact@v4 with if: always().
+- Zero False Positives: @v1 provisions Vigil v0.2.11+ (excludes root crates) & Aegis v0.2.10+ (skips comments).
+- README Badge: add dynamic Shields.io workflow status badge to top of README.md (replace &lt;owner&gt;/&lt;repo&gt;):
+  [![studio2201][badge]][ci]
+  [badge]: https://img.shields.io/github/actions/workflow/status/&lt;owner&gt;/&lt;repo&gt;/studio2201.yml?label=studio2201&amp;logo=shield
+  [ci]: https://github.com/&lt;owner&gt;/&lt;repo&gt;/actions/workflows/studio2201.yml</code></pre>
     </div>
     <div class="code-box">
       <pre><code># .github/workflows/studio2201.yml
