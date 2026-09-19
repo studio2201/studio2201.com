@@ -21,7 +21,8 @@
 <meta name="twitter:image" content="https://studio2201.com/assets/og-image.png" />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Outfit:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet"
+  href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Outfit:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
 <link rel="stylesheet" href="styles.css" />
 <link rel="stylesheet" href="components.css" />
 <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
@@ -49,10 +50,11 @@
 
       <a class="product" href="/vigil">
         <div class="product-head">
-          <span class="tag green">v0.2.10</span>
+          <span class="tag green">v0.2.11</span>
           <h3>Vigil</h3>
         </div>
-        <p class="product-body">Supply-chain dormancy scanner. Reads your manifest (<code>package.json</code>, <code>Cargo.lock</code>, <code>pyproject.toml</code>, …), scores each dependency by dormancy, emits <code>SUPPLY-CHAIN.md</code> and a badge.</p>
+        <p class="product-body">Supply-chain dormancy scanner. Reads manifests (<code>package.json</code>,
+          <code>Cargo.lock</code>, <code>pyproject.toml</code>), scores dormancy, emits <code>SUPPLY-CHAIN.md</code> and badges.</p>
         <span class="more">Overview & Specs →</span>
       </a>
 
@@ -61,16 +63,18 @@
           <span class="tag green">v0.2.9</span>
           <h3>Proven</h3>
         </div>
-        <p class="product-body">PQC-signed supply-chain attestor. Reproducible builds with byte-identity hashing keyed on (host, rustc-version, Cargo.lock). Air-gappable, post-2030 valid.</p>
+        <p class="product-body">PQC-signed supply-chain attestor. Reproducible builds with byte-identity hashing
+          keyed on (host, rustc-version, Cargo.lock). Post-2030 valid.</p>
         <span class="more">Overview & Specs →</span>
       </a>
 
       <a class="product" href="/aegis">
         <div class="product-head">
-          <span class="tag green">v0.2.9</span>
+          <span class="tag green">v0.2.10</span>
           <h3>Aegis</h3>
         </div>
-        <p class="product-body">PQC migration SDK. Scans RSA/ECC usage, plans in OMB M-26-15 format, emits ML-KEM-768 / ML-DSA-65 replacements. Targets the Dec 31, 2030 federal deadline.</p>
+        <p class="product-body">PQC migration SDK. Scans RSA/ECC usage, plans in OMB M-26-15 format,
+          emits ML-KEM-768 / ML-DSA-65 replacements for the 2030 federal deadline.</p>
         <span class="more">Overview & Specs →</span>
       </a>
 
@@ -79,7 +83,8 @@
           <span class="tag green">v0.2.9</span>
           <h3>Snip</h3>
         </div>
-        <p class="product-body">Vibe-code security gate. Audits AI-generated diffs for hardcoded credentials, missing CSP/CORS, and broken Supabase RLS. Ships as MCP server, GitHub Action, CLI, and Cursor skill pack.</p>
+        <p class="product-body">Vibe-code security gate. Audits AI diffs for leaked secrets, missing CORS,
+          and broken Supabase RLS. Ships as MCP server, GitHub Action, CLI, and rules.</p>
         <span class="more">Overview & Specs →</span>
       </a>
 
@@ -88,13 +93,15 @@
           <span class="tag green">v0.2.9</span>
           <h3>Boneyard</h3>
         </div>
-        <p class="product-body">Org-wide tech-debt radar. Ranks internal repos by dormancy, risk, exposure, dependency depth, and AI-agent surface. Emits remediation budgets in repo-weeks.</p>
+        <p class="product-body">Org-wide tech-debt radar. Ranks internal repos by dormancy, risk, exposure,
+          dependency depth, and AI-agent surface. Emits budgets in repo-weeks.</p>
         <span class="more">Overview & Specs →</span>
       </a>
 
     </div>
 
-    <p class="ecosystem-tag">All five are <strong>Apache-2.0</strong>, written in pure Rust against <code>std::</code> only. Zero crates.io dependencies. The commercial planes get sold separately.</p>
+    <p class="ecosystem-tag">All five are <strong>Apache-2.0</strong>, written in pure Rust against <code>std::</code> only.
+      Zero crates.io dependencies. The commercial planes get sold separately.</p>
   </section>
 
   <section id="agents">
@@ -135,7 +142,8 @@ git diff --staged | snip audit --format json</code></pre>
   <section id="canary">
     <p class="eyebrow num">03</p>
     <h2>What Failure Looks Like / The Canary Repository</h2>
-    <p class="lede small">Security tools are only as credible as their negative tests. Canary is an intentionally broken reference codebase designed to trigger hard failure verdicts across all five studio2201 tools.</p>
+    <p class="lede small">Security tools are only as credible as their negative tests.
+      Canary is an intentionally broken reference codebase designed to trigger hard failure verdicts across all five studio2201 tools.</p>
     <div class="code-box">
       <pre><code># Run the full automated negative verification testbed:
 ./demo.sh
@@ -156,23 +164,54 @@ vigil policy check --max-dormancy 180d || echo "Vigil: FAILED (exit code 1)"</co
     <p class="lede small">Zero-dependency automated security gates on every pull request and push using the unified composite action.</p>
     <div class="code-box">
       <pre><code># Prompt for your AI Agent (Cursor, Claude Code, Copilot, Devin):
-Add a GitHub Actions workflow at .github/workflows/studio2201.yml using studio2201/studio2201@master. Configure it to trigger on pull requests and pushes to master, auditing PR diffs with Snip, dependencies with Vigil, and crypto with Aegis, outputting scorecards to $GITHUB_STEP_SUMMARY and failing on security violations.</code></pre>
+Add a GitHub Actions workflow to this repository at .github/workflows/studio2201.yml using studio2201/studio2201@master.
+Trigger on pull_request and push to master/main, and workflow_dispatch.
+Configure concurrency with cancel-in-progress on pull requests.
+Set permissions to contents: read, checkout with fetch-depth: 0, run studio2201/studio2201@master with tools: 'all' and fail-on: 'block'.
+Retain audit findings using actions/upload-artifact@v4 with if: always().
+Finally, add the Option 1 Single Suite Badge or Option 2 Governance Scorecard to README.md.</code></pre>
     </div>
     <div class="code-box">
       <pre><code># .github/workflows/studio2201.yml
 name: studio2201 Security Gate
-on: [pull_request, push]
+on:
+  push:
+    branches: [ master, main ]
+  pull_request:
+    branches: [ master, main ]
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+permissions:
+  contents: read
+
 jobs:
   security-gate:
+    name: studio2201 Security Gate
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-        with: { fetch-depth: 0 }
-      - name: Run studio2201 Multi-Tool Security Gate
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Run studio2201 Security Gate
         uses: studio2201/studio2201@master
         with:
           tools: 'all'
-          fail-on: 'block'</code></pre>
+          fail-on: 'block'
+
+      - name: Retain Audit Findings
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: studio2201-audit-findings
+          path: |
+            *_report.md
+          if-no-files-found: ignore</code></pre>
     </div>
     <div class="code-box">
       <pre><code># Install the unified CLI and all tools into ~/.local/bin:
@@ -184,20 +223,25 @@ studio2201 list               # inspect installed tools and versions
 studio2201 upgrade all        # upgrade tools to latest release
 studio2201 init               # scaffold GitHub Action & agent guardrails</code></pre>
     </div>
-    <p class="lede small" style="margin-top:16px;margin-bottom:0;">Verification badge: <a href="agents.html#badges"><img src="https://img.shields.io/badge/studio2201-5%2F5%20Verified-2f6f5e?logo=shield" alt="studio2201 Suite" style="vertical-align:middle;margin-left:6px;"></a></p>
+    <p class="lede small" style="margin-top:16px;margin-bottom:0;">Verification badge:
+      <a href="agents.html#badges"><img src="https://img.shields.io/badge/studio2201-5%2F5%20Verified-2f6f5e?logo=shield"
+        alt="studio2201 Suite" style="vertical-align:middle;margin-left:6px;"></a></p>
   </section>
 
   <section id="doctrine">
     <p class="eyebrow num">05</p>
     <h2>Engineering Doctrine</h2>
-    <p class="lede small">Strict rules that never change: pure <code>std::</code> Rust with zero external crates, non-negotiable &le; 256 LOC file bounds, fail-closed security gates, and post-quantum cryptographic validation. The doctrine is the rulebook — the tools enforce it.</p>
+    <p class="lede small">Strict rules that never change: pure <code>std::</code> Rust with zero external crates,
+      non-negotiable &le; 256 LOC file bounds, fail-closed security gates, and post-quantum cryptographic validation.
+      The doctrine is the rulebook — the tools enforce it.</p>
     <a class="btn ghost" href="https://github.com/studio2201/studio2201/blob/master/DESIGN.md">Read Architecture & Design →</a>
   </section>
 
   <section id="contact">
     <p class="eyebrow num">06</p>
     <h2>Get in touch</h2>
-    <p class="lede small">Commercial inquiries, partnership proposals, vendor security disclosures: open a GitHub issue or DM. Public disclosures welcome; coordinated disclosure preferred.</p>
+    <p class="lede small">Commercial inquiries, partnership proposals, vendor security disclosures: open a GitHub issue or DM.
+      Public disclosures welcome; coordinated disclosure preferred.</p>
     <a class="btn ghost" href="https://github.com/UberMetroid">github.com/UberMetroid →</a>
   </section>
 

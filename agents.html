@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<meta name="description" content="studio2201 Agent & Automation Guide — Headless CLI flags, MCP configuration, agent rules, CI diff gates, and 5-tool matrix. Apache-2.0." />
+<meta name="description" content="studio2201 Agent & Automation Guide — Headless CLI flags, MCP configuration, agent rules, CI diff gates, and 5-tool matrix." />
 <meta name="theme-color" content="#f7f5f0" />
 <title>Agent & Automation Guide · studio2201</title>
 <link rel="canonical" href="https://studio2201.com/agents" />
@@ -14,66 +14,55 @@
 <meta property="og:description" content="Machine-first CLI patterns, MCP server configurations, IDE agent rules, and CI/CD pipelines for autonomous loops." />
 <meta property="og:image" content="https://studio2201.com/assets/og-image.png" />
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="Agent & Automation Guide · studio2201" />
-<meta name="twitter:description" content="Machine-first CLI patterns, MCP server configurations, IDE agent rules, and CI/CD pipelines for autonomous loops." />
-<meta name="twitter:image" content="https://studio2201.com/assets/og-image.png" />
-<link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Outfit:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet"
+  href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Outfit:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
 <link rel="stylesheet" href="styles.css" />
 <link rel="stylesheet" href="components.css" />
 <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
-<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png" />
 <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png" />
 </head>
 <body>
 <main class="page">
-
-  <nav>
-    <a class="nav-back" href="/">← studio2201.com</a>
-  </nav>
-
+  <nav><a class="nav-back" href="/">← studio2201.com</a></nav>
   <header class="hero">
     <div class="badge-bar">
       <span class="eyebrow" style="margin-bottom:0;">studio2201 / automation</span>
-      <span class="tag green">v0.4.12</span>
+      <span class="tag green">v0.4.17</span>
       <span class="tag green">Apache-2.0</span>
     </div>
     <h1>Agent & Automation Guide</h1>
-    <p class="lede">Zero-dependency, machine-first security tooling for autonomous coding agents, Model Context Protocol (MCP) servers, pre-commit diff hooks, and CI/CD pipelines.</p>
-    <div class="cta">
-      <a class="btn primary" href="#badges">Badges & Scorecards ↓</a>
-      <a class="btn ghost" href="#matrix">5-Tool Matrix ↓</a>
-    </div>
+    <p class="lede">Zero-dependency, machine-first security tooling for autonomous coding agents,
+      MCP servers, pre-commit diff hooks, and CI/CD pipelines.</p>
+    <div class="cta"><a class="btn primary" href="#badges">Badges & Scorecards ↓</a> <a class="btn ghost" href="#matrix">5-Tool Matrix ↓</a></div>
   </header>
-
   <section id="headless">
     <p class="eyebrow num">01</p>
     <h2>Headless & Machine CLI</h2>
-    <p class="lede small">All five tools implement a strict headless contract for programmatic integration into agent toolkits, shell pipelines, and background watchers.</p>
+    <p class="lede small">All five tools implement a strict headless contract for programmatic integration into agent toolkits and background watchers.</p>
     <div class="card-grid">
       <div class="feature-item">
         <h4>Standard Flags</h4>
-        <p><code>--format json</code> emits structured schemas; <code>-q, --quiet</code> silences stdout for clean exit status; <code>-v</code> prints stderr diagnostics; <code>-o &lt;FILE&gt;</code> writes directly to disk.</p>
+        <p><code>--format json</code> emits structured schemas; <code>-q, --quiet</code> silences stdout;
+          <code>-v</code> prints stderr; <code>-o &lt;FILE&gt;</code> writes to disk.</p>
       </div>
       <div class="feature-item">
         <h4>Tri-State Exit Codes</h4>
-        <p><code>0</code> = Success / Clean verdict (safe to ship); <code>1</code> = Security findings / Policy threshold breached (BLOCK/FIX); <code>2</code> = Argument parse error or runtime I/O failure.</p>
+        <p><code>0</code> = Clean verdict (ship); <code>1</code> = Security findings (BLOCK/FIX);
+          <code>2</code> = Argument parse error or runtime I/O failure.</p>
       </div>
     </div>
     <div class="code-box">
       <pre><code># Stream staged diff directly to snip in machine-readable JSON:
 git diff --staged | snip audit --format json
-
 # Silent gate assertion (exits 0 on clean, 1 on violation):
 git diff --staged | snip audit -q || echo "Security violation detected"</code></pre>
     </div>
   </section>
-
   <section id="mcp">
     <p class="eyebrow num">02</p>
     <h2>Model Context Protocol (MCP)</h2>
-    <p class="lede small">Run <code>snip serve --mcp</code> to expose real-time diff auditing and security gates directly to Claude Desktop, Cursor, and Windsurf via stdio.</p>
+    <p class="lede small">Run <code>snip serve --mcp</code> to expose real-time diff auditing directly to Claude Desktop, Cursor, and Windsurf via stdio.</p>
     <div class="code-box">
       <pre><code>// claude_desktop_config.json or ~/.cursor/mcp.json
 {
@@ -86,20 +75,18 @@ git diff --staged | snip audit -q || echo "Security violation detected"</code></
 }</code></pre>
     </div>
   </section>
-
   <section id="rules">
     <p class="eyebrow num">03</p>
     <h2>Agent Rules & Prompts</h2>
-    <p class="lede small">Drop these directives into your project's <code>.cursorrules</code>, <code>CLAUDE.md</code>, or agent system prompts to enforce automated security gates:</p>
+    <p class="lede small">Drop these directives into your project's <code>.cursorrules</code>, <code>CLAUDE.md</code>, or agent system prompts:</p>
     <div class="code-box">
       <pre><code># studio2201 Autonomous Security Rules
 - Run 'studio2201 check' before completing tasks to audit diffs, manifests, and crypto.
 - If Snip emits exit code 1 (Block/Fix): remediate leaked secrets, broken RLS, or permissive CORS.
 - If Vigil emits exit code 1: reject dormant packages (>180d) in package.json, Cargo.lock, or pyproject.toml.
-- If Aegis emits exit code 1: upgrade classical cryptography (RSA, ECDSA) to NIST PQC standards.</code></pre>
+- If Aegis emits exit code 1: upgrade classical cryptography to NIST PQC standards (ML-KEM, ML-DSA).</code></pre>
     </div>
   </section>
-
   <section id="pipelines">
     <p class="eyebrow num">04</p>
     <h2>CI/CD & Pre-Commit Pipelines</h2>
@@ -107,33 +94,60 @@ git diff --staged | snip audit -q || echo "Security violation detected"</code></
     <div class="code-box">
       <pre><code>#!/bin/sh
 # .git/hooks/pre-commit — Local pre-commit diff gate
-git diff --staged | snip audit -q || {
-  echo "[-] Snip pre-commit gate failed: security violations found in staged diff." >&2
-  exit 1
-}</code></pre>
+git diff --staged | snip audit -q || { echo "[-] Snip pre-commit gate failed" >&2; exit 1; }</code></pre>
     </div>
     <div class="code-box">
       <pre><code># Prompt for your AI Agent (Cursor, Claude Code, Copilot, Devin):
-Add a GitHub Actions workflow at .github/workflows/studio2201.yml using studio2201/studio2201@master. Configure it to trigger on PRs and master pushes, auditing PR diffs with Snip, dependencies with Vigil, and crypto with Aegis, outputting scorecards to $GITHUB_STEP_SUMMARY and failing on violations.</code></pre>
+Add a GitHub Actions workflow to this repository at .github/workflows/studio2201.yml using studio2201/studio2201@master.
+Trigger on pull_request and push to master/main, and workflow_dispatch.
+Configure concurrency with cancel-in-progress on pull requests.
+Set permissions to contents: read, checkout with fetch-depth: 0, run studio2201/studio2201@master with tools: 'all' and fail-on: 'block'.
+Retain audit findings using actions/upload-artifact@v4 with if: always().
+Finally, add the Option 1 Single Suite Badge or Option 2 Governance Scorecard to README.md.</code></pre>
     </div>
     <div class="code-box">
-      <pre><code># .github/workflows/security-gate.yml
+      <pre><code># .github/workflows/studio2201.yml
 name: studio2201 Security Gate
-on: [pull_request, push]
+on:
+  push:
+    branches: [ master, main ]
+  pull_request:
+    branches: [ master, main ]
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+permissions:
+  contents: read
+
 jobs:
   security-gate:
+    name: studio2201 Security Gate
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-        with: { fetch-depth: 0 }
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
       - name: Run studio2201 Security Gate
         uses: studio2201/studio2201@master
         with:
           tools: 'all'
-          fail-on: 'block'</code></pre>
+          fail-on: 'block'
+
+      - name: Retain Audit Findings
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: studio2201-audit-findings
+          path: |
+            *_report.md
+          if-no-files-found: ignore</code></pre>
     </div>
   </section>
-
   <section id="badges">
     <p class="eyebrow num">05</p>
     <h2>Repository Badges & Scorecards</h2>
@@ -141,25 +155,30 @@ jobs:
     <div class="card-grid">
       <div class="feature-item">
         <h4>Option 1: Minimalist Single Suite Badge</h4>
-        <p style="margin: 8px 0 12px;"><a href="https://studio2201.com/agents#badges"><img src="https://img.shields.io/badge/studio2201-5%2F5%20Verified-2f6f5e?logo=shield" alt="studio2201 Suite"></a></p>
+        <p style="margin: 8px 0 12px;"><a href="https://studio2201.com/agents#badges">
+          <img src="https://img.shields.io/badge/studio2201-5%2F5%20Verified-2f6f5e?logo=shield" alt="studio2201 Suite"></a></p>
         <p>Certifies all 5 tools (Snip, Vigil, Aegis, Proven, Boneyard) passed in a single clean badge.</p>
-        <div class="code-box" style="margin:12px 0 0;"><pre><code>[![studio2201 Suite](https://img.shields.io/badge/studio2201-5%2F5%20Verified-2f6f5e?logo=shield)](https://studio2201.com/agents#badges)</code></pre></div>
+        <div class="code-box" style="margin:12px 0 0;">
+          <pre><code>[![studio2201 Suite](https://img.shields.io/badge/studio2201-5%2F5%20Verified-2f6f5e?logo=shield)](https://studio2201.com/agents#badges)</code></pre>
+        </div>
       </div>
       <div class="feature-item">
         <h4>Option 2: Detailed Governance Scorecard</h4>
         <p style="margin: 8px 0 12px;">Expandable <code>&lt;details&gt;</code> summary scorecard displaying granular tool findings:</p>
         <details style="margin: 6px 0 10px; cursor: pointer;">
           <summary><img src="https://img.shields.io/badge/studio2201-5%2F5%20Verified-2f6f5e?logo=shield" alt="studio2201 Suite"></summary>
-          <div style="margin-top: 6px; font-size: 0.85rem; line-height: 1.6;">
-            <div>Snip: <img src="https://img.shields.io/badge/vibe--safe-SHIP-brightgreen.svg" alt="vibe-safe" style="vertical-align:middle;"></div>
-            <div>Vigil: <img src="https://img.shields.io/badge/dormancy-healthy-2f6f5e.svg" alt="dormancy" style="vertical-align:middle;"></div>
-            <div>Aegis: <img src="https://img.shields.io/badge/PQC-Quantum--Safe-blueviolet.svg" alt="PQC" style="vertical-align:middle;"></div>
-            <div>Proven: <img src="https://img.shields.io/badge/SLSA-Level%203%2B-blue.svg" alt="SLSA L3+" style="vertical-align:middle;"></div>
-            <div>Boneyard: <img src="https://img.shields.io/badge/boneyard%20index-0%2F100-brightgreen.svg" alt="boneyard" style="vertical-align:middle;"></div>
+          <div style="margin-top: 6px; font-size: 0.85rem; display:flex; gap:6px; flex-wrap:wrap;">
+            <img src="https://img.shields.io/badge/vibe--safe-SHIP-brightgreen.svg" alt="vibe-safe">
+            <img src="https://img.shields.io/badge/dormancy-healthy-2f6f5e.svg" alt="dormancy">
+            <img src="https://img.shields.io/badge/PQC-Quantum--Safe-blueviolet.svg" alt="PQC">
+            <img src="https://img.shields.io/badge/SLSA-Level%203%2B-blue.svg" alt="SLSA L3+">
+            <img src="https://img.shields.io/badge/boneyard%20index-0%2F100-brightgreen.svg" alt="boneyard">
           </div>
         </details>
         <div class="code-box" style="margin:12px 0 0;"><pre><code>&lt;details&gt;
-&lt;summary&gt;&lt;a href="https://studio2201.com/agents#badges"&gt;&lt;img src="https://img.shields.io/badge/studio2201-5%2F5%20Verified-2f6f5e?logo=shield" alt="studio2201 Suite"&gt;&lt;/a&gt;&lt;/summary&gt;
+&lt;summary&gt;&lt;a href="https://studio2201.com/agents#badges"&gt;
+  &lt;img src="https://img.shields.io/badge/studio2201-5%2F5%20Verified-2f6f5e?logo=shield" alt="studio2201 Suite"&gt;
+&lt;/a&gt; &lt;b&gt;Detailed Governance Scorecard&lt;/b&gt;&lt;/summary&gt;
 
 | Tool | Focus | Status | Badge |
 | :--- | :--- | :---: | :---: |
@@ -174,19 +193,12 @@ jobs:
     </div>
     <h3>Individual Tool Badges</h3>
     <p class="lede small" style="margin-bottom:12px;">Per-tool badges for standalone actions and granular verification:</p>
-    <p style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px;"><img src="https://img.shields.io/badge/vibe--safe-SHIP-brightgreen.svg" alt="vibe-safe"> <img src="https://img.shields.io/badge/dormancy-healthy-2f6f5e.svg" alt="dormancy"> <img src="https://img.shields.io/badge/PQC-Quantum--Safe-blueviolet.svg" alt="PQC"> <img src="https://img.shields.io/badge/SLSA-Level%203%2B-blue.svg" alt="SLSA L3+"> <img src="https://img.shields.io/badge/boneyard%20index-0%2F100-brightgreen.svg" alt="boneyard index"></p>
-    <div class="code-box"><pre><code>&lt;!-- vibe-safe (Snip) --&gt;
-[![Vibe-Safe](https://img.shields.io/badge/vibe--safe-SHIP-brightgreen.svg)](https://studio2201.com/snip)
-&lt;!-- dormancy (Vigil) --&gt;
+    <div class="code-box"><pre><code>[![Vibe-Safe](https://img.shields.io/badge/vibe--safe-SHIP-brightgreen.svg)](https://studio2201.com/snip)
 [![Dormancy](https://img.shields.io/badge/dormancy-healthy-2f6f5e.svg)](https://studio2201.com/vigil)
-&lt;!-- PQC (Aegis) --&gt;
 [![PQC](https://img.shields.io/badge/PQC-Quantum--Safe-blueviolet.svg)](https://studio2201.com/aegis)
-&lt;!-- SLSA L3+ (Proven) --&gt;
 [![SLSA](https://img.shields.io/badge/SLSA-Level%203%2B-blue.svg)](https://studio2201.com/proven)
-&lt;!-- boneyard index (Boneyard) --&gt;
 [![Boneyard](https://img.shields.io/badge/boneyard%20index-0%2F100-brightgreen.svg)](https://studio2201.com/boneyard)</code></pre></div>
   </section>
-
   <section id="matrix">
     <p class="eyebrow num">06</p>
     <h2>5-Tool Automation Matrix</h2>
@@ -194,52 +206,45 @@ jobs:
     <div class="card-grid">
       <div class="feature-item">
         <h4>Snip <span class="tag green">vibe-code</span></h4>
-        <p><strong>Loop Phase:</strong> Code generation & pre-commit diff review.<br>
-        <strong>Command:</strong> <code>git diff --staged | snip audit</code><br>
-        <strong>Exit Codes:</strong> <code>0</code> Ship · <code>1</code> Block/Fix · <code>2</code> Error.<br>
-        <strong>Action:</strong> Strips leaked API keys, fixes broken Supabase RLS, and remediates permissive CORS.</p>
+        <p><strong>Phase:</strong> Pre-commit diff · <strong>Command:</strong> <code>git diff --staged | snip audit</code><br>
+        <strong>Exit Codes:</strong> <code>0</code> Ship · <code>1</code> Block/Fix · <code>2</code> Error ·
+        <strong>Action:</strong> Strips leaked API keys, fixes broken Supabase RLS, and remediates CORS.</p>
         <a class="more" href="/snip">Overview & Specs →</a>
       </div>
       <div class="feature-item">
         <h4>Vigil <span class="tag green">dormancy</span></h4>
-        <p><strong>Loop Phase:</strong> Manifest updates & dependency addition.<br>
-        <strong>Command:</strong> <code>vigil policy check --max-dormancy 180 -q</code><br>
-        <strong>Exit Codes:</strong> <code>0</code> Pass · <code>1</code> Dormant dep · <code>2</code> Error.<br>
-        <strong>Action:</strong> Halts PRs on abandoned crates/packages; suggests actively maintained alternatives.</p>
+        <p><strong>Phase:</strong> Manifest review · <strong>Command:</strong> <code>vigil policy check --max-dormancy 180 -q</code><br>
+        <strong>Exit Codes:</strong> <code>0</code> Pass · <code>1</code> Dormant · <code>2</code> Error ·
+        <strong>Action:</strong> Halts PRs on abandoned packages; suggests actively maintained alternatives.</p>
         <a class="more" href="/vigil">Overview & Specs →</a>
       </div>
       <div class="feature-item">
         <h4>Aegis <span class="tag green">pqc sdk</span></h4>
-        <p><strong>Loop Phase:</strong> Cryptographic migration & compliance sweeps.<br>
-        <strong>Command:</strong> <code>aegis scan --format json ./src</code><br>
-        <strong>Exit Codes:</strong> <code>0</code> Compliant · <code>1</code> Classical crypto · <code>2</code> Error.<br>
-        <strong>Action:</strong> Scans RSA/ECC and emits OMB M-26-15 roadmaps with ML-KEM-768/ML-DSA-65 drop-in shims.</p>
+        <p><strong>Phase:</strong> Cryptographic sweeps · <strong>Command:</strong> <code>aegis scan --format json ./src</code><br>
+        <strong>Exit Codes:</strong> <code>0</code> Compliant · <code>1</code> Classical crypto · <code>2</code> Error ·
+        <strong>Action:</strong> Scans legacy crypto; emits OMB M-26-15 roadmaps with ML-KEM/ML-DSA drop-in shims.</p>
         <a class="more" href="/aegis">Overview & Specs →</a>
       </div>
       <div class="feature-item">
         <h4>Proven <span class="tag green">attestor</span></h4>
-        <p><strong>Loop Phase:</strong> Build, packaging & artifact release.<br>
-        <strong>Command:</strong> <code>proven attest target/app --format slsa -o app.slsa.json</code><br>
-        <strong>Exit Codes:</strong> <code>0</code> Verified · <code>1</code> Tampered · <code>2</code> Error.<br>
-        <strong>Action:</strong> Signs binaries with post-quantum ML-DSA-65; attests bit-identity before runtime deployment.</p>
+        <p><strong>Phase:</strong> Packaging & release · <strong>Command:</strong> <code>proven attest target/app -o app.slsa.json</code><br>
+        <strong>Exit Codes:</strong> <code>0</code> Verified · <code>1</code> Tampered · <code>2</code> Error ·
+        <strong>Action:</strong> Signs binaries with post-quantum ML-DSA-65; attests bit-identity before deployment.</p>
         <a class="more" href="/proven">Overview & Specs →</a>
       </div>
       <div class="feature-item">
         <h4>Boneyard <span class="tag green">tech-debt</span></h4>
-        <p><strong>Loop Phase:</strong> Fleet governance & scheduled org audits.<br>
-        <strong>Command:</strong> <code>boneyard enrich -i repos.json --format json</code><br>
-        <strong>Exit Codes:</strong> <code>0</code> Compliant · <code>1</code> Debt breach · <code>2</code> Error.<br>
+        <p><strong>Phase:</strong> Fleet governance · <strong>Command:</strong> <code>boneyard enrich -i repos.json</code><br>
+        <strong>Exit Codes:</strong> <code>0</code> Compliant · <code>1</code> Debt breach · <code>2</code> Error ·
         <strong>Action:</strong> Ranks multi-repo catalog across 5 axes; allocates remediation budgets in repo-weeks.</p>
         <a class="more" href="/boneyard">Overview & Specs →</a>
       </div>
     </div>
   </section>
-
   <footer class="foot">
     <p>studio2201 · Apache-2.0 · pure Rust, std:: only</p>
     <p class="small">Last updated 2026-09-19 · source: <a href="https://github.com/studio2201/studio2201.com">studio2201/studio2201.com</a></p>
   </footer>
-
 </main>
 </body>
 </html>

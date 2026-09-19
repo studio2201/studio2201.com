@@ -19,7 +19,8 @@
 <meta name="twitter:image" content="https://studio2201.com/assets/og-image.png" />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Outfit:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet"
+  href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Outfit:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
 <link rel="stylesheet" href="styles.css" />
 <link rel="stylesheet" href="components.css" />
 <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
@@ -36,12 +37,13 @@
   <header class="hero">
     <div class="badge-bar">
       <span class="eyebrow" style="margin-bottom:0;">studio2201 / product 03</span>
-      <span class="tag green">v0.2.9</span>
+      <span class="tag green">v0.2.10</span>
       <span class="tag green">Apache-2.0</span>
       <span class="tag green">PQC Ready</span>
     </div>
     <h1>Aegis</h1>
-    <p class="lede">PQC migration SDK. Scans C, C++, and Rust codebases for legacy RSA and ECC cryptography, constructs OMB M-26-15 migration plans, and emits drop-in ML-KEM and ML-DSA primitives.</p>
+    <p class="lede">PQC migration SDK. Scans C, C++, and Rust codebases for legacy RSA and ECC cryptography,
+      constructs OMB M-26-15 migration plans, and emits drop-in ML-KEM and ML-DSA primitives.</p>
     <div class="cta">
       <a class="btn primary" href="https://github.com/studio2201/aegis">View on GitHub →</a>
       <a class="btn ghost" href="https://github.com/studio2201/studio2201/blob/master/DESIGN.md">Framework Doctrine →</a>
@@ -77,7 +79,9 @@
     <p class="lede small">Prevent classical cryptographic regressions and enforce NIST FIPS 203/204 compliance on every PR.</p>
     <div class="code-box">
       <pre><code># Prompt for your AI Agent (Cursor, Claude Code, Copilot, Devin):
-Add a GitHub Actions workflow at .github/workflows/aegis.yml using studio2201/aegis@master. Trigger on PRs and master pushes, scan source code for classical RSA and ECC cryptographic call sites, verify compliance against NIST FIPS 203/204 post-quantum standards, and fail on legacy regressions.</code></pre>
+Add a GitHub Actions workflow at .github/workflows/aegis.yml using studio2201/aegis@master.
+Trigger on PRs and master pushes, scan source code for classical RSA and ECC cryptographic call sites,
+verify compliance against NIST FIPS 203/204 post-quantum standards, and fail on legacy regressions.</code></pre>
     </div>
     <div class="code-box">
       <pre><code># .github/workflows/aegis.yml
@@ -118,14 +122,17 @@ aegis check --policy strict-pqc</code></pre>
   <section>
     <p class="eyebrow num">04</p>
     <h2>Why This Matters & Authoritative Mandates</h2>
-    <p class="lede small">White House OMB M-26-15 and NIST FIPS 203/204 mandate transitioning away from classical RSA/ECC by 2030. Automated CI gates halt pull requests introducing legacy primitives, ensuring continuous quantum-safe migration.</p>
+    <p class="lede small">White House OMB M-26-15 and NIST FIPS 203/204 mandate transitioning away from classical
+      RSA/ECC by 2030. Automated CI gates halt PRs introducing legacy primitives, ensuring continuous migration.</p>
     <div class="card-grid">
       <div class="feature-item">
-        <h4><a href="https://www.whitehouse.gov/wp-content/uploads/2022/11/M-23-02-M-Memo-on-Migrating-to-Post-Quantum-Cryptography.pdf" target="_blank" rel="noopener">OMB M-26-15 & M-23-02 ↗</a></h4>
+        <h4><a href="https://www.whitehouse.gov/wp-content/uploads/2022/11/M-23-02-M-Memo-on-Migrating-to-Post-Quantum-Cryptography.pdf"
+            target="_blank" rel="noopener">OMB M-26-15 & M-23-02 ↗</a></h4>
         <p>White House memorandum mandating federal agencies and contractors inventory vulnerable cryptography and migrate to PQC by 2030.</p>
       </div>
       <div class="feature-item">
-        <h4><a href="https://www.whitehouse.gov/briefing-room/statements-releases/2022/05/04/national-security-memorandum-on-promoting-united-states-leadership-in-quantum-computing-while-mitigating-risks-to-cryptographic-and-defense-systems/" target="_blank" rel="noopener">National Security Memo 10 ↗</a></h4>
+        <h4><a href="https://www.whitehouse.gov/briefing-room/statements-releases/2022/05/04/nsm-10/"
+            target="_blank" rel="noopener">National Security Memo 10 ↗</a></h4>
         <p>Presidential directive (NSM-10) establishing the timeline to mitigate quantum computing risks to public-key cryptography.</p>
       </div>
       <div class="feature-item">
