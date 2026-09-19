@@ -210,3 +210,10 @@
   padding: 1px 5px;
   border-radius: 3px;
 }
+
+.scorecard-wrap { margin: 20px 0; display: flex; justify-content: center; }
+.scorecard-table { border-collapse: collapse; background: var(--card); border: 1px solid var(--line); border-radius: 10px; }
+.scorecard-table th, .scorecard-table td { padding: 8px 14px; font-size: 13.5px; border-top: 1px solid var(--line); }
+.scorecard-table th, .scorecard-table td:last-child { text-align: center; }
+.scorecard-table th:first-child, .scorecard-table td:first-child { text-align: left; }
+.scorecard-table th { background: var(--line-soft); border-top: none; color: var(--muted); }

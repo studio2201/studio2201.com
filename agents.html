@@ -15,7 +15,8 @@
 <meta property="og:image" content="https://studio2201.com/assets/og-image.png" />
 <meta name="twitter:card" content="summary_large_image" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Outfit:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="stylesheet"
+  href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Outfit:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
 <link rel="stylesheet" href="styles.css" />
 <link rel="stylesheet" href="components.css" />
 <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
@@ -104,7 +105,7 @@ Add 5 dedicated GitHub Actions workflows to this repository (.github/workflows/&
 - boneyard.yml (name: boneyard, tools: 'boneyard' — tech-debt radar)
 All workflows trigger on pull_request, push to master/main, and workflow_dispatch,
 use studio2201/studio2201@v1 with fail-on: 'block', and retain *_report.md.
-Add dynamic status badges to README.md: [![tool](https://img.shields.io/.../tool.yml...)](...)</code></pre>
+Embed security verification badges as a centered 2-column scorecard table using &lt;div align="center"&gt;.</code></pre>
     </div>
     <div class="code-box">
       <pre><code># Reference template: .github/workflows/&lt;tool&gt;.yml (replace &lt;tool&gt; with snip, vigil, aegis, proven, boneyard)
@@ -137,48 +138,68 @@ jobs:
     <div class="card-grid">
       <div class="feature-item">
         <h4>Option 1: 5 Dynamic Badges</h4>
-        <div style="margin:8px 0 12px;display:flex;gap:4px;flex-wrap:wrap;">
-          <a href="https://studio2201.com"><img style="vertical-align:middle;" src="https://img.shields.io/badge/secured%20by-studio2201-2f6f5e?logo=shield" alt="secured by studio2201"></a>
-          <img style="vertical-align:middle;" alt="snip" src="https://img.shields.io/github/actions/workflow/status/studio2201/studio2201/snip.yml?label=snip&logo=shield">
-          <img style="vertical-align:middle;" alt="vigil" src="https://img.shields.io/github/actions/workflow/status/studio2201/studio2201/vigil.yml?label=vigil&logo=shield">
-          <img style="vertical-align:middle;" alt="aegis" src="https://img.shields.io/github/actions/workflow/status/studio2201/studio2201/aegis.yml?label=aegis&logo=shield">
-          <img style="vertical-align:middle;" alt="proven" src="https://img.shields.io/github/actions/workflow/status/studio2201/studio2201/proven.yml?label=proven&logo=shield">
-          <img style="vertical-align:middle;" alt="boneyard" src="https://img.shields.io/github/actions/workflow/status/studio2201/studio2201/boneyard.yml?label=boneyard&logo=shield">
+          <a href="https://studio2201.com">
+            <img style="vertical-align:middle;" src="https://img.shields.io/badge/secured%20by-studio2201-2f6f5e?logo=shield" alt="secured by studio2201"></a>
+          <img style="vertical-align:middle;" alt="snip"
+            src="https://img.shields.io/github/actions/workflow/status/studio2201/studio2201/snip.yml?label=snip&logo=shield">
+          <img style="vertical-align:middle;" alt="vigil"
+            src="https://img.shields.io/github/actions/workflow/status/studio2201/studio2201/vigil.yml?label=vigil&logo=shield">
+          <img style="vertical-align:middle;" alt="aegis"
+            src="https://img.shields.io/github/actions/workflow/status/studio2201/studio2201/aegis.yml?label=aegis&logo=shield">
+          <img style="vertical-align:middle;" alt="proven"
+            src="https://img.shields.io/github/actions/workflow/status/studio2201/studio2201/proven.yml?label=proven&logo=shield">
+          <img style="vertical-align:middle;" alt="boneyard"
+            src="https://img.shields.io/github/actions/workflow/status/studio2201/studio2201/boneyard.yml?label=boneyard&logo=shield">
         </div>
         <p>Dynamic status per tool. Updates to passing (green) or failing (red).</p>
-        <div class="code-box" style="margin:12px 0 0;"><pre><code>[![secured by studio2201](https://img.shields.io/badge/secured%20by-studio2201-2f6f5e?logo=shield)](https://studio2201.com)
-[![snip](https://img.shields.io/github/actions/workflow/status/&lt;owner&gt;/&lt;repo&gt;/snip.yml?label=snip&amp;logo=shield)](https://github.com/&lt;owner&gt;/&lt;repo&gt;/actions/workflows/snip.yml)
-[![vigil](https://img.shields.io/github/actions/workflow/status/&lt;owner&gt;/&lt;repo&gt;/vigil.yml?label=vigil&amp;logo=shield)](https://github.com/&lt;owner&gt;/&lt;repo&gt;/actions/workflows/vigil.yml)
-[![aegis](https://img.shields.io/github/actions/workflow/status/&lt;owner&gt;/&lt;repo&gt;/aegis.yml?label=aegis&amp;logo=shield)](https://github.com/&lt;owner&gt;/&lt;repo&gt;/actions/workflows/aegis.yml)
-[![proven](https://img.shields.io/github/actions/workflow/status/&lt;owner&gt;/&lt;repo&gt;/proven.yml?label=proven&amp;logo=shield)](https://github.com/&lt;owner&gt;/&lt;repo&gt;/actions/workflows/proven.yml)
-[![boneyard](https://img.shields.io/github/actions/workflow/status/&lt;owner&gt;/&lt;repo&gt;/boneyard.yml?label=boneyard&amp;logo=shield)](https://github.com/&lt;owner&gt;/&lt;repo&gt;/actions/workflows/boneyard.yml)</code></pre></div>
+        <div class="code-box" style="margin:12px 0 0;"><pre><code>[![secured by studio2201][b-studio]][u-home]
+[![snip][b-snip]][ci-snip]
+[![vigil][b-vigil]][ci-vigil]
+[![aegis][b-aegis]][ci-aegis]
+[![proven][b-proven]][ci-proven]
+[![boneyard][b-boneyard]][ci-boneyard]
+
+[b-studio]: https://img.shields.io/badge/secured%20by-studio2201-2f6f5e?logo=shield
+[u-home]: https://studio2201.com
+[b-snip]: https://img.shields.io/github/actions/workflow/status/&lt;owner&gt;/&lt;repo&gt;/snip.yml?label=snip&amp;logo=shield
+[ci-snip]: https://github.com/&lt;owner&gt;/&lt;repo&gt;/actions/workflows/snip.yml
+[b-vigil]: https://img.shields.io/github/actions/workflow/status/&lt;owner&gt;/&lt;repo&gt;/vigil.yml?label=vigil&amp;logo=shield
+[ci-vigil]: https://github.com/&lt;owner&gt;/&lt;repo&gt;/actions/workflows/vigil.yml
+[b-aegis]: https://img.shields.io/github/actions/workflow/status/&lt;owner&gt;/&lt;repo&gt;/aegis.yml?label=aegis&amp;logo=shield
+[ci-aegis]: https://github.com/&lt;owner&gt;/&lt;repo&gt;/actions/workflows/aegis.yml
+[b-proven]: https://img.shields.io/github/actions/workflow/status/&lt;owner&gt;/&lt;repo&gt;/proven.yml?label=proven&amp;logo=shield
+[ci-proven]: https://github.com/&lt;owner&gt;/&lt;repo&gt;/actions/workflows/proven.yml
+[b-boneyard]: https://img.shields.io/github/actions/workflow/status/&lt;owner&gt;/&lt;repo&gt;/boneyard.yml?label=boneyard&amp;logo=shield
+[ci-boneyard]: https://github.com/&lt;owner&gt;/&lt;repo&gt;/actions/workflows/boneyard.yml</code></pre></div>
       </div>
       <div class="feature-item">
-        <h4>Option 2: Security &amp; Governance Scorecard</h4>
-        <p style="margin: 8px 0 12px;">Expandable <code>&lt;details&gt;</code> summary scorecard displaying federal &amp; governance compliance:</p>
-        <details style="margin: 6px 0 10px; cursor: pointer;">
-          <summary><b>Security &amp; Governance Scorecard (EO 14028 · NIST SP 800-218 · OMB M-26-15)</b></summary>
-          <div style="margin-top: 6px; font-size: 0.85rem; display:flex; gap:6px; flex-wrap:wrap;">
-            <a href="https://studio2201.com"><img src="https://img.shields.io/badge/secured%20by-studio2201-2f6f5e?logo=shield" alt="secured by studio2201"></a>
-            <a href="/snip"><img src="https://img.shields.io/badge/snip-0%20secrets-2f6f5e" alt="snip: 0 secrets"></a>
-            <a href="/vigil"><img src="https://img.shields.io/badge/vigil-0%20dependencies-2f6f5e" alt="vigil: 0 dependencies"></a>
-            <a href="/aegis"><img src="https://img.shields.io/badge/aegis-PQC%20compliant-2f6f5e" alt="aegis: PQC compliant"></a>
-            <a href="/proven"><img src="https://img.shields.io/badge/proven-ML--DSA--65%20verified-2f6f5e" alt="proven: ML-DSA-65 verified"></a>
-            <a href="/boneyard"><img src="https://img.shields.io/badge/boneyard-maintained-2f6f5e" alt="boneyard: maintained"></a>
-          </div>
-        </details>
-        <div class="code-box" style="margin:12px 0 0;"><pre><code>&lt;details&gt;
-&lt;summary&gt;&lt;b&gt;Security &amp; Governance Scorecard&lt;/b&gt; (EO 14028 · NIST SP 800-218 · OMB M-26-15)&lt;/summary&gt;
+        <h4>Option 2: Centered Security Scorecard (Recommended)</h4>
+        <p style="margin: 8px 0 12px;">Centered 2-column scorecard preventing badge wrap on mobile and widescreen:</p>
+        <div class="code-box" style="margin:12px 0 0;"><pre><code>&lt;div align="center"&gt;
 
-| Tool | Mandate / Standard | Metric | Status |
-| :--- | :--- | :--- | :---: |
-| [**Snip**](https://studio2201.com/snip) | EO 14028 §4 (Credential Defense) | `0 secrets` | [![snip](https://img.shields.io/badge/snip-0%20secrets-2f6f5e)](https://studio2201.com/snip) |
-| [**Vigil**](https://studio2201.com/vigil) | NIST SP 800-218 (Supply Surface) | `0 dependencies` | [![vigil](https://img.shields.io/badge/vigil-0%20dependencies-2f6f5e)](https://studio2201.com/vigil) |
-| [**Aegis**](https://studio2201.com/aegis) | OMB M-26-15 (Post-Quantum Crypto) | `PQC compliant` | [![aegis](https://img.shields.io/badge/aegis-PQC%20compliant-2f6f5e)](https://studio2201.com/aegis) |
-| [**Proven**](https://studio2201.com/proven) | NIST FIPS 204 (SLSA Level 3+) | `ML-DSA-65 verified` | [![proven](https://img.shields.io/badge/proven-ML--DSA--65%20verified-2f6f5e)](https://studio2201.com/proven) |
-| [**Boneyard**](https://studio2201.com/boneyard) | Asset Ownership (Zombie Defense) | `maintained` | [![boneyard](https://img.shields.io/badge/boneyard-maintained-2f6f5e)](https://studio2201.com/boneyard) |
+| Security Pillar | Verification Badge |
+| :--- | :---: |
+| **Platform Standard** | [![secured by studio2201][b-studio]][u-home] |
+| **Credential Defense** | [![snip][b-snip]][u-snip] |
+| **Supply Chain Surface** | [![vigil][b-vigil]][u-vigil] |
+| **Post-Quantum Cryptography** | [![aegis][b-aegis]][u-aegis] |
+| **Build Provenance &amp; SLSA** | [![proven][b-proven]][u-proven] |
+| **Repository Governance** | [![boneyard][b-boneyard]][u-boneyard] |
 
-&lt;/details&gt;</code></pre></div>
+[b-studio]: https://img.shields.io/badge/secured%20by-studio2201-2f6f5e?logo=shield
+[u-home]: https://studio2201.com
+[b-snip]: https://img.shields.io/badge/snip-0%20secrets-2f6f5e?logo=shield
+[u-snip]: https://studio2201.com/snip
+[b-vigil]: https://img.shields.io/badge/vigil-0%20dependencies-2f6f5e?logo=shield
+[u-vigil]: https://studio2201.com/vigil
+[b-aegis]: https://img.shields.io/badge/aegis-PQC%20compliant-2f6f5e?logo=shield
+[u-aegis]: https://studio2201.com/aegis
+[b-proven]: https://img.shields.io/badge/proven-ML--DSA--65%20verified-2f6f5e?logo=shield
+[u-proven]: https://studio2201.com/proven
+[b-boneyard]: https://img.shields.io/badge/boneyard-maintained-2f6f5e?logo=shield
+[u-boneyard]: https://studio2201.com/boneyard
+
+&lt;/div&gt;</code></pre></div>
       </div>
     </div>
   </section>

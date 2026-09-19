@@ -20,7 +20,8 @@
 <meta name="twitter:description" content="Five Apache-2.0 open-source tools that expose and remediate software supply-chain risk in the post-2030 era." />
 <meta name="twitter:image" content="https://studio2201.com/assets/og-image.png" />
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Outfit:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="stylesheet"
+  href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Outfit:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
 <link rel="stylesheet" href="styles.css" />
 <link rel="stylesheet" href="components.css" />
 <link rel="icon" type="image/svg+xml" href="assets/favicon.svg"><link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png">
@@ -204,20 +205,33 @@ studio2201 list               # inspect installed tools and versions
 studio2201 upgrade all        # upgrade tools to latest release
 studio2201 init               # scaffold GitHub Actions &amp; agent guardrails</code></pre>
     </div>
-    <p class="lede small" style="margin-top:16px;margin-bottom:0;">Security &amp; Governance Badges:
-      <a href="https://studio2201.com"><img style="vertical-align:middle;margin:0 2px;" src="https://img.shields.io/badge/secured%20by-studio2201-2f6f5e?logo=shield" alt="secured by studio2201"></a>
-      <a href="/snip"><img style="vertical-align:middle;margin:0 2px;" src="https://img.shields.io/badge/snip-0%20secrets-2f6f5e" alt="snip: 0 secrets (EO 14028 §4)"></a>
-      <a href="/vigil"><img style="vertical-align:middle;margin:0 2px;" src="https://img.shields.io/badge/vigil-0%20dependencies-2f6f5e" alt="vigil: 0 dependencies (NIST SP 800-218)"></a>
-      <a href="/aegis"><img style="vertical-align:middle;margin:0 2px;" src="https://img.shields.io/badge/aegis-PQC%20compliant-2f6f5e" alt="aegis: PQC compliant (OMB M-26-15)"></a>
-      <a href="/proven"><img style="vertical-align:middle;margin:0 2px;" src="https://img.shields.io/badge/proven-ML--DSA--65%20verified-2f6f5e" alt="proven: ML-DSA-65 verified (NIST FIPS 204)"></a>
-      <a href="/boneyard"><img style="vertical-align:middle;margin:0 2px;" src="https://img.shields.io/badge/boneyard-maintained-2f6f5e" alt="boneyard: maintained (Active Asset Ownership)"></a>
-    </p>
+    <div class="scorecard-wrap">
+      <table class="scorecard-table">
+        <thead><tr><th>Security Pillar</th><th>Verification Badge</th></tr></thead>
+        <tbody>
+          <tr><td><b>Platform Standard</b></td>
+            <td><a href="https://studio2201.com"><img src="https://img.shields.io/badge/secured%20by-studio2201-2f6f5e?logo=shield" alt="secured by studio2201"></a></td></tr>
+          <tr><td><b>Credential Defense</b></td>
+            <td><a href="/snip"><img src="https://img.shields.io/badge/snip-0%20secrets-2f6f5e" alt="snip: 0 secrets"></a></td></tr>
+          <tr><td><b>Supply Chain Surface</b></td>
+            <td><a href="/vigil"><img src="https://img.shields.io/badge/vigil-0%20dependencies-2f6f5e" alt="vigil: 0 dependencies"></a></td></tr>
+          <tr><td><b>Post-Quantum Cryptography</b></td>
+            <td><a href="/aegis"><img src="https://img.shields.io/badge/aegis-PQC%20compliant-2f6f5e" alt="aegis: PQC compliant"></a></td></tr>
+          <tr><td><b>Build Provenance &amp; SLSA</b></td>
+            <td><a href="/proven"><img src="https://img.shields.io/badge/proven-ML--DSA--65%20verified-2f6f5e" alt="proven: ML-DSA-65 verified"></a></td></tr>
+          <tr><td><b>Repository Governance</b></td>
+            <td><a href="/boneyard"><img src="https://img.shields.io/badge/boneyard-maintained-2f6f5e" alt="boneyard: maintained"></a></td></tr>
+        </tbody>
+      </table>
+    </div>
   </section>
 
   <section id="doctrine">
     <p class="eyebrow num">05</p>
     <h2>Engineering Doctrine &amp; Governance</h2>
-    <p class="lede small">Security governance, compliance assurance, and zero-liability ownership: pure <code>std::</code> Rust with zero external crates, deterministic fail-closed gates, and continuous audit trails satisfying EO 14028 §4, NIST SP 800-218, OMB M-26-15, and NIST FIPS 204.</p>
+    <p class="lede small">Security governance, compliance assurance, and zero-liability ownership:
+      pure <code>std::</code> Rust with zero external crates, deterministic fail-closed gates,
+      and continuous audit trails satisfying EO 14028 §4, NIST SP 800-218, OMB M-26-15, and NIST FIPS 204.</p>
     <a class="btn ghost" href="https://github.com/studio2201/studio2201/blob/master/DESIGN.md">Read Architecture & Design →</a>
   </section>
 
