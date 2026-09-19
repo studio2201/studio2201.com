@@ -1,7 +1,7 @@
 # studio2201.com — Site Source
 
 [![CI](https://github.com/studio2201/studio2201.com/actions/workflows/ci.yml/badge.svg?branch=master)](https://github.com/studio2201/studio2201.com/actions/workflows/ci.yml)
-[![Release](https://img.shields.io/badge/version-v0.4.13-blue.svg)](https://github.com/studio2201/studio2201.com/releases)
+[![Release](https://img.shields.io/badge/version-v0.4.14-blue.svg)](https://github.com/studio2201/studio2201.com/releases)
 [![License](https://img.shields.io/badge/license-Apache--2.0-blue.svg)](LICENSE)
 [![Max LOC](https://img.shields.io/badge/max%20LOC-%E2%89%A4256-brightgreen.svg)](https://studio2201.com)
 
