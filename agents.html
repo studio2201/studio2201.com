@@ -93,10 +93,10 @@ git diff --staged | snip audit -q || echo "Security violation detected"</code></
     <p class="lede small">Drop these directives into your project's <code>.cursorrules</code>, <code>CLAUDE.md</code>, or agent system prompts to enforce automated security gates:</p>
     <div class="code-box">
       <pre><code># studio2201 Autonomous Security Rules
-- Before staging any code modifications, audit diffs: git diff --staged | snip audit --format json
+- Run 'studio2201 check' before completing tasks to audit diffs, manifests, and crypto.
 - If Snip emits exit code 1 (Block/Fix): remediate leaked secrets, broken RLS, or permissive CORS.
-- When adding dependencies to package.json, Cargo.lock, or pyproject.toml: vigil policy check --max-dormancy 180 -q
-- Reject dormant packages; verify cryptographic call sites comply with post-quantum standards via aegis.</code></pre>
+- If Vigil emits exit code 1: reject dormant packages (>180d) in package.json, Cargo.lock, or pyproject.toml.
+- If Aegis emits exit code 1: upgrade classical cryptography (RSA, ECDSA) to NIST PQC standards.</code></pre>
     </div>
   </section>
 

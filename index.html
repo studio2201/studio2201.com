@@ -170,8 +170,14 @@ jobs:
           fail-on: 'block'</code></pre>
     </div>
     <div class="code-box">
-      <pre><code># Workstation CLI installation (unprivileged, installs to ~/.local/bin):
-curl -fsSL https://studio2201.com/install.sh | sh -s all</code></pre>
+      <pre><code># Install the unified CLI and all tools into ~/.local/bin:
+curl -fsSL https://studio2201.com/install.sh | sh -s all
+
+# Local pre-commit audit & toolchain management:
+studio2201 check              # run multi-tool audit suite locally
+studio2201 list               # inspect installed tools and versions
+studio2201 upgrade all        # upgrade tools to latest release
+studio2201 init               # scaffold GitHub Action & agent guardrails</code></pre>
     </div>
   </section>
 
