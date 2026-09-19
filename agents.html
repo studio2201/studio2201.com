@@ -44,8 +44,7 @@
     <div class="card-grid">
       <div class="feature-item">
         <h4>Standard Flags</h4>
-        <p><code>--format json</code> emits structured schemas; <code>-q, --quiet</code> silences stdout;<br>
-          <code>-v</code> prints stderr; <code>-o &lt;FILE&gt;</code> writes to disk.</p>
+        <p><code>--format json</code> emits schemas; <code>-q</code> silences stdout; <code>-v</code> stderr; <code>-o &lt;FILE&gt;</code> writes to disk.</p>
       </div>
       <div class="feature-item">
         <h4>Tri-State Exit Codes</h4>
@@ -98,11 +97,8 @@ git diff --staged | snip audit -q || { echo "[-] Snip pre-commit gate failed" >&
 Prepend primary anchor badge and dynamic status badges to README.md:
 [![secured by studio2201](https://img.shields.io/badge/secured%20by-studio2201-2f6f5e?logo=shield)](https://studio2201.com)
 Add 5 dedicated GitHub Actions workflows to this repository (.github/workflows/&lt;tool&gt;.yml):
-- snip.yml (name: snip, tools: 'snip' — diffs, secrets, Supabase RLS)
-- vigil.yml (name: vigil, tools: 'vigil' — dependency dormancy, excludes root crates)
-- aegis.yml (name: aegis, tools: 'aegis' — post-quantum crypto, skips comments)
-- proven.yml (name: proven, tools: 'proven' — ML-DSA-65 attestations)
-- boneyard.yml (name: boneyard, tools: 'boneyard' — tech-debt radar)
+- snip.yml (diffs/secrets/RLS) · vigil.yml (manifest dormancy) · aegis.yml (PQC crypto)
+- proven.yml (SLSA attestations) · boneyard.yml (tech-debt radar)
 All workflows trigger on pull_request, push to master/main, and workflow_dispatch,
 use studio2201/studio2201@v1 with fail-on: 'block', and retain *_report.md.
 Embed security verification badges as a centered 2-column scorecard table using &lt;div align="center"&gt;.</code></pre>
@@ -133,50 +129,40 @@ jobs:
   </section>
   <section id="badges">
     <p class="eyebrow num">05</p>
-    <h2>Repository Badges & Scorecards</h2>
-    <p class="lede small">1 dynamic Shields.io status badge for each of the 5 apps, updated live from CI runs.</p>
+    <h2>Repository Badges &amp; Scorecards</h2>
+    <p class="lede small">What the security scorecard looks like, and how to embed it into your repository README.</p>
+
+    <div class="scorecard-wrap">
+      <div class="scorecard-container">
+        <p class="eyebrow" style="margin-bottom:8px;text-align:center;">Scorecard Preview (How it renders in your README)</p>
+        <div class="scorecard-meta">
+          <img src="https://img.shields.io/badge/version-v1.3.14-blue.svg" alt="Version">
+          <img src="https://img.shields.io/badge/license-Apache--2.0-blue.svg" alt="License">
+        </div>
+        <table class="scorecard-table">
+          <thead><tr><th>Security Pillar</th><th>Verification Badge</th></tr></thead>
+          <tbody>
+            <tr><td><b>Platform Standard</b></td>
+              <td><a href="/"><img src="https://img.shields.io/badge/secured%20by-studio2201-2f6f5e?logo=shield" alt="secured by studio2201"></a></td></tr>
+            <tr><td><b>Credential Defense</b></td>
+              <td><a href="/snip"><img src="https://img.shields.io/badge/snip-0%20secrets-2f6f5e?logo=shield" alt="snip: 0 secrets"></a></td></tr>
+            <tr><td><b>Supply Chain Surface</b></td>
+              <td><a href="/vigil"><img src="https://img.shields.io/badge/vigil-0%20dependencies-2f6f5e?logo=shield" alt="vigil: 0 dependencies"></a></td></tr>
+            <tr><td><b>Post-Quantum Cryptography</b></td>
+              <td><a href="/aegis"><img src="https://img.shields.io/badge/aegis-PQC%20compliant-2f6f5e?logo=shield" alt="aegis: PQC compliant"></a></td></tr>
+            <tr><td><b>Build Provenance &amp; SLSA</b></td>
+              <td><a href="/proven"><img src="https://img.shields.io/badge/proven-ML--DSA--65%20verified-2f6f5e?logo=shield" alt="proven: ML-DSA-65 verified"></a></td></tr>
+            <tr><td><b>Repository Governance</b></td>
+              <td><a href="/boneyard"><img src="https://img.shields.io/badge/boneyard-maintained-2f6f5e?logo=shield" alt="boneyard: maintained"></a></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
     <div class="card-grid">
       <div class="feature-item">
-        <h4>Option 1: 5 Dynamic Badges</h4>
-          <a href="https://studio2201.com">
-            <img style="vertical-align:middle;" src="https://img.shields.io/badge/secured%20by-studio2201-2f6f5e?logo=shield" alt="secured by studio2201"></a>
-          <img style="vertical-align:middle;" alt="snip"
-            src="https://img.shields.io/github/actions/workflow/status/studio2201/studio2201/snip.yml?label=snip&logo=shield">
-          <img style="vertical-align:middle;" alt="vigil"
-            src="https://img.shields.io/github/actions/workflow/status/studio2201/studio2201/vigil.yml?label=vigil&logo=shield">
-          <img style="vertical-align:middle;" alt="aegis"
-            src="https://img.shields.io/github/actions/workflow/status/studio2201/studio2201/aegis.yml?label=aegis&logo=shield">
-          <img style="vertical-align:middle;" alt="proven"
-            src="https://img.shields.io/github/actions/workflow/status/studio2201/studio2201/proven.yml?label=proven&logo=shield">
-          <img style="vertical-align:middle;" alt="boneyard"
-            src="https://img.shields.io/github/actions/workflow/status/studio2201/studio2201/boneyard.yml?label=boneyard&logo=shield">
-        </div>
-        <p>Dynamic status per tool. Updates to passing (green) or failing (red).</p>
-        <div class="code-box" style="margin:12px 0 0;"><pre><code>[![secured by studio2201][b-studio]][u-home]
-[![snip][b-snip]][ci-snip]
-[![vigil][b-vigil]][ci-vigil]
-[![aegis][b-aegis]][ci-aegis]
-[![proven][b-proven]][ci-proven]
-[![boneyard][b-boneyard]][ci-boneyard]
-
-[b-studio]: https://img.shields.io/badge/secured%20by-studio2201-2f6f5e?logo=shield
-[u-home]: https://studio2201.com
-[b-snip]: https://img.shields.io/github/actions/workflow/status/&lt;owner&gt;/&lt;repo&gt;/snip.yml?label=snip&amp;logo=shield
-[ci-snip]: https://github.com/&lt;owner&gt;/&lt;repo&gt;/actions/workflows/snip.yml
-[b-vigil]: https://img.shields.io/github/actions/workflow/status/&lt;owner&gt;/&lt;repo&gt;/vigil.yml?label=vigil&amp;logo=shield
-[ci-vigil]: https://github.com/&lt;owner&gt;/&lt;repo&gt;/actions/workflows/vigil.yml
-[b-aegis]: https://img.shields.io/github/actions/workflow/status/&lt;owner&gt;/&lt;repo&gt;/aegis.yml?label=aegis&amp;logo=shield
-[ci-aegis]: https://github.com/&lt;owner&gt;/&lt;repo&gt;/actions/workflows/aegis.yml
-[b-proven]: https://img.shields.io/github/actions/workflow/status/&lt;owner&gt;/&lt;repo&gt;/proven.yml?label=proven&amp;logo=shield
-[ci-proven]: https://github.com/&lt;owner&gt;/&lt;repo&gt;/actions/workflows/proven.yml
-[b-boneyard]: https://img.shields.io/github/actions/workflow/status/&lt;owner&gt;/&lt;repo&gt;/boneyard.yml?label=boneyard&amp;logo=shield
-[ci-boneyard]: https://github.com/&lt;owner&gt;/&lt;repo&gt;/actions/workflows/boneyard.yml</code></pre></div>
-      </div>
-      <div class="feature-item">
-        <h4>Option 2: Centered Security Scorecard (Recommended)</h4>
-        <p style="margin: 8px 0 12px;">Centered 2-column scorecard preventing badge wrap on mobile and widescreen:</p>
-        <div class="code-box" style="margin:12px 0 0;"><pre><code>&lt;div align="center"&gt;
-
+        <h4>Option 2: Centered Scorecard (Recommended)</h4>
+        <p>Drop-in markdown table centered with &lt;div align="center"&gt;:</p>
+        <div class="code-box" style="margin:10px 0 0;"><pre><code>&lt;div align="center"&gt;
 | Security Pillar | Verification Badge |
 | :--- | :---: |
 | **Platform Standard** | [![secured by studio2201][b-studio]][u-home] |
@@ -198,8 +184,26 @@ jobs:
 [u-proven]: https://studio2201.com/proven
 [b-boneyard]: https://img.shields.io/badge/boneyard-maintained-2f6f5e?logo=shield
 [u-boneyard]: https://studio2201.com/boneyard
-
 &lt;/div&gt;</code></pre></div>
+      </div>
+      <div class="feature-item">
+        <h4>Option 1: Dynamic Badges (Alternative)</h4>
+        <div style="margin:8px 0;">
+          <a href="/"><img src="https://img.shields.io/badge/secured%20by-studio2201-2f6f5e?logo=shield" alt="secured by studio2201"></a>
+          <img alt="snip" src="https://img.shields.io/github/actions/workflow/status/studio2201/studio2201/snip.yml?label=snip&logo=shield">
+          <img alt="vigil" src="https://img.shields.io/github/actions/workflow/status/studio2201/studio2201/vigil.yml?label=vigil&logo=shield">
+          <img alt="aegis" src="https://img.shields.io/github/actions/workflow/status/studio2201/studio2201/aegis.yml?label=aegis&logo=shield">
+          <img alt="proven" src="https://img.shields.io/github/actions/workflow/status/studio2201/studio2201/proven.yml?label=proven&logo=shield">
+          <img alt="boneyard" src="https://img.shields.io/github/actions/workflow/status/studio2201/studio2201/boneyard.yml?label=boneyard&logo=shield">
+        </div>
+        <p>Dynamic workflow status per tool (green passing, red failing):</p>
+        <div class="code-box" style="margin:10px 0 0;">
+          <pre><code>[![secured by studio2201](https://img.shields.io/badge/secured%20by-studio2201-2f6f5e?logo=shield)](https://studio2201.com)
+[![snip](https://img.shields.io/github/actions/workflow/status/&lt;owner&gt;/&lt;repo&gt;/snip.yml?label=snip&amp;logo=shield)](...)
+[![vigil](https://img.shields.io/github/actions/workflow/status/&lt;owner&gt;/&lt;repo&gt;/vigil.yml?label=vigil&amp;logo=shield)](...)
+[![aegis](https://img.shields.io/github/actions/workflow/status/&lt;owner&gt;/&lt;repo&gt;/aegis.yml?label=aegis&amp;logo=shield)](...)
+[![proven](https://img.shields.io/github/actions/workflow/status/&lt;owner&gt;/&lt;repo&gt;/proven.yml?label=proven&amp;logo=shield)](...)
+[![boneyard](https://img.shields.io/github/actions/workflow/status/&lt;owner&gt;/&lt;repo&gt;/boneyard.yml?label=boneyard&amp;logo=shield)](...)</code></pre></div>
       </div>
     </div>
   </section>
@@ -211,36 +215,31 @@ jobs:
       <div class="feature-item">
         <h4>Snip <span class="tag green">vibe-code</span></h4>
         <p><strong>Phase:</strong> Pre-commit diff · <strong>Command:</strong> <code>git diff --staged | snip audit</code><br>
-        <strong>Exit Codes:</strong> <code>0</code> Ship · <code>1</code> Block/Fix · <code>2</code> Error ·
-        <strong>Action:</strong> Strips leaked API keys, fixes broken Supabase RLS, and remediates CORS.</p>
+        <strong>Exit Codes:</strong> <code>0</code> Ship · <code>1</code> Block · <strong>Action:</strong> Strips secrets, fixes broken RLS/CORS.</p>
         <a class="more" href="/snip">Overview & Specs →</a>
       </div>
       <div class="feature-item">
         <h4>Vigil <span class="tag green">dormancy</span></h4>
         <p><strong>Phase:</strong> Manifest review · <strong>Command:</strong> <code>vigil policy check --max-dormancy 180 -q</code><br>
-        <strong>Exit Codes:</strong> <code>0</code> Pass · <code>1</code> Dormant · <code>2</code> Error ·
-        <strong>Action:</strong> Halts PRs on abandoned packages; suggests actively maintained alternatives.</p>
+        <strong>Exit Codes:</strong> <code>0</code> Pass · <code>1</code> Dormant · <strong>Action:</strong> Halts PRs on abandoned packages.</p>
         <a class="more" href="/vigil">Overview & Specs →</a>
       </div>
       <div class="feature-item">
         <h4>Aegis <span class="tag green">pqc sdk</span></h4>
         <p><strong>Phase:</strong> Cryptographic sweeps · <strong>Command:</strong> <code>aegis scan --format json ./src</code><br>
-        <strong>Exit Codes:</strong> <code>0</code> Compliant · <code>1</code> Classical crypto · <code>2</code> Error ·
-        <strong>Action:</strong> Scans legacy crypto; emits OMB M-26-15 roadmaps with ML-KEM/ML-DSA drop-in shims.</p>
+        <strong>Exit Codes:</strong> <code>0</code> Compliant · <code>1</code> Classical · <strong>Action:</strong> Scans legacy crypto; emits OMB M-26-15 shims.</p>
         <a class="more" href="/aegis">Overview & Specs →</a>
       </div>
       <div class="feature-item">
         <h4>Proven <span class="tag green">attestor</span></h4>
         <p><strong>Phase:</strong> Packaging & release · <strong>Command:</strong> <code>proven attest target/app -o app.slsa.json</code><br>
-        <strong>Exit Codes:</strong> <code>0</code> Verified · <code>1</code> Tampered · <code>2</code> Error ·
-        <strong>Action:</strong> Signs binaries with post-quantum ML-DSA-65; attests bit-identity before deployment.</p>
+        <strong>Exit Codes:</strong> <code>0</code> Verified · <code>1</code> Tampered · <strong>Action:</strong> ML-DSA-65 post-quantum signing & SLSA bit-identity.</p>
         <a class="more" href="/proven">Overview & Specs →</a>
       </div>
       <div class="feature-item">
         <h4>Boneyard <span class="tag green">tech-debt</span></h4>
         <p><strong>Phase:</strong> Fleet governance · <strong>Command:</strong> <code>boneyard enrich -i repos.json</code><br>
-        <strong>Exit Codes:</strong> <code>0</code> Compliant · <code>1</code> Debt breach · <code>2</code> Error ·
-        <strong>Action:</strong> Ranks multi-repo catalog across 5 axes; allocates remediation budgets in repo-weeks.</p>
+        <strong>Exit Codes:</strong> <code>0</code> Compliant · <code>1</code> Breach · <strong>Action:</strong> 5-axis tech-debt ranking & repo-week budgets.</p>
         <a class="more" href="/boneyard">Overview & Specs →</a>
       </div>
     </div>

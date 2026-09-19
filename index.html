@@ -45,22 +45,19 @@
   <section id="products">
     <p class="eyebrow num">01</p>
     <h2>Five products. Pure Rust. Apache-2.0.</h2>
-
     <div class="products">
-
       <a class="product" href="/vigil">
         <div class="product-head">
-          <span class="tag green">v0.2.11</span>
+          <span class="tag green">v0.2.12</span>
           <h3>Vigil</h3>
         </div>
         <p class="product-body">Supply-chain dormancy scanner. Reads manifests (<code>package.json</code>,
           <code>Cargo.lock</code>, <code>pyproject.toml</code>), scores dormancy, emits <code>SUPPLY-CHAIN.md</code> and badges.</p>
         <span class="more">Overview & Specs →</span>
       </a>
-
       <a class="product" href="/proven">
         <div class="product-head">
-          <span class="tag green">v0.2.9</span>
+          <span class="tag green">v0.2.10</span>
           <h3>Proven</h3>
         </div>
         <p class="product-body">PQC-signed supply-chain attestor. Reproducible builds with byte-identity hashing
@@ -69,7 +66,7 @@
       </a>
       <a class="product" href="/aegis">
         <div class="product-head">
-          <span class="tag green">v0.2.10</span>
+          <span class="tag green">v0.2.11</span>
           <h3>Aegis</h3>
         </div>
         <p class="product-body">PQC migration SDK. Scans RSA/ECC usage, plans in OMB M-26-15 format,
@@ -78,24 +75,22 @@
       </a>
       <a class="product" href="/snip">
         <div class="product-head">
-          <span class="tag green">v0.2.9</span>
+          <span class="tag green">v0.2.10</span>
           <h3>Snip</h3>
         </div>
         <p class="product-body">Vibe-code security gate. Audits AI diffs for leaked secrets, missing CORS,
           and broken Supabase RLS. Ships as MCP server, GitHub Action, CLI, and rules.</p>
         <span class="more">Overview & Specs →</span>
       </a>
-
       <a class="product" href="/boneyard">
         <div class="product-head">
-          <span class="tag green">v0.2.9</span>
+          <span class="tag green">v0.2.11</span>
           <h3>Boneyard</h3>
         </div>
         <p class="product-body">Org-wide tech-debt radar. Ranks internal repos by dormancy, risk, exposure,
           dependency depth, and AI-agent surface. Emits budgets in repo-weeks.</p>
         <span class="more">Overview & Specs →</span>
       </a>
-
     </div>
 
     <p class="ecosystem-tag">All five are <strong>Apache-2.0</strong>, written in pure Rust against <code>std::</code> only.
@@ -158,11 +153,38 @@ vigil policy check --max-dormancy 180d || echo "Vigil: FAILED (exit code 1)"</co
 
   <section id="install">
     <p class="eyebrow num">04</p>
-    <h2>Agent Instructions — 1 Badge & Workflow Per App</h2>
-    <p class="lede small">Zero-dependency automated security gates: dedicated workflow and dynamic status badge for each studio2201 tool.</p>
+    <h2>Repository Scorecard &amp; CI Gateways</h2>
+    <p class="lede small">Standardized 2-column scorecard centered in your README, backed by automated GitHub Actions CI gates.</p>
+
+    <div class="scorecard-wrap">
+      <div class="scorecard-container">
+        <p class="eyebrow" style="margin-bottom:8px;text-align:center;">Scorecard Preview (How it renders in your README)</p>
+        <div class="scorecard-meta">
+          <img src="https://img.shields.io/badge/version-v1.3.14-blue.svg" alt="Version">
+          <img src="https://img.shields.io/badge/license-Apache--2.0-blue.svg" alt="License">
+        </div>
+        <table class="scorecard-table">
+          <thead><tr><th>Security Pillar</th><th>Verification Badge</th></tr></thead>
+          <tbody>
+            <tr><td><b>Platform Standard</b></td>
+              <td><a href="/"><img src="https://img.shields.io/badge/secured%20by-studio2201-2f6f5e?logo=shield" alt="secured by studio2201"></a></td></tr>
+            <tr><td><b>Credential Defense</b></td>
+              <td><a href="/snip"><img src="https://img.shields.io/badge/snip-0%20secrets-2f6f5e?logo=shield" alt="snip: 0 secrets"></a></td></tr>
+            <tr><td><b>Supply Chain Surface</b></td>
+              <td><a href="/vigil"><img src="https://img.shields.io/badge/vigil-0%20dependencies-2f6f5e?logo=shield" alt="vigil: 0 dependencies"></a></td></tr>
+            <tr><td><b>Post-Quantum Cryptography</b></td>
+              <td><a href="/aegis"><img src="https://img.shields.io/badge/aegis-PQC%20compliant-2f6f5e?logo=shield" alt="aegis: PQC compliant"></a></td></tr>
+            <tr><td><b>Build Provenance &amp; SLSA</b></td>
+              <td><a href="/proven"><img src="https://img.shields.io/badge/proven-ML--DSA--65%20verified-2f6f5e?logo=shield" alt="proven: ML-DSA-65 verified"></a></td></tr>
+            <tr><td><b>Repository Governance</b></td>
+              <td><a href="/boneyard"><img src="https://img.shields.io/badge/boneyard-maintained-2f6f5e?logo=shield" alt="boneyard: maintained"></a></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
     <div class="code-box">
       <pre><code># Prompt for your AI Agent (Cursor, Claude Code, Copilot, Devin):
-Prepend the anchor badge to README.md:
+Embed security verification badges as a centered 2-column scorecard table using &lt;div align="center"&gt;:
 [![secured by studio2201](https://img.shields.io/badge/secured%20by-studio2201-2f6f5e?logo=shield)](https://studio2201.com)
 Add 5 dedicated GitHub Actions workflows to this repository (.github/workflows/&lt;tool&gt;.yml):
 - snip.yml (name: snip, tools: 'snip' — diffs, secrets, Supabase RLS)
@@ -171,8 +193,7 @@ Add 5 dedicated GitHub Actions workflows to this repository (.github/workflows/&
 - proven.yml (name: proven, tools: 'proven' — ML-DSA-65 attestations)
 - boneyard.yml (name: boneyard, tools: 'boneyard' — tech-debt radar)
 All workflows trigger on pull_request, push to master/main, and workflow_dispatch,
-use studio2201/studio2201@v1 with fail-on: 'block', and retain *_report.md.
-Add dynamic status badges to README.md: [![tool](https://img.shields.io/.../tool.yml...)](...)</code></pre>
+use studio2201/studio2201@v1 with fail-on: 'block', and retain *_report.md.</code></pre>
     </div>
     <div class="code-box">
       <pre><code># Reference template: .github/workflows/&lt;tool&gt;.yml (replace &lt;tool&gt; with snip, vigil, aegis, proven, boneyard)
@@ -204,25 +225,6 @@ studio2201 check              # run multi-tool audit suite locally
 studio2201 list               # inspect installed tools and versions
 studio2201 upgrade all        # upgrade tools to latest release
 studio2201 init               # scaffold GitHub Actions &amp; agent guardrails</code></pre>
-    </div>
-    <div class="scorecard-wrap">
-      <table class="scorecard-table">
-        <thead><tr><th>Security Pillar</th><th>Verification Badge</th></tr></thead>
-        <tbody>
-          <tr><td><b>Platform Standard</b></td>
-            <td><a href="https://studio2201.com"><img src="https://img.shields.io/badge/secured%20by-studio2201-2f6f5e?logo=shield" alt="secured by studio2201"></a></td></tr>
-          <tr><td><b>Credential Defense</b></td>
-            <td><a href="/snip"><img src="https://img.shields.io/badge/snip-0%20secrets-2f6f5e" alt="snip: 0 secrets"></a></td></tr>
-          <tr><td><b>Supply Chain Surface</b></td>
-            <td><a href="/vigil"><img src="https://img.shields.io/badge/vigil-0%20dependencies-2f6f5e" alt="vigil: 0 dependencies"></a></td></tr>
-          <tr><td><b>Post-Quantum Cryptography</b></td>
-            <td><a href="/aegis"><img src="https://img.shields.io/badge/aegis-PQC%20compliant-2f6f5e" alt="aegis: PQC compliant"></a></td></tr>
-          <tr><td><b>Build Provenance &amp; SLSA</b></td>
-            <td><a href="/proven"><img src="https://img.shields.io/badge/proven-ML--DSA--65%20verified-2f6f5e" alt="proven: ML-DSA-65 verified"></a></td></tr>
-          <tr><td><b>Repository Governance</b></td>
-            <td><a href="/boneyard"><img src="https://img.shields.io/badge/boneyard-maintained-2f6f5e" alt="boneyard: maintained"></a></td></tr>
-        </tbody>
-      </table>
     </div>
   </section>
 
