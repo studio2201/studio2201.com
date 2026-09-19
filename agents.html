@@ -36,7 +36,7 @@
   <header class="hero">
     <div class="badge-bar">
       <span class="eyebrow" style="margin-bottom:0;">studio2201 / automation</span>
-      <span class="tag green">v0.4.11</span>
+      <span class="tag green">v0.4.12</span>
       <span class="tag green">Apache-2.0</span>
     </div>
     <h1>Agent & Automation Guide</h1>
@@ -131,6 +131,7 @@ jobs:
         with:
           tools: 'all'
           fail-on: 'block'</code></pre>
+    </div>
   </section>
 
   <section id="badges">
@@ -147,15 +148,26 @@ jobs:
       <div class="feature-item">
         <h4>Option 2: Detailed Governance Scorecard</h4>
         <p style="margin: 8px 0 12px;">Expandable <code>&lt;details&gt;</code> summary scorecard displaying granular tool findings:</p>
-        <div class="code-box" style="margin:12px 0 0;"><pre><code>&lt;details&gt;&lt;summary&gt;[![studio2201 Suite](https://img.shields.io/badge/studio2201-5%2F5%20Verified-2f6f5e?logo=shield)](https://studio2201.com/agents#badges)&lt;/summary&gt;
+        <details style="margin: 6px 0 10px; cursor: pointer;">
+          <summary><img src="https://img.shields.io/badge/studio2201-5%2F5%20Verified-2f6f5e?logo=shield" alt="studio2201 Suite"></summary>
+          <div style="margin-top: 6px; font-size: 0.85rem; line-height: 1.6;">
+            <div>Snip: <img src="https://img.shields.io/badge/vibe--safe-SHIP-brightgreen.svg" alt="vibe-safe" style="vertical-align:middle;"></div>
+            <div>Vigil: <img src="https://img.shields.io/badge/dormancy-healthy-2f6f5e.svg" alt="dormancy" style="vertical-align:middle;"></div>
+            <div>Aegis: <img src="https://img.shields.io/badge/PQC-Quantum--Safe-blueviolet.svg" alt="PQC" style="vertical-align:middle;"></div>
+            <div>Proven: <img src="https://img.shields.io/badge/SLSA-Level%203%2B-blue.svg" alt="SLSA L3+" style="vertical-align:middle;"></div>
+            <div>Boneyard: <img src="https://img.shields.io/badge/boneyard%20index-0%2F100-brightgreen.svg" alt="boneyard" style="vertical-align:middle;"></div>
+          </div>
+        </details>
+        <div class="code-box" style="margin:12px 0 0;"><pre><code>&lt;details&gt;
+&lt;summary&gt;&lt;a href="https://studio2201.com/agents#badges"&gt;&lt;img src="https://img.shields.io/badge/studio2201-5%2F5%20Verified-2f6f5e?logo=shield" alt="studio2201 Suite"&gt;&lt;/a&gt;&lt;/summary&gt;
 
 | Tool | Focus | Status | Badge |
 | :--- | :--- | :---: | :---: |
-| Snip | Vibe-Code | PASS | [![Vibe-Safe](https://img.shields.io/badge/vibe--safe-SHIP-brightgreen.svg)](https://studio2201.com/snip) |
-| Vigil | Dormancy | PASS | [![Dormancy](https://img.shields.io/badge/dormancy-healthy-2f6f5e.svg)](https://studio2201.com/vigil) |
-| Aegis | PQC Migration | PASS | [![PQC](https://img.shields.io/badge/PQC-Quantum--Safe-blueviolet.svg)](https://studio2201.com/aegis) |
-| Proven | SLSA L3+ | PASS | [![SLSA](https://img.shields.io/badge/SLSA-Level%203%2B-blue.svg)](https://studio2201.com/proven) |
-| Boneyard | Debt Radar | PASS | [![Boneyard](https://img.shields.io/badge/boneyard%20index-0%2F100-brightgreen.svg)](https://studio2201.com/boneyard) |
+| Snip | Vibe-Code | Pass | [![Vibe-Safe](https://img.shields.io/badge/vibe--safe-SHIP-brightgreen.svg)](https://studio2201.com/snip) |
+| Vigil | Dormancy | Pass | [![Dormancy](https://img.shields.io/badge/dormancy-healthy-2f6f5e.svg)](https://studio2201.com/vigil) |
+| Aegis | PQC Migration | Pass | [![PQC](https://img.shields.io/badge/PQC-Quantum--Safe-blueviolet.svg)](https://studio2201.com/aegis) |
+| Proven | SLSA L3+ | Pass | [![SLSA](https://img.shields.io/badge/SLSA-Level%203%2B-blue.svg)](https://studio2201.com/proven) |
+| Boneyard | Debt Radar | Pass | [![Boneyard](https://img.shields.io/badge/boneyard%20index-0%2F100-brightgreen.svg)](https://studio2201.com/boneyard) |
 
 &lt;/details&gt;</code></pre></div>
       </div>
