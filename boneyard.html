@@ -128,7 +128,7 @@ curl -fsSL https://studio2201.com/install.sh | sh -s boneyard</code></pre>
       <pre><code># Ingest org repositories and score dormancy
 boneyard enrich --input repos.json --output scored.json
 
-# Generate executive markdown report with remediation budgets
+# Generate markdown audit report with remediation budgets
 boneyard report --input scored.json --policy policy.toml --output report.md
 
 # Assert compliance against org policy in CI
@@ -151,7 +151,7 @@ boneyard policy check --input scored.json --policy policy.toml</code></pre>
       </div>
       <div class="feature-item">
         <h4><a href="https://www.gartner.com/en/articles/what-is-technical-debt" target="_blank" rel="noopener">Active Asset Ownership ↗</a></h4>
-        <p>Establishes executive governance to eradicate zombie repos, ensuring every software asset has accountable maintainers and 0 zombie debt.</p>
+        <p>Establishes active governance to eradicate zombie repos, ensuring every software asset has accountable maintainers and 0 zombie debt.</p>
       </div>
       <div class="feature-item">
         <h4><a href="https://owasp.org" target="_blank" rel="noopener">OWASP A06: Outdated Comps ↗</a></h4>
