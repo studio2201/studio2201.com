@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta name="description" content="Vigil — supply-chain dormancy scanner. Detects dead libraries and unmaintained dependencies. Apache-2.0." />
-<meta name="theme-color" content="#f7f5f0" />
+<meta name="theme-color" content="#070a0f" />
 <title>Vigil — supply-chain dormancy scanner · studio2201</title>
 <link rel="canonical" href="https://studio2201.com/vigil" />
 <meta property="og:site_name" content="studio2201" />
@@ -17,41 +17,66 @@
 <meta name="twitter:title" content="Vigil — supply-chain dormancy scanner · studio2201" />
 <meta name="twitter:description" content="Supply-chain dormancy scanner. Scores dependencies by upstream commit velocity and dormancy, and emits SUPPLY-CHAIN.md." />
 <meta name="twitter:image" content="https://studio2201.com/assets/og-image.png" />
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet"
-  href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Outfit:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Outfit:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap">
 <link rel="stylesheet" href="styles.css" />
 <link rel="stylesheet" href="components.css" />
-<link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
-<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png" />
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg" /><link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png" />
 <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png" />
+<script>
+(function(){var T={cyan:["#6ad7e1","106,215,225"],emerald:["#2ec27e","46,194,126"],amber:["#fbb86c","251,184,108"],coral:["#ff5555","255,85,85"]},O=["cyan","emerald","amber","coral"];window.setSuiteTheme=function(n){var c=T[n]||T.emerald,r=document.documentElement;r.style.setProperty("--primary",c[0]);r.style.setProperty("--accent",c[0]);r.style.setProperty("--primary-rgb",c[1]);r.style.setProperty("--primary-soft","rgba("+c[1]+",0.14)");try{localStorage.setItem("studio2201_theme",n);}catch(e){}var s=document.querySelectorAll(".swatch");for(var i=0;i<s.length;i++)s[i].classList.toggle("active",s[i].dataset.t===n);};window.cycleSuiteTheme=function(){var k="emerald";try{k=localStorage.getItem("studio2201_theme")||"emerald";}catch(e){}window.setSuiteTheme(O[(O.indexOf(k)+1)%4]);};try{var s=localStorage.getItem("studio2201_theme");if(s&&T[s])window.setSuiteTheme(s);}catch(e){}})();
+</script>
 </head>
 <body>
 <main class="page">
-
-  <nav>
-    <a class="nav-back" href="/">← studio2201.com</a>
+  <nav class="top-nav" aria-label="Studio 2201 Omni-Bar">
+    <div class="brand-cluster">
+      <a class="brand-pill" href="/">studio2201 // LAB</a>
+      <span class="status-pill">● 16 REPOS · &le;256 LOC</span>
+    </div>
+    <div class="nav-pills">
+      <a href="/#gnome">GNOME Suite</a>
+      <a href="/#products">CI/CD Gates</a>
+      <a href="/agents">Agents &amp; MCP</a>
+      <a href="https://ubermetroid.github.io/tuition-not-coffee">🎓 Tuition, Not Coffee</a>
+      <a href="https://github.com/UberMetroid">@UberMetroid</a>
+    </div>
+    <div class="theme-cluster" aria-label="Suite Theme Switcher">
+      <button type="button" class="swatch" data-t="cyan" style="background:#6ad7e1" title="Cyan #6ad7e1" onclick="setSuiteTheme('cyan')"></button>
+      <button type="button" class="swatch active" data-t="emerald" style="background:#2ec27e" title="Emerald #2ec27e" onclick="setSuiteTheme('emerald')"></button>
+      <button type="button" class="swatch" data-t="amber" style="background:#fbb86c" title="Amber #fbb86c" onclick="setSuiteTheme('amber')"></button>
+      <button type="button" class="swatch" data-t="coral" style="background:#ff5555" title="Coral #ff5555" onclick="setSuiteTheme('coral')"></button>
+      <button type="button" class="cycle-btn" title="Cycle Suite Theme" onclick="cycleSuiteTheme()">↻</button>
+    </div>
   </nav>
+
+  <details class="agent-brief">
+    <summary>[ // AI AGENT &amp; CLI BRIEF — curl -fsSL https://studio2201.com/install.sh | sh -s vigil ]</summary>
+    <p>Vigil supply-chain dormancy scanner (`v0.2.13`). Parses lockfiles with zero external crates, scores upstream commit velocity, and gates CI via `studio2201/studio2201@v1` (`tools: 'vigil'`) · <a href="/agents">Agent &amp; MCP Guide</a> · <a href="/canary">Canary Testbed</a>.</p>
+  </details>
 
   <header class="hero">
     <div class="badge-bar">
-      <a href="https://studio2201.com"><img src="https://img.shields.io/badge/secured%20by-studio2201-2f6f5e?logo=shield" alt="secured by studio2201"></a>
-      <a href="/vigil"><img src="https://img.shields.io/badge/vigil-0%20dependencies-2f6f5e" alt="vigil: 0 dependencies (NIST SP 800-218)"></a>
+      <a href="https://studio2201.com"><img src="https://img.shields.io/badge/secured%20by-studio2201-2ec27e?logo=shield" alt="secured by studio2201"></a>
+      <a href="/vigil"><img src="https://img.shields.io/badge/vigil-0%20dependencies-2ec27e" alt="vigil: 0 dependencies (NIST SP 800-218)"></a>
       <span class="eyebrow" style="margin-bottom:0;">studio2201 / product 01</span>
-      <span class="tag green">v0.2.11</span>
+      <span class="tag green">v0.2.13</span>
       <span class="tag green">Apache-2.0</span>
       <span class="tag green">Dormancy Healthy</span>
     </div>
     <h1>Vigil</h1>
-    <p class="lede">Supply-chain dormancy scanner. Reads your project manifest,
-      scores each dependency by how long it has been since the upstream moved, and emits
-      <code>SUPPLY-CHAIN.md</code> and a badge.</p>
+    <p class="lede">Supply-chain dormancy scanner. Reads your project manifest, scores each dependency by how long it has been since the upstream moved, and emits <code>SUPPLY-CHAIN.md</code> and a badge.</p>
     <div class="cta">
       <a class="btn primary" href="https://github.com/studio2201/vigil">View on GitHub →</a>
       <a class="btn ghost" href="https://github.com/studio2201/studio2201/blob/master/DESIGN.md">Framework Doctrine →</a>
     </div>
   </header>
+
+  <aside class="ticker" aria-label="Vigil Telemetry">
+    <div class="ticker-track">
+      <span class="chip">VIGIL v0.2.13 · DORMANCY SCANNER</span><span class="chip">CARGO.LOCK · PACKAGE.JSON · PYPROJECT.TOML · GO.MOD</span><span class="chip">NIST SP 800-218 SSDF</span><span class="chip">SUPPLY-CHAIN.MD EMISSION</span><span class="chip">PURE STD:: RUST · 0 CRATES</span><span class="chip">VIGIL v0.2.13 · DORMANCY SCANNER</span><span class="chip">CARGO.LOCK · PACKAGE.JSON · PYPROJECT.TOML · GO.MOD</span><span class="chip">NIST SP 800-218 SSDF</span>
+    </div>
+  </aside>
 
   <section>
     <p class="eyebrow num">01</p>
@@ -59,9 +84,7 @@
     <div class="card-grid">
       <div class="feature-item">
         <h4>Auto-detect Manifests</h4>
-        <p>Parses <code>package.json</code>, <code>Cargo.lock</code>, <code>pyproject.toml</code>,
-          <code>go.mod</code>, <code>pom.xml</code>, <code>composer.json</code>,
-          <code>pubspec.yaml</code>, and <code>Package.swift</code>.</p>
+        <p>Parses <code>package.json</code>, <code>Cargo.lock</code>, <code>pyproject.toml</code>, <code>go.mod</code>, <code>pom.xml</code>, <code>composer.json</code>, <code>pubspec.yaml</code>, and <code>Package.swift</code>.</p>
       </div>
       <div class="feature-item">
         <h4>Upstream Activity Heuristic</h4>
@@ -80,26 +103,10 @@
 
   <section>
     <p class="eyebrow num">02</p>
-    <h2>GitHub Actions & CI Enforcement</h2>
+    <h2>GitHub Actions &amp; CI Enforcement</h2>
     <p class="lede small">Automate dependency dormancy checks on every pull request and push using the Vigil GitHub Action.</p>
     <div class="code-box">
-      <pre><code># Prompt for your AI Agent (Cursor, Claude Code, Copilot, Devin):
-Add a GitHub Actions workflow to this repository at .github/workflows/vigil.yml using studio2201/studio2201@v1:
-- Name: vigil
-- Triggers: pull_request, push to default branch (master/main), and workflow_dispatch.
-- Concurrency: group ${{ github.workflow }}-${{ github.ref }} with cancel-in-progress on pull_request.
-- Permissions: contents: read, checkout with fetch-depth: 0.
-- Action: run studio2201/studio2201@v1 with tools: 'vigil' and fail-on: 'block'.
-- Artifacts: upload vigil_report.md using actions/upload-artifact@v4 with if: always().
-- Zero False Positives: @v1 provisions Vigil v0.2.11+ (excludes root crates in Cargo.lock).
-- README Badges: prepend the anchor badge and dynamic status badge to README.md:
-  [![secured by studio2201](https://img.shields.io/badge/secured%20by-studio2201-2f6f5e?logo=shield)](https://studio2201.com)
-  [![vigil][b-vigil]][ci-vigil]
-  [b-vigil]: https://img.shields.io/github/actions/workflow/status/&lt;owner&gt;/&lt;repo&gt;/vigil.yml?label=vigil&amp;logo=shield
-  [ci-vigil]: https://github.com/&lt;owner&gt;/&lt;repo&gt;/actions/workflows/vigil.yml</code></pre>
-    </div>
-    <div class="code-box">
-      <pre><code># .github/workflows/vigil.yml
+      <pre><code># .github/workflows/vigil.yml (Prompt your AI Agent or copy directly)
 name: vigil
 on:
   push: { branches: [ master, main ] }
@@ -123,29 +130,15 @@ jobs:
     </div>
     <div class="code-box">
       <pre><code># Workstation CLI installation (unprivileged, installs to ~/.local/bin):
-curl -fsSL https://studio2201.com/install.sh | sh -s vigil</code></pre>
+curl -fsSL https://studio2201.com/install.sh | sh -s vigil
+vigil scan && vigil policy check --max-dormancy 180d</code></pre>
     </div>
   </section>
 
   <section>
     <p class="eyebrow num">03</p>
-    <h2>Terminal usage</h2>
-    <div class="code-box">
-      <pre><code># Scan current working directory manifest
-vigil scan
-
-# Emit structured JSON for CI ingestion
-vigil scan --format json --output supply-chain.json
-
-# Check policy against dormancy thresholds
-vigil policy check --max-dormancy 180d</code></pre>
-    </div>
-  </section>
-
-  <section>
-    <p class="eyebrow num">04</p>
-    <h2>Why This Matters & Authoritative Mandates</h2>
-    <p class="lede small">Enforces NIST SP 800-218 Secure Software Development Framework (SSDF) mandates on software supply-chain integrity. Over 80% of application code comes from open-source libraries; Vigil enforces minimal supply surface and 0 unvetted dependencies.</p>
+    <h2>Why This Matters &amp; Authoritative Mandates</h2>
+    <p class="lede small">Enforces NIST SP 800-218 Secure Software Development Framework (SSDF) mandates on software supply-chain integrity.</p>
     <div class="card-grid">
       <div class="feature-item">
         <h4><a href="https://csrc.nist.gov/publications/detail/sp/800-218/final" target="_blank" rel="noopener">NIST SP 800-218 SSDF ↗</a></h4>
@@ -167,7 +160,7 @@ vigil policy check --max-dormancy 180d</code></pre>
   </section>
 
   <section>
-    <p class="eyebrow num">05</p>
+    <p class="eyebrow num">04</p>
     <h2>How It Works Under the Hood</h2>
     <div class="card-grid">
       <div class="feature-item">
@@ -190,10 +183,17 @@ vigil policy check --max-dormancy 180d</code></pre>
   </section>
 
   <footer class="foot">
-    <p>studio2201 · Apache-2.0 · <a href="https://github.com/studio2201/vigil">github.com/studio2201/vigil</a></p>
-    <p class="small">Last updated 2026-09-19 · source: <a href="https://github.com/studio2201/studio2201.com">studio2201/studio2201.com</a></p>
+    <p>studio2201 · Apache-2.0 · <a href="https://github.com/studio2201/vigil">github.com/studio2201/vigil</a> · <a href="https://ubermetroid.github.io/tuition-not-coffee">🎓 Tuition, Not Coffee</a></p>
+    <p class="small">Updated 2026-10-27 · <a href="https://github.com/UberMetroid">@UberMetroid</a> · source: <a href="https://github.com/studio2201/studio2201.com">studio2201/studio2201.com</a></p>
   </footer>
-
 </main>
+<div class="chibi-dock">
+  <a class="dock-pill" href="https://ubermetroid.github.io/tuition-not-coffee" title="Tuition, Not Coffee">🎓</a>
+  <div class="dock-bubble">
+    <strong>STUDIO 2201 // VIGIL</strong><br>
+    <a href="/#gnome">GNOME Suite</a> · <a href="/#products">CI/CD Gates</a> · <a href="https://github.com/UberMetroid">@UberMetroid</a><br>
+    <a href="https://ubermetroid.github.io/tuition-not-coffee">🎓 Tuition, Not Coffee →</a>
+  </div>
+</div>
 </body>
 </html>

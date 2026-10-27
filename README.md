@@ -1,7 +1,7 @@
 # studio2201.com — Official Studio 2201 Portal & Storefront
 
 [![CI](https://github.com/studio2201/studio2201.com/actions/workflows/ci.yml/badge.svg?branch=master)](https://github.com/studio2201/studio2201.com/actions/workflows/ci.yml)
-[![Release](https://img.shields.io/badge/version-v0.5.0-blue.svg)](https://github.com/studio2201/studio2201.com/releases)
+[![Release](https://img.shields.io/badge/version-v0.6.0-blue.svg)](https://github.com/studio2201/studio2201.com/releases)
 [![License](https://img.shields.io/badge/license-Apache--2.0-blue.svg)](LICENSE)
 [![Max LOC](https://img.shields.io/badge/max%20LOC-%E2%89%A4256-brightgreen.svg)](https://studio2201.com)
 [![Sponsor: Tuition, Not Coffee](https://img.shields.io/badge/Sponsor-Tuition%2C%20Not%20Coffee%20%F0%9F%8E%93-2ec27e)](https://ubermetroid.github.io/tuition-not-coffee)
@@ -50,7 +50,7 @@ studio2201.com/
 ├── install.sh        # Universal installer script (<= 256 LOC)
 ├── sitemap.xml       # Search engine sitemap
 ├── CNAME             # Custom domain studio2201.com
-└── VERSION           # Release version tracking (0.5.0)
+└── VERSION           # Release version tracking (0.6.0)
 ```
 
 ## License

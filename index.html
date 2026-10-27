@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta name="description" content="studio2201 — Wayland-native GNOME Shell extensions, zero-dependency Rust CI/CD security actions, and interactive web engineering." />
-<meta name="theme-color" content="#f7f5f0" />
+<meta name="theme-color" content="#070a0f" />
 <title>studio2201 — GNOME Desktop Suite, CI/CD Security Actions &amp; Web</title>
 <link rel="canonical" href="https://studio2201.com/" />
 <meta property="og:site_name" content="studio2201" />
@@ -20,29 +20,46 @@
 <meta name="twitter:description" content="Six Wayland-native GNOME Shell extensions, five pure-Rust CI/CD supply-chain gates, and zero-bloat web storefronts." />
 <meta name="twitter:image" content="https://studio2201.com/assets/og-image.png" />
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Outfit:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Outfit:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap">
 <link rel="stylesheet" href="styles.css" />
 <link rel="stylesheet" href="components.css" />
 <link rel="icon" type="image/svg+xml" href="assets/favicon.svg"><link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png">
 <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png" />
+<script>
+(function(){var T={cyan:["#6ad7e1","106,215,225"],emerald:["#2ec27e","46,194,126"],amber:["#fbb86c","251,184,108"],coral:["#ff5555","255,85,85"]},O=["cyan","emerald","amber","coral"];window.setSuiteTheme=function(n){var c=T[n]||T.emerald,r=document.documentElement;r.style.setProperty("--primary",c[0]);r.style.setProperty("--accent",c[0]);r.style.setProperty("--primary-rgb",c[1]);r.style.setProperty("--primary-soft","rgba("+c[1]+",0.14)");try{localStorage.setItem("studio2201_theme",n);}catch(e){}var s=document.querySelectorAll(".swatch");for(var i=0;i<s.length;i++)s[i].classList.toggle("active",s[i].dataset.t===n);};window.cycleSuiteTheme=function(){var k="emerald";try{k=localStorage.getItem("studio2201_theme")||"emerald";}catch(e){}window.setSuiteTheme(O[(O.indexOf(k)+1)%4]);};try{var s=localStorage.getItem("studio2201_theme");if(s&&T[s])window.setSuiteTheme(s);}catch(e){}})();
+</script>
 </head>
 <body>
 <main class="page">
-  <nav class="top-nav" aria-label="Primary sections">
-    <a class="brand-pill" href="https://studio2201.com">studio2201 // lab</a>
+  <nav class="top-nav" aria-label="Studio 2201 Omni-Bar">
+    <div class="brand-cluster">
+      <a class="brand-pill" href="https://studio2201.com">studio2201 // LAB</a>
+      <span class="status-pill">● 16 REPOS · &le;256 LOC</span>
+    </div>
     <div class="nav-pills">
-      <a href="#gnome">01 · GNOME Extensions</a>
-      <a href="#products">02 · CI/CD &amp; Security</a>
-      <a href="#web">03 · Webpages &amp; Demos</a>
-      <a href="#agents">04 · AI Agents</a>
-      <a href="#install">05 · Scorecards</a>
-      <a href="#doctrine">06 · Doctrine</a>
+      <a href="#gnome">GNOME Suite</a>
+      <a href="#products">CI/CD Gates</a>
+      <a href="agents.html">Agents &amp; MCP</a>
+      <a href="https://ubermetroid.github.io/tuition-not-coffee">🎓 Tuition, Not Coffee</a>
+      <a href="https://github.com/UberMetroid">@UberMetroid</a>
+    </div>
+    <div class="theme-cluster" aria-label="Suite Theme Switcher">
+      <button type="button" class="swatch" data-t="cyan" style="background:#6ad7e1" title="Cyan #6ad7e1" onclick="setSuiteTheme('cyan')"></button>
+      <button type="button" class="swatch active" data-t="emerald" style="background:#2ec27e" title="Emerald #2ec27e" onclick="setSuiteTheme('emerald')"></button>
+      <button type="button" class="swatch" data-t="amber" style="background:#fbb86c" title="Amber #fbb86c" onclick="setSuiteTheme('amber')"></button>
+      <button type="button" class="swatch" data-t="coral" style="background:#ff5555" title="Coral #ff5555" onclick="setSuiteTheme('coral')"></button>
+      <button type="button" class="cycle-btn" title="Cycle Suite Theme" onclick="cycleSuiteTheme()">↻</button>
     </div>
   </nav>
 
+  <details class="agent-brief">
+    <summary>[ // AI AGENT &amp; CLI BRIEF — curl -fsSL https://studio2201.com/install.sh | sh -s all ]</summary>
+    <p>Machine-first overview: 6 Wayland GNOME 45–50 extensions (<a href="https://studio2201.github.io/kelp/">Kelp</a>, <a href="https://studio2201.github.io/reef/">Reef</a>, <a href="https://studio2201.github.io/tide/">Tide</a>, <a href="https://studio2201.github.io/coral/">Coral</a>, <a href="https://studio2201.github.io/seabed/">Seabed</a>, <a href="https://studio2201.github.io/shoal/">Shoal</a>) + 5 pure-<code>std::</code> Rust CI/CD gates (<a href="/snip">Snip</a>, <a href="/vigil">Vigil</a>, <a href="/aegis">Aegis</a>, <a href="/proven">Proven</a>, <a href="/boneyard">Boneyard</a>) · <a href="agents.html">Agent &amp; MCP Spec</a> · <a href="canary.html">Canary Testbed</a>.</p>
+  </details>
+
   <header class="hero">
     <div class="badge-bar">
-      <a href="https://github.com/studio2201"><img src="https://img.shields.io/badge/studio2201-16%20Open--Source%20Repos-2f6f5e?logo=github" alt="studio2201 GitHub"></a>
+      <a href="https://github.com/studio2201"><img src="https://img.shields.io/badge/studio2201-16%20Open--Source%20Repos-2ec27e?logo=github" alt="studio2201 GitHub"></a>
       <span class="tag ocean">6 GNOME 45–50 Extensions</span>
       <span class="tag green">5 Rust CI/CD Gates</span>
       <span class="tag violet">&le; 256 LOC Page Rule</span>
@@ -56,55 +73,49 @@
     </div>
   </header>
 
+  <aside class="ticker" aria-label="Studio 2201 Architecture Telemetry">
+    <div class="ticker-track">
+      <span class="chip">KELP · WAYLAND AUTO-TILER</span><span class="chip">REEF · INTELLIGENT DOCK</span><span class="chip">TIDE · SUPER LAUNCHER</span><span class="chip">CORAL · SMART APP GRID</span><span class="chip">SEABED · DESKTOP ICONS</span><span class="chip">SHOAL · SYSTEM TRAY</span><span class="chip">VIGIL · DORMANCY SCANNER</span><span class="chip">SNIP · VIBE-CODE GATE</span><span class="chip">AEGIS · PQC MIGRATION SDK</span><span class="chip">PROVEN · ML-DSA-65 SLSA</span><span class="chip">BONEYARD · TECH-DEBT RADAR</span><span class="chip">ZERO CRATES.IO DEPS · &le;256 LOC</span><span class="chip">KELP · WAYLAND AUTO-TILER</span><span class="chip">REEF · INTELLIGENT DOCK</span><span class="chip">TIDE · SUPER LAUNCHER</span><span class="chip">CORAL · SMART APP GRID</span>
+    </div>
+  </aside>
+
   <section id="gnome">
     <p class="eyebrow num">01 · GNOME SHELL DESKTOP SUITE (WAYLAND 45–50)</p>
     <h2>The Ocean Desktop Suite. Zero subprocesses. Instant color sync.</h2>
     <p class="lede small">Six cohesive Wayland-native extensions for GNOME Shell 45–50. Engineered with zero external helper daemons, strict signal symmetry, <code>shexli</code> 0-warning EGO compliance, and one-click <strong>Sync Color Across Suite</strong> accent borders.</p>
     <div class="products">
       <a class="product ocean" href="https://studio2201.github.io/kelp/">
-        <div>
-          <div class="product-head"><span class="tag ocean">v2.2.0 · Auto-Tiler</span><h3>Kelp</h3></div>
-          <p class="product-body">Three instant Wayland layout modes — <strong>Octopus (2D Binary Grid)</strong>, <strong>Seahorse (Scrolling Strip)</strong>, and <strong>Otter (Floating)</strong> — with window stacking, Hyprland-style navigation, and active focus borders.</p>
-        </div>
+        <div><div class="product-head"><span class="tag ocean">v2.2.0 · Auto-Tiler</span><h3>Kelp</h3></div>
+          <p class="product-body">Three instant Wayland layout modes — <strong>Octopus (2D Binary Grid)</strong>, <strong>Seahorse (Scrolling Strip)</strong>, and <strong>Otter (Floating)</strong> — with window stacking, Hyprland-style navigation, and active focus borders.</p></div>
         <span class="more">kelp@studio2201.github.io →</span>
       </a>
       <a class="product ocean" href="https://studio2201.github.io/reef/">
-        <div>
-          <div class="product-head"><span class="tag ocean">v1.2.0 · Dock &amp; Panel</span><h3>Reef</h3></div>
-          <p class="product-body">Intelligent screen-edge dock with Wayland pressure barriers, Kelp-friendly window-dodge intellihide, scroll wheel window/workspace cycling, and floating pill or full-edge panel styling.</p>
-        </div>
+        <div><div class="product-head"><span class="tag ocean">v1.2.0 · Dock &amp; Panel</span><h3>Reef</h3></div>
+          <p class="product-body">Intelligent screen-edge dock with Wayland pressure barriers, Kelp-friendly window-dodge intellihide, scroll wheel window/workspace cycling, and floating pill or full-edge panel styling.</p></div>
         <span class="more">reef@studio2201.github.io →</span>
       </a>
       <a class="product ocean" href="https://studio2201.github.io/tide/">
-        <div>
-          <div class="product-head"><span class="tag ocean">v1.2.1 · App Launcher</span><h3>Tide</h3></div>
-          <p class="product-body">Super &amp; <code>Super+Enter</code> modal application and open-window launcher with instant subsequence fuzzy scoring across workspaces, <code>Ctrl+1..9</code> quick launch badges, and Ocean Cyan borders.</p>
-        </div>
+        <div><div class="product-head"><span class="tag ocean">v1.2.1 · App Launcher</span><h3>Tide</h3></div>
+          <p class="product-body">Super &amp; <code>Super+Enter</code> modal application and open-window launcher with instant subsequence fuzzy scoring across workspaces, <code>Ctrl+1..9</code> quick launch badges, and Ocean Cyan borders.</p></div>
         <span class="more">tide@studio2201.github.io →</span>
       </a>
       <a class="product ocean" href="https://studio2201.github.io/coral/">
-        <div>
-          <div class="product-head"><span class="tag ocean">v1.4.0 · App Grid</span><h3>Coral</h3></div>
-          <p class="product-body">Alphabetical App Grid and Smart Auto-Folder Organizer that prevents multi-page icon overflow by automatically grouping loose apps into labeled freedesktop category folders.</p>
-        </div>
+        <div><div class="product-head"><span class="tag ocean">v1.4.0 · App Grid</span><h3>Coral</h3></div>
+          <p class="product-body">Alphabetical App Grid and Smart Auto-Folder Organizer that prevents multi-page icon overflow by automatically grouping loose apps into labeled freedesktop category folders.</p></div>
         <span class="more">coral@studio2201.github.io →</span>
       </a>
       <a class="product ocean" href="https://studio2201.github.io/seabed/">
-        <div>
-          <div class="product-head"><span class="tag ocean">v1.5.0 · Desktop Icons</span><h3>Seabed</h3></div>
-          <p class="product-body">Renders <code>~/Desktop</code>, Home, Trash, and mounted drives directly inside <code>_backgroundGroup</code> with zero GTK subprocesses, bidirectional file-manager drag-and-drop, and live thumbnails.</p>
-        </div>
+        <div><div class="product-head"><span class="tag ocean">v1.5.0 · Desktop Icons</span><h3>Seabed</h3></div>
+          <p class="product-body">Renders <code>~/Desktop</code>, Home, Trash, and mounted drives directly inside <code>_backgroundGroup</code> with zero GTK subprocesses, bidirectional file-manager drag-and-drop, and live thumbnails.</p></div>
         <span class="more">seabed@studio2201.github.io →</span>
       </a>
       <a class="product ocean" href="https://studio2201.github.io/shoal/">
-        <div>
-          <div class="product-head"><span class="tag ocean">v1.2.0 · System Tray</span><h3>Shoal</h3></div>
-          <p class="product-body">Wayland-native AppIndicator, KStatusNotifierItem (<code>SNI</code>), DBusMenu, and legacy XWayland system tray icons in the GNOME top bar with real-time Clutter monochrome/contrast shaders.</p>
-        </div>
+        <div><div class="product-head"><span class="tag ocean">v1.2.0 · System Tray</span><h3>Shoal</h3></div>
+          <p class="product-body">Wayland-native AppIndicator, KStatusNotifierItem (<code>SNI</code>), DBusMenu, and legacy XWayland system tray icons in the GNOME top bar with real-time Clutter monochrome/contrast shaders.</p></div>
         <span class="more">shoal@studio2201.github.io →</span>
       </a>
     </div>
-    <p class="ecosystem-tag"><strong>One-Click Suite Color Sync:</strong> Pick an accent border color in any extension's preferences (Coral, Kelp, Reef, Seabed, or Tide) and click <strong>Sync Suite Color</strong> to theme your entire GNOME desktop simultaneously.</p>
+    <p class="ecosystem-tag"><strong>One-Click Suite Color Sync:</strong> Pick an accent border color in any extension's preferences (Coral, Kelp, Reef, Seabed, or Tide) and click <strong>Sync Suite Color</strong> — or test the 4 signature colors right now in the Omni-Bar above.</p>
   </section>
 
   <section id="products">
@@ -113,45 +124,33 @@
     <p class="lede small">Every tool compiles from pure <code>std::</code> Rust in seconds, runs as a drop-in GitHub Action (<code>studio2201/studio2201@v1</code>) or unified CLI (<code>studio2201 check</code>), and returns deterministic tri-state exit codes.</p>
     <div class="products">
       <a class="product" href="/vigil">
-        <div>
-          <div class="product-head"><span class="tag green">v0.2.13 · Dormancy</span><h3>Vigil</h3></div>
-          <p class="product-body">Supply-chain dormancy scanner. Reads <code>package.json</code>, <code>Cargo.lock</code>, and <code>pyproject.toml</code>, scores abandonment risk, and emits <code>SUPPLY-CHAIN.md</code>.</p>
-        </div>
+        <div><div class="product-head"><span class="tag green">v0.2.13 · Dormancy</span><h3>Vigil</h3></div>
+          <p class="product-body">Supply-chain dormancy scanner. Reads <code>package.json</code>, <code>Cargo.lock</code>, and <code>pyproject.toml</code>, scores abandonment risk, and emits <code>SUPPLY-CHAIN.md</code>.</p></div>
         <span class="more">Overview &amp; Action Specs →</span>
       </a>
       <a class="product" href="/snip">
-        <div>
-          <div class="product-head"><span class="tag green">v0.2.11 · Vibe-Code Gate</span><h3>Snip</h3></div>
-          <p class="product-body">Audits AI-generated diffs for leaked secrets, PII, missing CORS, and broken Supabase RLS. Runs as an MCP server, pre-commit hook, and PR gate.</p>
-        </div>
+        <div><div class="product-head"><span class="tag green">v0.2.11 · Vibe-Code Gate</span><h3>Snip</h3></div>
+          <p class="product-body">Audits AI-generated diffs for leaked secrets, PII, missing CORS, and broken Supabase RLS. Runs as an MCP server, pre-commit hook, and PR gate.</p></div>
         <span class="more">Overview &amp; Action Specs →</span>
       </a>
       <a class="product" href="/aegis">
-        <div>
-          <div class="product-head"><span class="tag green">v0.2.12 · Post-Quantum</span><h3>Aegis</h3></div>
-          <p class="product-body">Post-Quantum Cryptography migration scanner. Flags classical RSA/ECC call sites breaching OMB M-26-15 and emits ML-KEM-768 / ML-DSA-65 plans.</p>
-        </div>
+        <div><div class="product-head"><span class="tag green">v0.2.12 · Post-Quantum</span><h3>Aegis</h3></div>
+          <p class="product-body">Post-Quantum Cryptography migration scanner. Flags classical RSA/ECC call sites breaching OMB M-26-15 and emits ML-KEM-768 / ML-DSA-65 plans.</p></div>
         <span class="more">Overview &amp; Action Specs →</span>
       </a>
       <a class="product" href="/proven">
-        <div>
-          <div class="product-head"><span class="tag green">v0.2.11 · Attestation</span><h3>Proven</h3></div>
-          <p class="product-body">PQC-signed SLSA L3+ supply-chain attestor. Verifies reproducible Rust binary byte-identity signed with pure <code>std::</code> FIPS 204 ML-DSA-65.</p>
-        </div>
+        <div><div class="product-head"><span class="tag green">v0.2.11 · Attestation</span><h3>Proven</h3></div>
+          <p class="product-body">PQC-signed SLSA L3+ supply-chain attestor. Verifies reproducible Rust binary byte-identity signed with pure <code>std::</code> FIPS 204 ML-DSA-65.</p></div>
         <span class="more">Overview &amp; Action Specs →</span>
       </a>
       <a class="product" href="/boneyard">
-        <div>
-          <div class="product-head"><span class="tag green">v0.2.12 · Tech-Debt Radar</span><h3>Boneyard</h3></div>
-          <p class="product-body">Org-wide repository health radar. Ranks repositories into a 0–100 Boneyard Index by dormancy, exposure, dependency depth, and maintenance budget.</p>
-        </div>
+        <div><div class="product-head"><span class="tag green">v0.2.12 · Tech-Debt Radar</span><h3>Boneyard</h3></div>
+          <p class="product-body">Org-wide repository health radar. Ranks repositories into a 0–100 Boneyard Index by dormancy, exposure, dependency depth, and maintenance budget.</p></div>
         <span class="more">Overview &amp; Action Specs →</span>
       </a>
       <a class="product" href="https://github.com/studio2201/cli">
-        <div>
-          <div class="product-head"><span class="tag green">v0.1.13 · Toolchain CLI</span><h3>studio2201 CLI</h3></div>
-          <p class="product-body">Unified workstation driver (<code>studio2201 install</code>, <code>check</code>, <code>init</code>, <code>upgrade</code>) plus our negative testbed (<a href="/canary">Canary</a>) proving every gate fails closed.</p>
-        </div>
+        <div><div class="product-head"><span class="tag green">v0.1.13 · Toolchain CLI</span><h3>studio2201 CLI</h3></div>
+          <p class="product-body">Unified workstation driver (<code>studio2201 install</code>, <code>check</code>, <code>init</code>, <code>upgrade</code>) plus our negative testbed (<a href="/canary">Canary</a>) proving every gate fails closed.</p></div>
         <span class="more">github.com/studio2201/cli →</span>
       </a>
     </div>
@@ -160,19 +159,18 @@
   <section id="web">
     <p class="eyebrow num">03 · WEBPAGES, DOCS PORTALS &amp; COMMUNITY</p>
     <h2>Handcrafted static webpages. Zero bundlers. Zero trackers.</h2>
-    <p class="lede small">Every project ships with its own responsive, sub-50ms static microsite hosted on GitHub Pages — built with semantic HTML/CSS, zero JavaScript framework bloat, and verified in CI for &le; 256 LOC per file.</p>
     <div class="card-grid">
       <div class="feature-item">
         <h4><span class="tag violet">Portal</span> studio2201.com</h4>
         <p>Main architectural storefront, interactive <a href="agents.html">AI Agent &amp; MCP Guide</a>, and <a href="canary.html">Canary Failure Showcase</a> with XML sitemap validation.</p>
       </div>
       <div class="feature-item">
-        <h4><span class="tag ocean">Microsites</span> GNOME Suite Pages</h4>
-        <p>Dedicated landing pages for <a href="https://studio2201.github.io/kelp/">Kelp</a>, <a href="https://studio2201.github.io/reef/">Reef</a>, <a href="https://studio2201.github.io/tide/">Tide</a>, <a href="https://studio2201.github.io/coral/">Coral</a>, <a href="https://studio2201.github.io/seabed/">Seabed</a>, and <a href="https://studio2201.github.io/shoal/">Shoal</a> with dark ocean glassmorphism and direct <code>.zip</code> releases.</p>
+        <h4><span class="tag ocean">Microsites</span> GNOME Suite &amp; Sister Sites</h4>
+        <p>Unified dark obsidian glassmorphic portals for <a href="https://studio2201.github.io/kelp/">Kelp</a>, <a href="https://studio2201.github.io/reef/">Reef</a>, <a href="https://studio2201.github.io/tide/">Tide</a>, <a href="https://studio2201.github.io/coral/">Coral</a>, <a href="https://studio2201.github.io/seabed/">Seabed</a>, <a href="https://studio2201.github.io/shoal/">Shoal</a>, <a href="https://idlescreen.github.io">IdleScreen</a>, and <a href="https://ubermetroid.github.io/thrall/">THRALL</a>.</p>
       </div>
       <div class="feature-item">
         <h4><span class="tag amber">Sponsor</span> Tuition, Not Coffee 🎓</h4>
-        <p>Instead of buying coffee, supporters help fund our daughter's college tuition via <a href="https://ubermetroid.github.io/tuition-not-coffee">Tuition, Not Coffee</a> — linked in every extension's About tab.</p>
+        <p>Instead of buying coffee, 100% of sponsorships fund our daughter's college tuition via <a href="https://ubermetroid.github.io/tuition-not-coffee">Tuition, Not Coffee</a> by <a href="https://github.com/UberMetroid">@UberMetroid</a>.</p>
       </div>
     </div>
   </section>
@@ -183,10 +181,8 @@
     <div class="code-box">
       <pre><code># Install the unified studio2201 Rust security toolchain into ~/.local/bin:
 curl -fsSL https://studio2201.com/install.sh | sh -s all && studio2201 check
-
 # Or install any studio2201 GNOME Shell extension from its latest release zip:
-gnome-extensions install --force kelp@studio2201.github.io.shell-extension.zip
-gnome-extensions enable kelp@studio2201.github.io</code></pre>
+gnome-extensions install --force kelp@studio2201.github.io.shell-extension.zip</code></pre>
     </div>
     <div class="cta">
       <a class="btn primary" href="agents.html">Read the Agent &amp; MCP Guide →</a>
@@ -202,12 +198,12 @@ gnome-extensions enable kelp@studio2201.github.io</code></pre>
         <table class="scorecard-table">
           <thead><tr><th>Security Pillar</th><th>Verification Badge</th></tr></thead>
           <tbody>
-            <tr><td><b>Platform Standard</b></td><td><a href="/"><img src="https://img.shields.io/badge/secured%20by-studio2201-2f6f5e?logo=shield" alt="secured by studio2201"></a></td></tr>
-            <tr><td><b>Credential Defense</b></td><td><a href="/snip"><img src="https://img.shields.io/badge/snip-0%20secrets-2f6f5e?logo=shield" alt="snip: 0 secrets"></a></td></tr>
-            <tr><td><b>Supply Chain Surface</b></td><td><a href="/vigil"><img src="https://img.shields.io/badge/vigil-0%20dependencies-2f6f5e?logo=shield" alt="vigil: 0 dependencies"></a></td></tr>
-            <tr><td><b>Post-Quantum Cryptography</b></td><td><a href="/aegis"><img src="https://img.shields.io/badge/aegis-PQC%20compliant-2f6f5e?logo=shield" alt="aegis: PQC compliant"></a></td></tr>
-            <tr><td><b>Build Provenance &amp; SLSA</b></td><td><a href="/proven"><img src="https://img.shields.io/badge/proven-ML--DSA--65%20verified-2f6f5e?logo=shield" alt="proven: ML-DSA-65 verified"></a></td></tr>
-            <tr><td><b>Repository Governance</b></td><td><a href="/boneyard"><img src="https://img.shields.io/badge/boneyard-maintained-2f6f5e?logo=shield" alt="boneyard: maintained"></a></td></tr>
+            <tr><td><b>Platform Standard</b></td><td><a href="/"><img src="https://img.shields.io/badge/secured%20by-studio2201-2ec27e?logo=shield" alt="secured by studio2201"></a></td></tr>
+            <tr><td><b>Credential Defense</b></td><td><a href="/snip"><img src="https://img.shields.io/badge/snip-0%20secrets-2ec27e?logo=shield" alt="snip: 0 secrets"></a></td></tr>
+            <tr><td><b>Supply Chain Surface</b></td><td><a href="/vigil"><img src="https://img.shields.io/badge/vigil-0%20dependencies-2ec27e?logo=shield" alt="vigil: 0 dependencies"></a></td></tr>
+            <tr><td><b>Post-Quantum Cryptography</b></td><td><a href="/aegis"><img src="https://img.shields.io/badge/aegis-PQC%20compliant-2ec27e?logo=shield" alt="aegis: PQC compliant"></a></td></tr>
+            <tr><td><b>Build Provenance &amp; SLSA</b></td><td><a href="/proven"><img src="https://img.shields.io/badge/proven-ML--DSA--65%20verified-2ec27e?logo=shield" alt="proven: ML-DSA-65 verified"></a></td></tr>
+            <tr><td><b>Repository Governance</b></td><td><a href="/boneyard"><img src="https://img.shields.io/badge/boneyard-maintained-2ec27e?logo=shield" alt="boneyard: maintained"></a></td></tr>
           </tbody>
         </table>
       </div>
@@ -217,18 +213,26 @@ gnome-extensions enable kelp@studio2201.github.io</code></pre>
   <section id="doctrine">
     <p class="eyebrow num">06 · ENGINEERING DOCTRINE &amp; CONTACT</p>
     <h2>The 256-Line Page Rule &amp; Zero-Bloat Constitution.</h2>
-    <p class="lede small">Every source file across all 16 <strong>studio2201</strong> repositories — whether pure <code>std::</code> Rust, Wayland GJS compositor modules, or static HTML/CSS — fits on a single 16&ndash;256 line page with zero hidden dependencies and fail-closed verification gates.</p>
+    <p class="lede small">Every source file across all 16 <strong>studio2201</strong> repositories fits on a single 16&ndash;256 line page with zero hidden dependencies and fail-closed verification gates.</p>
     <div class="cta">
       <a class="btn primary" href="https://github.com/studio2201/studio2201/blob/master/DESIGN.md">Read Architecture &amp; Doctrine →</a>
-      <a class="btn ghost" href="https://github.com/studio2201">Explore all 16 Repositories on GitHub →</a>
-      <a class="btn ghost" href="https://ubermetroid.github.io/tuition-not-coffee">🎓 Sponsor: Tuition, Not Coffee →</a>
+      <a class="btn ghost" href="https://github.com/studio2201">Explore all 16 Repositories →</a>
+      <a class="btn ghost" href="https://ubermetroid.github.io/tuition-not-coffee">🎓 Tuition, Not Coffee →</a>
     </div>
   </section>
 
   <footer class="foot">
     <p>studio2201 · GNOME Shell Desktop Suite (GPL-3.0) &amp; Supply-Chain Security Tools (Apache-2.0) · &le; 256 LOC per file</p>
-    <p class="small">Updated 2026-10-27 · <a href="https://github.com/studio2201">github.com/studio2201</a> · source: <a href="https://github.com/studio2201/studio2201.com">studio2201/studio2201.com</a></p>
+    <p class="small">Updated 2026-10-27 · <a href="https://github.com/studio2201">@studio2201</a> · <a href="https://github.com/UberMetroid">@UberMetroid</a> · <a href="https://ubermetroid.github.io/tuition-not-coffee">🎓 Tuition, Not Coffee</a></p>
   </footer>
 </main>
+<div class="chibi-dock">
+  <a class="dock-pill" href="https://ubermetroid.github.io/tuition-not-coffee" title="Tuition, Not Coffee">🎓</a>
+  <div class="dock-bubble">
+    <strong>STUDIO 2201 // ABYSSAL OS</strong><br>
+    <a href="#gnome">GNOME Suite</a> · <a href="#products">CI/CD Gates</a> · <a href="https://github.com/UberMetroid">@UberMetroid</a><br>
+    <a href="https://ubermetroid.github.io/tuition-not-coffee">🎓 Tuition, Not Coffee →</a>
+  </div>
+</div>
 </body>
 </html>

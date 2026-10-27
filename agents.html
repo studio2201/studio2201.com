@@ -4,42 +4,75 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta name="description" content="studio2201 Agent & Automation Guide — Headless CLI flags, MCP configuration, agent rules, CI diff gates, and 5-tool matrix." />
-<meta name="theme-color" content="#f7f5f0" />
-<title>Agent & Automation Guide · studio2201</title>
+<meta name="theme-color" content="#070a0f" />
+<title>Agent &amp; Automation Guide · studio2201</title>
 <link rel="canonical" href="https://studio2201.com/agents" />
 <meta property="og:site_name" content="studio2201" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://studio2201.com/agents" />
-<meta property="og:title" content="Agent & Automation Guide · studio2201" />
+<meta property="og:title" content="Agent &amp; Automation Guide · studio2201" />
 <meta property="og:description" content="Machine-first CLI patterns, MCP server configurations, IDE agent rules, and CI/CD pipelines for autonomous loops." />
 <meta property="og:image" content="https://studio2201.com/assets/og-image.png" />
 <meta name="twitter:card" content="summary_large_image" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet"
-  href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Outfit:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Outfit:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap">
 <link rel="stylesheet" href="styles.css" />
 <link rel="stylesheet" href="components.css" />
 <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
 <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png" />
+<script>
+(function(){var T={cyan:["#6ad7e1","106,215,225"],emerald:["#2ec27e","46,194,126"],amber:["#fbb86c","251,184,108"],coral:["#ff5555","255,85,85"]},O=["cyan","emerald","amber","coral"];window.setSuiteTheme=function(n){var c=T[n]||T.emerald,r=document.documentElement;r.style.setProperty("--primary",c[0]);r.style.setProperty("--accent",c[0]);r.style.setProperty("--primary-rgb",c[1]);r.style.setProperty("--primary-soft","rgba("+c[1]+",0.14)");try{localStorage.setItem("studio2201_theme",n);}catch(e){}var s=document.querySelectorAll(".swatch");for(var i=0;i<s.length;i++)s[i].classList.toggle("active",s[i].dataset.t===n);};window.cycleSuiteTheme=function(){var k="emerald";try{k=localStorage.getItem("studio2201_theme")||"emerald";}catch(e){}window.setSuiteTheme(O[(O.indexOf(k)+1)%4]);};try{var s=localStorage.getItem("studio2201_theme");if(s&&T[s])window.setSuiteTheme(s);}catch(e){}})();
+</script>
 </head>
 <body>
 <main class="page">
-  <nav><a class="nav-back" href="/">← studio2201.com</a></nav>
+  <nav class="top-nav" aria-label="Studio 2201 Omni-Bar">
+    <div class="brand-cluster">
+      <a class="brand-pill" href="/">studio2201 // LAB</a>
+      <span class="status-pill">● 16 REPOS · &le;256 LOC</span>
+    </div>
+    <div class="nav-pills">
+      <a href="/#gnome">GNOME Suite</a>
+      <a href="/#products">CI/CD Gates</a>
+      <a href="/agents">Agents &amp; MCP</a>
+      <a href="https://ubermetroid.github.io/tuition-not-coffee">🎓 Tuition, Not Coffee</a>
+      <a href="https://github.com/UberMetroid">@UberMetroid</a>
+    </div>
+    <div class="theme-cluster" aria-label="Suite Theme Switcher">
+      <button type="button" class="swatch" data-t="cyan" style="background:#6ad7e1" title="Cyan #6ad7e1" onclick="setSuiteTheme('cyan')"></button>
+      <button type="button" class="swatch active" data-t="emerald" style="background:#2ec27e" title="Emerald #2ec27e" onclick="setSuiteTheme('emerald')"></button>
+      <button type="button" class="swatch" data-t="amber" style="background:#fbb86c" title="Amber #fbb86c" onclick="setSuiteTheme('amber')"></button>
+      <button type="button" class="swatch" data-t="coral" style="background:#ff5555" title="Coral #ff5555" onclick="setSuiteTheme('coral')"></button>
+      <button type="button" class="cycle-btn" title="Cycle Suite Theme" onclick="cycleSuiteTheme()">↻</button>
+    </div>
+  </nav>
+
+  <details class="agent-brief">
+    <summary>[ // AI AGENT &amp; CLI BRIEF — curl -fsSL https://studio2201.com/install.sh | sh -s all &amp;&amp; studio2201 check ]</summary>
+    <p>Machine-first automation specification: tri-state exit codes (`0` ship, `1` block, `2` error), `snip serve --mcp` stdio server, `.cursorrules` / `CLAUDE.md` directives, and CI workflows.</p>
+  </details>
+
   <header class="hero">
     <div class="badge-bar">
-      <a href="https://studio2201.com"><img src="https://img.shields.io/badge/secured%20by-studio2201-2f6f5e?logo=shield" alt="secured by studio2201"></a>
-      <span class="tag green">v0.4.22</span>
+      <a href="https://studio2201.com"><img src="https://img.shields.io/badge/secured%20by-studio2201-2ec27e?logo=shield" alt="secured by studio2201"></a>
+      <span class="tag green">v0.6.0</span>
       <span class="tag green">Security &amp; Governance</span>
       <span class="tag green">Apache-2.0</span>
     </div>
-    <h1>Agent & Automation Guide</h1>
-    <p class="lede">Zero-dependency, machine-first security tooling for autonomous coding agents,
-      MCP servers, pre-commit diff hooks, and CI/CD pipelines.</p>
-    <div class="cta"><a class="btn primary" href="#badges">Badges & Scorecards ↓</a> <a class="btn ghost" href="#matrix">5-Tool Matrix ↓</a></div>
+    <h1>Agent &amp; Automation Guide</h1>
+    <p class="lede">Zero-dependency, machine-first security tooling for autonomous coding agents, MCP servers, pre-commit diff hooks, and CI/CD pipelines.</p>
+    <div class="cta"><a class="btn primary" href="#badges">Badges &amp; Scorecards ↓</a> <a class="btn ghost" href="#matrix">5-Tool Matrix ↓</a></div>
   </header>
+
+  <aside class="ticker" aria-label="Agent & MCP Telemetry">
+    <div class="ticker-track">
+      <span class="chip">STDIO MCP SERVER · SNIP SERVE --MCP</span><span class="chip">TRI-STATE EXIT CODES (0 / 1 / 2)</span><span class="chip">STUDIO2201 CHECK</span><span class="chip">GITHUB ACTION · STUDIO2201/STUDIO2201@V1</span><span class="chip">STDIO MCP SERVER · SNIP SERVE --MCP</span><span class="chip">TRI-STATE EXIT CODES (0 / 1 / 2)</span><span class="chip">STUDIO2201 CHECK</span>
+    </div>
+  </aside>
+
   <section id="headless">
     <p class="eyebrow num">01</p>
-    <h2>Headless & Machine CLI</h2>
+    <h2>Headless &amp; Machine CLI</h2>
     <p class="lede small">All five tools implement a strict headless contract for programmatic integration into agent toolkits and background watchers.</p>
     <div class="card-grid">
       <div class="feature-item">
@@ -52,59 +85,33 @@
       </div>
     </div>
     <div class="code-box">
-      <pre><code># Stream staged diff directly to snip in machine-readable JSON:
-git diff --staged | snip audit --format json
-# Silent gate assertion (exits 0 on clean, 1 on violation):
+      <pre><code>git diff --staged | snip audit --format json
 git diff --staged | snip audit -q || echo "Security violation detected"</code></pre>
     </div>
   </section>
+
   <section id="mcp">
     <p class="eyebrow num">02</p>
-    <h2>Model Context Protocol (MCP)</h2>
-    <p class="lede small">Run <code>snip serve --mcp</code> to expose real-time diff auditing directly to Claude Desktop, Cursor, and Windsurf via stdio.</p>
+    <h2>Model Context Protocol (MCP) &amp; Agent Rules</h2>
+    <p class="lede small">Run <code>snip serve --mcp</code> to expose real-time diff auditing to Claude Desktop, Cursor, and Windsurf, and drop these directives into <code>.cursorrules</code> or <code>CLAUDE.md</code>:</p>
     <div class="code-box">
       <pre><code>// claude_desktop_config.json or ~/.cursor/mcp.json
-{
-  "mcpServers": {
-    "snip": { "command": "snip", "args": ["serve", "--mcp"] }
-  }
-}</code></pre>
-    </div>
-  </section>
-  <section id="rules">
-    <p class="eyebrow num">03</p>
-    <h2>Agent Rules & Prompts</h2>
-    <p class="lede small">Drop these directives into your project's <code>.cursorrules</code>, <code>CLAUDE.md</code>, or agent system prompts:</p>
-    <div class="code-box">
-      <pre><code># studio2201 Autonomous Security Rules
+{ "mcpServers": { "snip": { "command": "snip", "args": ["serve", "--mcp"] } } }
+
+# studio2201 Autonomous Security Rules (.cursorrules / CLAUDE.md)
 - Run 'studio2201 check' before completing tasks to audit diffs, manifests, and crypto.
 - If Snip emits exit code 1 (Block/Fix): remediate leaked secrets, broken RLS, or permissive CORS.
 - If Vigil emits exit code 1: reject dormant packages (>180d) in package.json, Cargo.lock, or pyproject.toml.
 - If Aegis emits exit code 1: upgrade classical cryptography to NIST PQC standards (ML-KEM, ML-DSA).</code></pre>
     </div>
   </section>
+
   <section id="pipelines">
-    <p class="eyebrow num">04</p>
-    <h2>CI/CD & Pre-Commit Pipelines</h2>
-    <p class="lede small">Gate code modifications locally before commits are created and continuously in pull request workflows.</p>
+    <p class="eyebrow num">03</p>
+    <h2>CI/CD &amp; Pre-Commit Pipelines</h2>
+    <p class="lede small">Gate code modifications locally before commits are created and continuously in pull request workflows using <code>studio2201/studio2201@v1</code>.</p>
     <div class="code-box">
-      <pre><code>#!/bin/sh
-# .git/hooks/pre-commit — Local pre-commit diff gate
-git diff --staged | snip audit -q || { echo "[-] Snip pre-commit gate failed" >&2; exit 1; }</code></pre>
-    </div>
-    <div class="code-box">
-      <pre><code># Prompt for your AI Agent (Cursor, Claude Code, Copilot, Devin):
-Prepend primary anchor badge and dynamic status badges to README.md:
-[![secured by studio2201](https://img.shields.io/badge/secured%20by-studio2201-2f6f5e?logo=shield)](https://studio2201.com)
-Add 5 dedicated GitHub Actions workflows to this repository (.github/workflows/&lt;tool&gt;.yml):
-- snip.yml (diffs/secrets/RLS) · vigil.yml (manifest dormancy) · aegis.yml (PQC crypto)
-- proven.yml (SLSA attestations) · boneyard.yml (tech-debt radar)
-All workflows trigger on pull_request, push to master/main, and workflow_dispatch,
-use studio2201/studio2201@v1 with fail-on: 'block', and retain *_report.md.
-Embed security verification badges as a centered 2-column scorecard table using &lt;div align="center"&gt;.</code></pre>
-    </div>
-    <div class="code-box">
-      <pre><code># Reference template: .github/workflows/&lt;tool&gt;.yml (replace &lt;tool&gt; with snip, vigil, aegis, proven, boneyard)
+      <pre><code># Reference template: .github/workflows/&lt;tool&gt;.yml (snip, vigil, aegis, proven, boneyard)
 name: snip
 on:
   push: { branches: [ master, main ] }
@@ -127,106 +134,71 @@ jobs:
         with: { name: snip-report, path: snip_report.md, if-no-files-found: ignore }</code></pre>
     </div>
   </section>
-  <section id="badges">
-    <p class="eyebrow num">05</p>
-    <h2>Repository Governance Scorecard</h2>
-    <p class="lede small">Standardized 2-column scorecard centered in your README. Drop-in markdown with zero placeholders:</p>
 
+  <section id="badges">
+    <p class="eyebrow num">04</p>
+    <h2>Repository Governance Scorecard</h2>
     <div class="scorecard-wrap">
       <div class="scorecard-container">
-        <p class="eyebrow" style="margin-bottom:8px;text-align:center;">Scorecard Preview (How it renders in your README)</p>
-        <div class="scorecard-meta">
-          <img src="https://img.shields.io/badge/version-v1.3.14-blue.svg" alt="Version">
-          <img src="https://img.shields.io/badge/license-Apache--2.0-blue.svg" alt="License">
-        </div>
         <table class="scorecard-table">
           <thead><tr><th>Security Pillar</th><th>Verification Badge</th></tr></thead>
           <tbody>
-            <tr><td><b>Platform Standard</b></td>
-              <td><a href="/"><img src="https://img.shields.io/badge/secured%20by-studio2201-2f6f5e?logo=shield" alt="secured by studio2201"></a></td></tr>
-            <tr><td><b>Credential Defense</b></td>
-              <td><a href="/snip"><img src="https://img.shields.io/badge/snip-0%20secrets-2f6f5e?logo=shield" alt="snip: 0 secrets"></a></td></tr>
-            <tr><td><b>Supply Chain Surface</b></td>
-              <td><a href="/vigil"><img src="https://img.shields.io/badge/vigil-0%20dependencies-2f6f5e?logo=shield" alt="vigil: 0 dependencies"></a></td></tr>
-            <tr><td><b>Post-Quantum Cryptography</b></td>
-              <td><a href="/aegis"><img src="https://img.shields.io/badge/aegis-PQC%20compliant-2f6f5e?logo=shield" alt="aegis: PQC compliant"></a></td></tr>
-            <tr><td><b>Build Provenance &amp; SLSA</b></td>
-              <td><a href="/proven"><img src="https://img.shields.io/badge/proven-ML--DSA--65%20verified-2f6f5e?logo=shield" alt="proven: ML-DSA-65 verified"></a></td></tr>
-            <tr><td><b>Repository Governance</b></td>
-              <td><a href="/boneyard"><img src="https://img.shields.io/badge/boneyard-maintained-2f6f5e?logo=shield" alt="boneyard: maintained"></a></td></tr>
+            <tr><td><b>Platform Standard</b></td><td><a href="/"><img src="https://img.shields.io/badge/secured%20by-studio2201-2ec27e?logo=shield" alt="secured by studio2201"></a></td></tr>
+            <tr><td><b>Credential Defense</b></td><td><a href="/snip"><img src="https://img.shields.io/badge/snip-0%20secrets-2ec27e?logo=shield" alt="snip: 0 secrets"></a></td></tr>
+            <tr><td><b>Supply Chain Surface</b></td><td><a href="/vigil"><img src="https://img.shields.io/badge/vigil-0%20dependencies-2ec27e?logo=shield" alt="vigil: 0 dependencies"></a></td></tr>
+            <tr><td><b>Post-Quantum Cryptography</b></td><td><a href="/aegis"><img src="https://img.shields.io/badge/aegis-PQC%20compliant-2ec27e?logo=shield" alt="aegis: PQC compliant"></a></td></tr>
+            <tr><td><b>Build Provenance &amp; SLSA</b></td><td><a href="/proven"><img src="https://img.shields.io/badge/proven-ML--DSA--65%20verified-2ec27e?logo=shield" alt="proven: ML-DSA-65 verified"></a></td></tr>
+            <tr><td><b>Repository Governance</b></td><td><a href="/boneyard"><img src="https://img.shields.io/badge/boneyard-maintained-2ec27e?logo=shield" alt="boneyard: maintained"></a></td></tr>
           </tbody>
         </table>
       </div>
     </div>
-    <div class="code-box">
-      <pre><code>&lt;div align="center"&gt;
-
-| Security Pillar | Verification Badge |
-| :--- | :---: |
-| **Platform Standard** | [![secured by studio2201][b-studio]][u-home] |
-| **Credential Defense** | [![snip][b-snip]][u-snip] |
-| **Supply Chain Surface** | [![vigil][b-vigil]][u-vigil] |
-| **Post-Quantum Cryptography** | [![aegis][b-aegis]][u-aegis] |
-| **Build Provenance &amp; SLSA** | [![proven][b-proven]][u-proven] |
-| **Repository Governance** | [![boneyard][b-boneyard]][u-boneyard] |
-
-[b-studio]: https://img.shields.io/badge/secured%20by-studio2201-2f6f5e?logo=shield
-[u-home]: https://studio2201.com
-[b-snip]: https://img.shields.io/badge/snip-0%20secrets-2f6f5e?logo=shield
-[u-snip]: https://studio2201.com/snip
-[b-vigil]: https://img.shields.io/badge/vigil-0%20dependencies-2f6f5e?logo=shield
-[u-vigil]: https://studio2201.com/vigil
-[b-aegis]: https://img.shields.io/badge/aegis-PQC%20compliant-2f6f5e?logo=shield
-[u-aegis]: https://studio2201.com/aegis
-[b-proven]: https://img.shields.io/badge/proven-ML--DSA--65%20verified-2f6f5e?logo=shield
-[u-proven]: https://studio2201.com/proven
-[b-boneyard]: https://img.shields.io/badge/boneyard-maintained-2f6f5e?logo=shield
-[u-boneyard]: https://studio2201.com/boneyard
-
-&lt;/div&gt;</code></pre>
-    </div>
   </section>
+
   <section id="matrix">
-    <p class="eyebrow num">06</p>
+    <p class="eyebrow num">05</p>
     <h2>5-Tool Automation Matrix</h2>
-    <p class="lede small">How the five studio2201 tools integrate across the autonomous developer loop.</p>
     <div class="card-grid">
       <div class="feature-item">
         <h4>Snip <span class="tag green">vibe-code</span></h4>
-        <p><strong>Phase:</strong> Pre-commit diff · <strong>Command:</strong> <code>git diff --staged | snip audit</code><br>
-        <strong>Exit Codes:</strong> <code>0</code> Ship · <code>1</code> Block · <strong>Action:</strong> Strips secrets, fixes broken RLS/CORS.</p>
-        <a class="more" href="/snip">Overview & Specs →</a>
+        <p><strong>Phase:</strong> Pre-commit diff · <strong>Cmd:</strong> <code>git diff --staged | snip audit</code> · Strips secrets &amp; fixes RLS/CORS.</p>
+        <a class="more" href="/snip">Overview &amp; Specs →</a>
       </div>
       <div class="feature-item">
         <h4>Vigil <span class="tag green">dormancy</span></h4>
-        <p><strong>Phase:</strong> Manifest review · <strong>Command:</strong> <code>vigil policy check --max-dormancy 180 -q</code><br>
-        <strong>Exit Codes:</strong> <code>0</code> Pass · <code>1</code> Dormant · <strong>Action:</strong> Halts PRs on abandoned packages.</p>
-        <a class="more" href="/vigil">Overview & Specs →</a>
+        <p><strong>Phase:</strong> Manifest review · <strong>Cmd:</strong> <code>vigil policy check --max-dormancy 180</code> · Halts PRs on abandoned deps.</p>
+        <a class="more" href="/vigil">Overview &amp; Specs →</a>
       </div>
       <div class="feature-item">
         <h4>Aegis <span class="tag green">pqc sdk</span></h4>
-        <p><strong>Phase:</strong> Cryptographic sweeps · <strong>Command:</strong> <code>aegis scan --format json ./src</code><br>
-        <strong>Exit Codes:</strong> <code>0</code> Compliant · <code>1</code> Classical · <strong>Action:</strong> Scans legacy crypto; emits OMB M-26-15 shims.</p>
-        <a class="more" href="/aegis">Overview & Specs →</a>
+        <p><strong>Phase:</strong> Crypto sweeps · <strong>Cmd:</strong> <code>aegis scan --format json ./src</code> · Emits OMB M-26-15 PQC shims.</p>
+        <a class="more" href="/aegis">Overview &amp; Specs →</a>
       </div>
       <div class="feature-item">
         <h4>Proven <span class="tag green">attestor</span></h4>
-        <p><strong>Phase:</strong> Packaging & release · <strong>Command:</strong> <code>proven attest target/app -o app.slsa.json</code><br>
-        <strong>Exit Codes:</strong> <code>0</code> Verified · <code>1</code> Tampered · <strong>Action:</strong> ML-DSA-65 post-quantum signing & SLSA bit-identity.</p>
-        <a class="more" href="/proven">Overview & Specs →</a>
+        <p><strong>Phase:</strong> Release · <strong>Cmd:</strong> <code>proven attest target/app -o app.slsa.json</code> · ML-DSA-65 SLSA bit-identity.</p>
+        <a class="more" href="/proven">Overview &amp; Specs →</a>
       </div>
       <div class="feature-item">
         <h4>Boneyard <span class="tag green">tech-debt</span></h4>
-        <p><strong>Phase:</strong> Fleet governance · <strong>Command:</strong> <code>boneyard enrich -i repos.json</code><br>
-        <strong>Exit Codes:</strong> <code>0</code> Compliant · <code>1</code> Breach · <strong>Action:</strong> 5-axis tech-debt ranking & repo-week budgets.</p>
-        <a class="more" href="/boneyard">Overview & Specs →</a>
+        <p><strong>Phase:</strong> Governance · <strong>Cmd:</strong> <code>boneyard enrich -i repos.json</code> · 5-axis debt ranking &amp; budgets.</p>
+        <a class="more" href="/boneyard">Overview &amp; Specs →</a>
       </div>
     </div>
   </section>
+
   <footer class="foot">
-    <p>studio2201 · Apache-2.0 · pure Rust, std:: only</p>
-    <p class="small">Last updated 2026-09-19 · source: <a href="https://github.com/studio2201/studio2201.com">studio2201/studio2201.com</a></p>
+    <p>studio2201 · Apache-2.0 · pure Rust, std:: only · <a href="https://ubermetroid.github.io/tuition-not-coffee">🎓 Tuition, Not Coffee</a></p>
+    <p class="small">Updated 2026-10-27 · <a href="https://github.com/UberMetroid">@UberMetroid</a> · source: <a href="https://github.com/studio2201/studio2201.com">studio2201/studio2201.com</a></p>
   </footer>
 </main>
+<div class="chibi-dock">
+  <a class="dock-pill" href="https://ubermetroid.github.io/tuition-not-coffee" title="Tuition, Not Coffee">🎓</a>
+  <div class="dock-bubble">
+    <strong>STUDIO 2201 // AGENTS &amp; MCP</strong><br>
+    <a href="/#gnome">GNOME Suite</a> · <a href="/#products">CI/CD Gates</a> · <a href="https://github.com/UberMetroid">@UberMetroid</a><br>
+    <a href="https://ubermetroid.github.io/tuition-not-coffee">🎓 Tuition, Not Coffee →</a>
+  </div>
+</div>
 </body>
 </html>
