@@ -1,7 +1,7 @@
 # studio2201.com — Official Studio 2201 Portal & Storefront
 
 [![CI](https://github.com/studio2201/studio2201.com/actions/workflows/ci.yml/badge.svg?branch=master)](https://github.com/studio2201/studio2201.com/actions/workflows/ci.yml)
-[![Release](https://img.shields.io/badge/version-v0.6.0-blue.svg)](https://github.com/studio2201/studio2201.com/releases)
+[![Release](https://img.shields.io/badge/version-v0.6.2-blue.svg)](https://github.com/studio2201/studio2201.com/releases)
 [![License](https://img.shields.io/badge/license-Apache--2.0-blue.svg)](LICENSE)
 [![Max LOC](https://img.shields.io/badge/max%20LOC-%E2%89%A4256-brightgreen.svg)](https://studio2201.com)
 [![Sponsor: Tuition, Not Coffee](https://img.shields.io/badge/Sponsor-Tuition%2C%20Not%20Coffee%20%F0%9F%8E%93-2ec27e)](https://ubermetroid.github.io/tuition-not-coffee)
@@ -11,7 +11,7 @@ The static source for [**studio2201.com**](https://studio2201.com) — showcasin
 1. **01 · GNOME Shell Desktop Suite (Wayland 45–50)**:
    - [**Kelp**](https://studio2201.github.io/kelp/) (`kelp@studio2201.github.io`) — Octopus 2D Grid, Seahorse Scroller, and Otter Floating Auto-Tiler (`v2.2.0`)
    - [**Reef**](https://studio2201.github.io/reef/) (`reef@studio2201.github.io`) — Intelligent Wayland Dock & Panel with Pressure Barriers (`v1.2.0`)
-   - [**Tide**](https://studio2201.github.io/tide/) (`tide@studio2201.github.io`) — Super & `Super+Enter` Application & Open-Window Launcher (`v1.2.1`)
+   - [**Tide**](https://studio2201.github.io/tide/) (`tide@studio2201.github.io`) — Super & `Super+Enter` Application & Open-Window Launcher (`v1.2.2`)
    - [**Coral**](https://studio2201.github.io/coral/) (`coral@studio2201.github.io`) — Alphabetical App Grid & Smart Auto-Folder Organizer (`v1.4.0`)
    - [**Seabed**](https://studio2201.github.io/seabed/) (`seabed@studio2201.github.io`) — Compositor-Native Desktop Icons & Drag-and-Drop (`v1.5.0`)
    - [**Shoal**](https://studio2201.github.io/shoal/) (`shoal@studio2201.github.io`) — AppIndicator, SNI & DBusMenu Top-Bar System Tray (`v1.2.0`)
@@ -50,7 +50,7 @@ studio2201.com/
 ├── install.sh        # Universal installer script (<= 256 LOC)
 ├── sitemap.xml       # Search engine sitemap
 ├── CNAME             # Custom domain studio2201.com
-└── VERSION           # Release version tracking (0.6.0)
+└── VERSION           # Release version tracking (0.6.2)
 ```
 
 ## License
