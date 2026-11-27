@@ -24,7 +24,8 @@ studio2201.com/
 ├── 404.html          # Clean 404 error page
 ├── styles.css        # Base typography, layout, variables (<= 256 LOC)
 ├── components.css    # Shared cards, badges, buttons (<= 256 LOC)
-├── agency.css        # Minimal agency nav, grids, and inquiry form (<= 256 LOC)
+├── agency.css        # Two-theme (Warm Light / Charcoal) agency layout & form (<= 256 LOC)
+├── theme.js          # Warm Light / Neutral Charcoal theme toggle (<= 256 LOC)
 ├── contact.js        # Zero-dependency project inquiry & email copy handler (<= 256 LOC)
 ├── worker/           # Free Cloudflare Worker (/api/contact) sending via Email Routing
 ├── install.sh        # Universal installer script (<= 256 LOC)
