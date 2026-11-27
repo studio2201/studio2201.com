@@ -170,6 +170,8 @@ body.agency .more {
 body.agency .foot { border-top-color: var(--line); color: var(--muted); }
 body.agency .foot a { color: var(--accent); }
 body.agency .foot a:hover { border-bottom-color: var(--accent); }
+body.agency .code-box { background: var(--card-alt); border: 1px solid var(--line); border-radius: 10px; padding: 16px 20px; }
+body.agency .code-box pre, body.agency .code-box code { color: var(--ink); font-family: 'JetBrains Mono', monospace; font-size: 13px; }
 
 @media (max-width: 760px) {
   .agency-nav { margin-bottom: 30px; }
