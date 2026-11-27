@@ -52,7 +52,7 @@
 
   <details class="agent-brief">
     <summary>[ // AI AGENT &amp; CLI BRIEF — cargo install --git https://github.com/studio2201/snip ]</summary>
-    <p>Snip vibe-code security gate (`v0.2.11`). Audits staged diffs (`git diff --staged | snip audit`) and runs as a stdio MCP server (`snip serve --mcp`) in &lt;5ms · <a href="/agents">Agent &amp; MCP Guide</a> · <a href="/canary">Canary Testbed</a>.</p>
+    <p>Snip vibe-code security gate (`v0.2.11`). Audits staged diffs (`git diff --staged | snip audit`) and runs as a stdio MCP server (`snip serve --mcp`) in &lt;5ms · <a href="/agents">Agent &amp; MCP Guide</a>.</p>
   </details>
 
   <header class="hero">
@@ -68,7 +68,7 @@
     <p class="lede">Vibe-code security gate. Real-time pre-deploy audit for AI-generated code diffs, catching leaked credentials, broken RLS, and missing security headers at the moment of generation.</p>
     <div class="cta">
       <a class="btn primary" href="https://github.com/studio2201/snip">View on GitHub →</a>
-      <a class="btn ghost" href="https://github.com/studio2201/studio2201/blob/master/DESIGN.md">Framework Doctrine →</a>
+      <a class="btn ghost" href="/lab#products">All Security Actions →</a>
     </div>
   </header>
 
@@ -122,11 +122,10 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with: { fetch-depth: 0 }
-      - uses: studio2201/studio2201@v1
-        with: { tools: 'snip', fail-on: 'block' }
+      - uses: studio2201/snip@v1
       - uses: actions/upload-artifact@v4
         if: always()
-        with: { name: snip-report, path: snip_report.md, if-no-files-found: ignore }</code></pre>
+        with: { name: snip-report, path: snip_summary.md, if-no-files-found: ignore }</code></pre>
     </div>
     <div class="code-box">
       <pre><code># Workstation CLI &amp; MCP installation:

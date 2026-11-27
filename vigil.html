@@ -52,7 +52,7 @@
 
   <details class="agent-brief">
     <summary>[ // AI AGENT &amp; CLI BRIEF — cargo install --git https://github.com/studio2201/vigil ]</summary>
-    <p>Vigil supply-chain dormancy scanner (`v0.2.13`). Parses lockfiles with zero external crates, scores upstream commit velocity, and gates CI via `studio2201/studio2201@v1` (`tools: 'vigil'`) · <a href="/agents">Agent &amp; MCP Guide</a> · <a href="/canary">Canary Testbed</a>.</p>
+    <p>Vigil supply-chain dormancy scanner (`v0.2.13`). Parses lockfiles with zero external crates, scores upstream commit velocity, and gates CI via `studio2201/vigil@v1` · <a href="/agents">Agent &amp; MCP Guide</a>.</p>
   </details>
 
   <header class="hero">
@@ -68,7 +68,7 @@
     <p class="lede">Supply-chain dormancy scanner. Reads your project manifest, scores each dependency by how long it has been since the upstream moved, and emits <code>SUPPLY-CHAIN.md</code> and a badge.</p>
     <div class="cta">
       <a class="btn primary" href="https://github.com/studio2201/vigil">View on GitHub →</a>
-      <a class="btn ghost" href="https://github.com/studio2201/studio2201/blob/master/DESIGN.md">Framework Doctrine →</a>
+      <a class="btn ghost" href="/lab#products">All Security Actions →</a>
     </div>
   </header>
 
@@ -122,11 +122,10 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with: { fetch-depth: 0 }
-      - uses: studio2201/studio2201@v1
-        with: { tools: 'vigil', fail-on: 'block' }
+      - uses: studio2201/vigil@v1
       - uses: actions/upload-artifact@v4
         if: always()
-        with: { name: vigil-report, path: vigil_report.md, if-no-files-found: ignore }</code></pre>
+        with: { name: vigil-report, path: vigil_summary.md, if-no-files-found: ignore }</code></pre>
     </div>
     <div class="code-box">
       <pre><code># Workstation CLI installation:

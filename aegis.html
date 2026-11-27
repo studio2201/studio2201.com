@@ -52,7 +52,7 @@
 
   <details class="agent-brief">
     <summary>[ // AI AGENT &amp; CLI BRIEF — cargo install --git https://github.com/studio2201/aegis ]</summary>
-    <p>Aegis Post-Quantum Cryptography migration SDK (`v0.2.12`). Sweeps ASTs for classical RSA/ECC call sites, emits OMB M-26-15 plans, and enforces NIST FIPS 203/204 · <a href="/agents">Agent &amp; MCP Guide</a> · <a href="/canary">Canary Testbed</a>.</p>
+    <p>Aegis Post-Quantum Cryptography migration SDK (`v0.2.12`). Sweeps ASTs for classical RSA/ECC call sites, emits OMB M-26-15 plans, and enforces NIST FIPS 203/204 · <a href="/agents">Agent &amp; MCP Guide</a>.</p>
   </details>
 
   <header class="hero">
@@ -68,7 +68,7 @@
     <p class="lede">PQC migration SDK. Scans C, C++, and Rust codebases for legacy RSA and ECC cryptography, constructs OMB M-26-15 migration plans, and emits drop-in ML-KEM and ML-DSA primitives.</p>
     <div class="cta">
       <a class="btn primary" href="https://github.com/studio2201/aegis">View on GitHub →</a>
-      <a class="btn ghost" href="https://github.com/studio2201/studio2201/blob/master/DESIGN.md">Framework Doctrine →</a>
+      <a class="btn ghost" href="/lab#products">All Security Actions →</a>
     </div>
   </header>
 
@@ -122,11 +122,10 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with: { fetch-depth: 0 }
-      - uses: studio2201/studio2201@v1
-        with: { tools: 'aegis', fail-on: 'block' }
+      - uses: studio2201/aegis@v1
       - uses: actions/upload-artifact@v4
         if: always()
-        with: { name: aegis-report, path: aegis_report.md, if-no-files-found: ignore }</code></pre>
+        with: { name: aegis-report, path: aegis_summary.md, if-no-files-found: ignore }</code></pre>
     </div>
     <div class="code-box">
       <pre><code># Workstation CLI installation:

@@ -13,8 +13,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with: { fetch-depth: 0 }
-      - uses: studio2201/studio2201@v1
-        with: { tools: 'vigil', fail-on: 'block' }
+      - uses: studio2201/vigil@v1
       - uses: actions/upload-artifact@v4
         if: always()
-        with: { name: vigil-report, path: vigil_report.md, if-no-files-found: ignore }
+        with: { name: vigil-report, path: vigil_summary.md, if-no-files-found: ignore }

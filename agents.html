@@ -48,7 +48,7 @@
   </nav>
 
   <details class="agent-brief">
-    <summary>[ // AI AGENT &amp; CLI BRIEF — cargo install --git https://github.com/studio2201/cli &amp;&amp; studio2201 install all &amp;&amp; studio2201 check ]</summary>
+    <summary>[ // AI AGENT &amp; CI BRIEF — Standalone studio2201/&lt;tool&gt;@v1 GitHub Actions ]</summary>
     <p>Machine-first automation specification: tri-state exit codes (`0` ship, `1` block, `2` error), `snip serve --mcp` stdio server, `.cursorrules` / `CLAUDE.md` directives, and CI workflows.</p>
   </details>
 
@@ -66,7 +66,7 @@
 
   <aside class="ticker" aria-label="Agent & MCP Telemetry">
     <div class="ticker-track">
-      <span class="chip">STDIO MCP SERVER · SNIP SERVE --MCP</span><span class="chip">TRI-STATE EXIT CODES (0 / 1 / 2)</span><span class="chip">STUDIO2201 CHECK</span><span class="chip">GITHUB ACTION · STUDIO2201/STUDIO2201@V1</span><span class="chip">STDIO MCP SERVER · SNIP SERVE --MCP</span><span class="chip">TRI-STATE EXIT CODES (0 / 1 / 2)</span><span class="chip">STUDIO2201 CHECK</span>
+      <span class="chip">STDIO MCP SERVER · SNIP SERVE --MCP</span><span class="chip">TRI-STATE EXIT CODES (0 / 1 / 2)</span><span class="chip">PINNED SHA-256 RELEASES</span><span class="chip">GITHUB ACTIONS · STUDIO2201/&lt;TOOL&gt;@V1</span><span class="chip">STDIO MCP SERVER · SNIP SERVE --MCP</span><span class="chip">TRI-STATE EXIT CODES (0 / 1 / 2)</span><span class="chip">PINNED SHA-256 RELEASES</span>
     </div>
   </aside>
 
@@ -99,7 +99,7 @@ git diff --staged | snip audit -q || echo "Security violation detected"</code></
 { "mcpServers": { "snip": { "command": "snip", "args": ["serve", "--mcp"] } } }
 
 # studio2201 Autonomous Security Rules (.cursorrules / CLAUDE.md)
-- Run 'studio2201 check' before completing tasks to audit diffs, manifests, and crypto.
+- Audit diffs with 'snip', manifests with 'vigil', and crypto call sites with 'aegis' via GitHub Actions or local binaries.
 - If Snip emits exit code 1 (Block/Fix): remediate leaked secrets, broken RLS, or permissive CORS.
 - If Vigil emits exit code 1: reject dormant packages (>180d) in package.json, Cargo.lock, or pyproject.toml.
 - If Aegis emits exit code 1: upgrade classical cryptography to NIST PQC standards (ML-KEM, ML-DSA).</code></pre>
@@ -109,7 +109,7 @@ git diff --staged | snip audit -q || echo "Security violation detected"</code></
   <section id="pipelines">
     <p class="eyebrow num">03</p>
     <h2>CI/CD &amp; Pre-Commit Pipelines</h2>
-    <p class="lede small">Gate code modifications locally before commits are created and continuously in pull request workflows using <code>studio2201/studio2201@v1</code>.</p>
+    <p class="lede small">Gate code modifications continuously in pull request workflows using independent <code>studio2201/&lt;tool&gt;@v1</code> actions.</p>
     <div class="code-box">
       <pre><code># Reference template: .github/workflows/&lt;tool&gt;.yml (snip, vigil, aegis, proven, boneyard)
 name: snip
@@ -127,11 +127,10 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with: { fetch-depth: 0 }
-      - uses: studio2201/studio2201@v1
-        with: { tools: 'snip', fail-on: 'block' }
+      - uses: studio2201/snip@v1
       - uses: actions/upload-artifact@v4
         if: always()
-        with: { name: snip-report, path: snip_report.md, if-no-files-found: ignore }</code></pre>
+        with: { name: snip-report, path: snip_summary.md, if-no-files-found: ignore }</code></pre>
     </div>
   </section>
 

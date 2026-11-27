@@ -13,8 +13,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with: { fetch-depth: 0 }
-      - uses: studio2201/studio2201@v1
-        with: { tools: 'snip', fail-on: 'block' }
+      - uses: studio2201/snip@v1
       - uses: actions/upload-artifact@v4
         if: always()
-        with: { name: snip-report, path: snip_report.md, if-no-files-found: ignore }
+        with: { name: snip-report, path: snip_summary.md, if-no-files-found: ignore }

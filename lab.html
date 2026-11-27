@@ -44,7 +44,7 @@
   </header>
 
   <section class="hero-minimal">
-    <p class="eyebrow">OPEN-SOURCE LAB · 17 PUBLIC REPOSITORIES · &le;256 LOC</p>
+    <p class="eyebrow">OPEN-SOURCE LAB · 14 ACTIVE REPOSITORIES · &le;256 LOC</p>
     <h1>Open-source tools for <em>desktops &amp; pipelines</em>.</h1>
     <p class="lede">The engineering backbone behind <strong>studio2201</strong>: seven in-process <strong>Wayland GNOME Shell extensions</strong>, five pure <code>std::</code> <strong>Rust GitHub CI/CD Actions</strong>, and fail-closed verification — every source file strictly &le; 256 lines of code.</p>
     <div class="cta">
@@ -106,7 +106,7 @@
   <section id="products">
     <p class="eyebrow num">02 · GITHUB CI/CD ACTIONS &amp; SUPPLY-CHAIN SECURITY</p>
     <h2>Five CI/CD security gates. Pure Rust. Zero crates.io dependencies.</h2>
-    <p class="lede small">Every tool compiles from pure <code>std::</code> Rust in seconds, runs as a drop-in GitHub Action (<code>studio2201/studio2201@v1</code>) or unified CLI (<code>studio2201 check</code>), and returns deterministic tri-state exit codes.</p>
+    <p class="lede small">Every tool compiles from pure <code>std::</code> Rust in seconds, runs independently as a standalone GitHub Action (<code>studio2201/&lt;tool&gt;@v1</code>) with pinned SHA-256 release verification, and returns deterministic tri-state exit codes.</p>
     <div class="grid-2">
       <a class="product" href="/vigil">
         <div><span class="meta-label">v0.2.11 · Dormancy</span><h3>Vigil</h3>
@@ -133,28 +133,27 @@
           <p class="product-body">Org-wide repository health radar. Ranks repositories into a 0–100 Boneyard Index by dormancy, exposure, dependency depth, and maintenance budget.</p></div>
         <span class="more">Overview &amp; Action Specs →</span>
       </a>
-      <a class="product" href="https://github.com/studio2201/cli">
-        <div><span class="meta-label">v0.1.8 · Toolchain CLI</span><h3>studio2201 CLI</h3>
-          <p class="product-body">Unified workstation driver (<code>studio2201 install</code>, <code>check</code>, <code>init</code>, <code>upgrade</code>) paired with our Canary negative testbed proving every gate fails closed.</p></div>
-        <span class="more">github.com/studio2201/cli ↗</span>
+      <a class="product" href="agents.html">
+        <div><span class="meta-label">CI/CD Integration · @v1</span><h3>Independent Actions &amp; Badges</h3>
+          <p class="product-body">Drop any standalone gate into <code>.github/workflows/</code> (<code>studio2201/snip@v1</code>, <code>vigil@v1</code>, <code>aegis@v1</code>, <code>proven@v1</code>, <code>boneyard@v1</code>) with workflow summaries and MCP docs.</p></div>
+        <span class="more">Read Agent &amp; CI Guide →</span>
       </a>
     </div>
   </section>
 
   <section id="agents">
-    <p class="eyebrow num">03 · CLI, AGENTS &amp; ENGINEERING DOCTRINE</p>
+    <p class="eyebrow num">03 · CI WORKFLOWS &amp; ENGINEERING DOCTRINE</p>
     <h2>256-line page rule. Fail-closed verification.</h2>
-    <p class="lede small">Every source file across all 17 repositories fits on a single human-auditable page (&le; 256 lines) with zero hidden dependencies.</p>
+    <p class="lede small">Every source file across all 14 active repositories fits on a single human-auditable page (&le; 256 lines) with zero hidden dependencies.</p>
     <div class="code-box">
-      <pre><code># Install the unified studio2201 Rust security toolchain from source:
-cargo install --git https://github.com/studio2201/cli &amp;&amp; studio2201 install all &amp;&amp; studio2201 check
+      <pre><code># Drop any standalone security gate into .github/workflows/&lt;tool&gt;.yml:
+- uses: studio2201/snip@v1
 # Or install any studio2201 GNOME Shell extension from its latest release zip:
 <!--email_off-->gnome-extensions install --force sonar@studio2201.github.io.shell-extension.zip<!--/email_off--></code></pre>
     </div>
     <div class="cta">
-      <a class="btn primary" href="agents.html">Read Agent &amp; MCP Guide →</a>
-      <a class="btn ghost" href="canary.html">Inspect Canary Testbed →</a>
-      <a class="btn ghost" href="https://github.com/studio2201/studio2201/blob/master/DESIGN.md">Read Architecture &amp; Doctrine ↗</a>
+      <a class="btn primary" href="agents.html">Read Agent &amp; CI Guide →</a>
+      <a class="btn ghost" href="https://github.com/studio2201">Browse GitHub (@studio2201) ↗</a>
     </div>
   </section>
 

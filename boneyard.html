@@ -52,7 +52,7 @@
 
   <details class="agent-brief">
     <summary>[ // AI AGENT &amp; CLI BRIEF — cargo install --git https://github.com/studio2201/boneyard ]</summary>
-    <p>Boneyard org-wide tech-debt radar (`v0.2.12`). Scores repository catalogs across dormancy, risk, exposure, dependency depth, and AI-agent surface into a 0–100 index · <a href="/agents">Agent &amp; MCP Guide</a> · <a href="/canary">Canary Testbed</a>.</p>
+    <p>Boneyard org-wide tech-debt radar (`v0.2.12`). Scores repository catalogs across dormancy, risk, exposure, dependency depth, and AI-agent surface into a 0–100 index · <a href="/agents">Agent &amp; MCP Guide</a>.</p>
   </details>
 
   <header class="hero">
@@ -68,7 +68,7 @@
     <p class="lede">Org-wide tech-debt radar. Discovers and ranks internal repositories by dormancy, exposure, dependency depth, and AI-agent attack surface to emit actionable remediation budgets.</p>
     <div class="cta">
       <a class="btn primary" href="https://github.com/studio2201/boneyard">View on GitHub →</a>
-      <a class="btn ghost" href="https://github.com/studio2201/studio2201/blob/master/DESIGN.md">Framework Doctrine →</a>
+      <a class="btn ghost" href="/lab#products">All Security Actions →</a>
     </div>
   </header>
 
@@ -122,11 +122,10 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with: { fetch-depth: 0 }
-      - uses: studio2201/studio2201@v1
-        with: { tools: 'boneyard', fail-on: 'block' }
+      - uses: studio2201/boneyard@v1
       - uses: actions/upload-artifact@v4
         if: always()
-        with: { name: boneyard-report, path: boneyard_report.md, if-no-files-found: ignore }</code></pre>
+        with: { name: boneyard-report, path: boneyard_summary.md, if-no-files-found: ignore }</code></pre>
     </div>
     <div class="code-box">
       <pre><code># Workstation CLI installation:

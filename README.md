@@ -18,7 +18,6 @@ studio2201.com/
 ├── infrastructure.html # Private cloud, multi-site NAS storage, and lab management
 ├── lab.html            # Open-Source Lab: Wayland GNOME suite, Rust CI/CD gates, doctrine
 ├── agents.html       # Agent & Automation Guide (MCP, Cursor, CI/CD)
-├── canary.html       # Canary reference failure showcase
 ├── vigil.html        # Vigil product page
 ├── snip.html         # Snip product page
 ├── boneyard.html     # Boneyard product page
