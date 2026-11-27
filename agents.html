@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta name="description" content="studio2201 Agent & Automation Guide — Headless CLI flags, MCP configuration, agent rules, CI diff gates, and 5-tool matrix." />
-<meta name="theme-color" content="#070a0f" />
+<meta name="theme-color" content="#f6f3ec" />
 <title>Agent &amp; Automation Guide · studio2201</title>
 <link rel="canonical" href="https://studio2201.com/agents" />
 <meta property="og:site_name" content="studio2201" />
@@ -13,73 +13,59 @@
 <meta property="og:title" content="Agent &amp; Automation Guide · studio2201" />
 <meta property="og:description" content="Machine-first CLI patterns, MCP server configurations, IDE agent rules, and CI/CD pipelines for autonomous loops." />
 <meta property="og:image" content="https://studio2201.com/assets/og-image.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
 <meta name="twitter:card" content="summary_large_image" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<meta name="twitter:title" content="Agent &amp; Automation Guide · studio2201" />
+<meta name="twitter:description" content="Machine-first CLI patterns, MCP server configurations, IDE agent rules, and CI/CD pipelines for autonomous loops." />
+<meta name="twitter:image" content="https://studio2201.com/assets/og-image.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Outfit:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap">
-<link rel="stylesheet" href="styles.css" />
-<link rel="stylesheet" href="components.css" />
-<link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+<link rel="stylesheet" href="styles.css?v=5" />
+<link rel="stylesheet" href="components.css?v=5" />
+<link rel="stylesheet" href="agency.css?v=5" />
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg" /><link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png" />
 <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png" />
-<script>
-(function(){var T={cyan:["#6ad7e1","106,215,225"],emerald:["#2ec27e","46,194,126"],amber:["#fbb86c","251,184,108"],coral:["#ff5555","255,85,85"]},O=["cyan","emerald","amber","coral"];window.setSuiteTheme=function(n){var c=T[n]||T.emerald,r=document.documentElement;r.style.setProperty("--primary",c[0]);r.style.setProperty("--accent",c[0]);r.style.setProperty("--primary-rgb",c[1]);r.style.setProperty("--primary-soft","rgba("+c[1]+",0.14)");try{localStorage.setItem("studio2201_theme",n);}catch(e){}var s=document.querySelectorAll(".swatch");for(var i=0;i<s.length;i++)s[i].classList.toggle("active",s[i].dataset.t===n);};window.cycleSuiteTheme=function(){var k="emerald";try{k=localStorage.getItem("studio2201_theme")||"emerald";}catch(e){}window.setSuiteTheme(O[(O.indexOf(k)+1)%4]);};try{var s=localStorage.getItem("studio2201_theme");if(s&&T[s]){window.setSuiteTheme(s);document.addEventListener("DOMContentLoaded",function(){window.setSuiteTheme(s);});}}catch(e){}})();
-</script>
+<script src="theme.js?v=3"></script>
 </head>
-<body>
+<body class="agency">
 <main class="page">
-  <nav class="top-nav" aria-label="Studio 2201 Omni-Bar">
-    <div class="brand-cluster">
-      <a class="brand-pill" href="/">studio2201</a>
-      <span class="status-pill">● 16 REPOS · &le;256 LOC</span>
-    </div>
-    <div class="nav-pills">
-      <a href="/lab#gnome">GNOME Suite</a>
-      <a href="/lab#products">CI/CD Gates</a>
-      <a href="/agents">Agents &amp; MCP</a>
-      <a href="/#contact">Start a Project</a>
-      <a href="https://github.com/UberMetroid">@UberMetroid</a>
-    </div>
-    <div class="theme-cluster" aria-label="Suite Theme Switcher">
-      <button type="button" class="swatch" data-t="cyan" style="background:#6ad7e1" title="Cyan #6ad7e1" onclick="setSuiteTheme('cyan')"></button>
-      <button type="button" class="swatch active" data-t="emerald" style="background:#2ec27e" title="Emerald #2ec27e" onclick="setSuiteTheme('emerald')"></button>
-      <button type="button" class="swatch" data-t="amber" style="background:#fbb86c" title="Amber #fbb86c" onclick="setSuiteTheme('amber')"></button>
-      <button type="button" class="swatch" data-t="coral" style="background:#ff5555" title="Coral #ff5555" onclick="setSuiteTheme('coral')"></button>
-      <button type="button" class="cycle-btn" title="Cycle Suite Theme" onclick="cycleSuiteTheme()">↻</button>
-    </div>
-  </nav>
-
-  <details class="agent-brief">
-    <summary>[ // AI AGENT &amp; CI BRIEF — Standalone studio2201/&lt;tool&gt;@v1 GitHub Actions ]</summary>
-    <p>Machine-first automation specification: tri-state exit codes (`0` ship, `1` block, `2` error), `snip serve --mcp` stdio server, `.cursorrules` / `CLAUDE.md` directives, and CI workflows.</p>
-  </details>
-
-  <header class="hero">
-    <div class="badge-bar">
-      <a href="https://studio2201.com"><img src="https://img.shields.io/badge/secured%20by-studio2201-2ec27e?logo=shield" alt="secured by studio2201"></a>
-      <span class="tag green">v0.6.4</span>
-      <span class="tag green">Security &amp; Governance</span>
-      <span class="tag green">Apache-2.0</span>
-    </div>
-    <h1>Agent &amp; Automation Guide</h1>
-    <p class="lede">Zero-dependency, machine-first security tooling for autonomous coding agents, MCP servers, pre-commit diff hooks, and CI/CD pipelines.</p>
-    <div class="cta"><a class="btn primary" href="#badges">Badges &amp; Scorecards ↓</a> <a class="btn ghost" href="#matrix">5-Tool Matrix ↓</a></div>
+  <header class="agency-nav">
+    <a class="agency-wordmark" href="/">studio2201</a>
+    <nav class="agency-links" aria-label="Primary Navigation">
+      <a href="/#services">Services</a>
+      <a href="/#work">Work</a>
+      <a href="lab.html">Open-Source Lab</a>
+      <a href="lab.html#gnome">GNOME Suite</a>
+      <a href="lab.html#products">CI/CD Gates</a>
+      <button type="button" class="theme-toggle" id="theme-toggle" aria-pressed="false">Charcoal</button>
+      <a class="nav-hire" href="/#contact">Hire Us</a>
+    </nav>
   </header>
 
-  <aside class="ticker" aria-label="Agent & MCP Telemetry">
-    <div class="ticker-track">
-      <span class="chip">STDIO MCP SERVER · SNIP SERVE --MCP</span><span class="chip">TRI-STATE EXIT CODES (0 / 1 / 2)</span><span class="chip">PINNED SHA-256 RELEASES</span><span class="chip">GITHUB ACTIONS · STUDIO2201/&lt;TOOL&gt;@V1</span><span class="chip">STDIO MCP SERVER · SNIP SERVE --MCP</span><span class="chip">TRI-STATE EXIT CODES (0 / 1 / 2)</span><span class="chip">PINNED SHA-256 RELEASES</span>
+  <section class="hero-minimal">
+    <p class="eyebrow">AGENTS &amp; AUTOMATION · 5 PURE-RUST ACTIONS · APACHE-2.0</p>
+    <h1>Agent &amp; <em>automation guide</em>.</h1>
+    <p class="lede">Zero-dependency, machine-first security tooling for autonomous coding agents, stdio MCP servers, pre-commit diff hooks, and standalone GitHub CI/CD gates.</p>
+    <div class="cta">
+      <a class="btn primary" href="#badges">Badges &amp; Scorecards ↓</a>
+      <a class="btn ghost" href="#matrix">5-Tool Matrix ↓</a>
+      <a class="btn ghost" href="lab.html">Open-Source Lab →</a>
     </div>
-  </aside>
+  </section>
 
   <section id="headless">
-    <p class="eyebrow num">01</p>
-    <h2>Headless &amp; Machine CLI</h2>
-    <p class="lede small">All five tools implement a strict headless contract for programmatic integration into agent toolkits and background watchers.</p>
-    <div class="card-grid">
-      <div class="feature-item">
+    <p class="eyebrow num">01 · HEADLESS &amp; MACHINE CLI</p>
+    <h2>Strict CLI contract &amp; tri-state exit codes.</h2>
+    <p class="lede small">All five tools implement a deterministic headless interface for programmatic integration into agent toolkits and background watchers.</p>
+    <div class="grid-2">
+      <div class="pipeline-step">
+        <span class="meta-label">Flags</span>
         <h4>Standard Flags</h4>
-        <p><code>--format json</code> emits schemas; <code>-q</code> silences stdout; <code>-v</code> stderr; <code>-o &lt;FILE&gt;</code> writes to disk.</p>
+        <p><code>--format json</code> emits machine schemas; <code>-q</code> silences stdout; <code>-v</code> logs diagnostics to stderr; <code>-o &lt;FILE&gt;</code> writes output directly to disk.</p>
       </div>
-      <div class="feature-item">
+      <div class="pipeline-step">
+        <span class="meta-label">Exit Contract</span>
         <h4>Tri-State Exit Codes</h4>
         <p><code>0</code> = Clean verdict (ship); <code>1</code> = Security findings (BLOCK/FIX); <code>2</code> = Argument parse error or runtime I/O failure.</p>
       </div>
@@ -91,8 +77,8 @@ git diff --staged | snip audit -q || echo "Security violation detected"</code></
   </section>
 
   <section id="mcp">
-    <p class="eyebrow num">02</p>
-    <h2>Model Context Protocol (MCP) &amp; Agent Rules</h2>
+    <p class="eyebrow num">02 · MCP &amp; AGENT RULES</p>
+    <h2>Model Context Protocol (MCP) &amp; agent directives.</h2>
     <p class="lede small">Run <code>snip serve --mcp</code> to expose real-time diff auditing to Claude Desktop, Cursor, and Windsurf, and drop these directives into <code>.cursorrules</code> or <code>CLAUDE.md</code>:</p>
     <div class="code-box">
       <pre><code>// claude_desktop_config.json or ~/.cursor/mcp.json
@@ -107,8 +93,8 @@ git diff --staged | snip audit -q || echo "Security violation detected"</code></
   </section>
 
   <section id="pipelines">
-    <p class="eyebrow num">03</p>
-    <h2>CI/CD &amp; Pre-Commit Pipelines</h2>
+    <p class="eyebrow num">03 · CI/CD PIPELINES</p>
+    <h2>Standalone pull-request gates.</h2>
     <p class="lede small">Gate code modifications continuously in pull request workflows using independent <code>studio2201/&lt;tool&gt;@v1</code> actions.</p>
     <div class="code-box">
       <pre><code># Reference template: .github/workflows/&lt;tool&gt;.yml (snip, vigil, aegis, proven, boneyard)
@@ -135,19 +121,19 @@ jobs:
   </section>
 
   <section id="badges">
-    <p class="eyebrow num">04</p>
-    <h2>Repository Governance Scorecard</h2>
+    <p class="eyebrow num">04 · GOVERNANCE SCORECARD</p>
+    <h2>Repository governance &amp; README badges.</h2>
     <div class="scorecard-wrap">
       <div class="scorecard-container">
         <table class="scorecard-table">
           <thead><tr><th>Security Pillar</th><th>Verification Badge</th></tr></thead>
           <tbody>
-            <tr><td><b>Platform Standard</b></td><td><a href="/"><img src="https://img.shields.io/badge/secured%20by-studio2201-2ec27e?logo=shield" alt="secured by studio2201"></a></td></tr>
-            <tr><td><b>Credential Defense</b></td><td><a href="/snip"><img src="https://img.shields.io/badge/snip-0%20secrets-2ec27e?logo=shield" alt="snip: 0 secrets"></a></td></tr>
-            <tr><td><b>Supply Chain Surface</b></td><td><a href="/vigil"><img src="https://img.shields.io/badge/vigil-0%20dependencies-2ec27e?logo=shield" alt="vigil: 0 dependencies"></a></td></tr>
-            <tr><td><b>Post-Quantum Cryptography</b></td><td><a href="/aegis"><img src="https://img.shields.io/badge/aegis-PQC%20compliant-2ec27e?logo=shield" alt="aegis: PQC compliant"></a></td></tr>
-            <tr><td><b>Build Attestation</b></td><td><a href="/proven"><img src="https://img.shields.io/badge/proven-HMAC--SHA256%20verified-2ec27e?logo=shield" alt="proven: HMAC-SHA256 verified"></a></td></tr>
-            <tr><td><b>Repository Governance</b></td><td><a href="/boneyard"><img src="https://img.shields.io/badge/boneyard-maintained-2ec27e?logo=shield" alt="boneyard: maintained"></a></td></tr>
+            <tr><td><b>Platform Standard</b></td><td><a href="/"><img src="https://img.shields.io/badge/secured%20by-studio2201-1b5e4a?logo=shield" alt="secured by studio2201"></a></td></tr>
+            <tr><td><b>Credential Defense</b></td><td><a href="/snip"><img src="https://img.shields.io/badge/snip-0%20secrets-1b5e4a?logo=shield" alt="snip: 0 secrets"></a></td></tr>
+            <tr><td><b>Supply Chain Surface</b></td><td><a href="/vigil"><img src="https://img.shields.io/badge/vigil-0%20dependencies-1b5e4a?logo=shield" alt="vigil: 0 dependencies"></a></td></tr>
+            <tr><td><b>Post-Quantum Cryptography</b></td><td><a href="/aegis"><img src="https://img.shields.io/badge/aegis-PQC%20compliant-1b5e4a?logo=shield" alt="aegis: PQC compliant"></a></td></tr>
+            <tr><td><b>Build Attestation</b></td><td><a href="/proven"><img src="https://img.shields.io/badge/proven-HMAC--SHA256%20verified-1b5e4a?logo=shield" alt="proven: HMAC-SHA256 verified"></a></td></tr>
+            <tr><td><b>Repository Governance</b></td><td><a href="/boneyard"><img src="https://img.shields.io/badge/boneyard-maintained-1b5e4a?logo=shield" alt="boneyard: maintained"></a></td></tr>
           </tbody>
         </table>
       </div>
@@ -155,49 +141,55 @@ jobs:
   </section>
 
   <section id="matrix">
-    <p class="eyebrow num">05</p>
-    <h2>5-Tool Automation Matrix</h2>
-    <div class="card-grid">
-      <div class="feature-item">
-        <h4>Snip <span class="tag green">vibe-code</span></h4>
-        <p><strong>Phase:</strong> Pre-commit diff · <strong>Cmd:</strong> <code>git diff --staged | snip audit</code> · Strips secrets &amp; fixes RLS/CORS.</p>
-        <a class="more" href="/snip">Overview &amp; Specs →</a>
-      </div>
-      <div class="feature-item">
-        <h4>Vigil <span class="tag green">dormancy</span></h4>
-        <p><strong>Phase:</strong> Manifest review · <strong>Cmd:</strong> <code>vigil policy check --max-dormancy 180</code> · Halts PRs on abandoned deps.</p>
-        <a class="more" href="/vigil">Overview &amp; Specs →</a>
-      </div>
-      <div class="feature-item">
-        <h4>Aegis <span class="tag green">pqc sdk</span></h4>
-        <p><strong>Phase:</strong> Crypto sweeps · <strong>Cmd:</strong> <code>aegis scan --format json ./src</code> · Emits OMB M-26-15 PQC shims.</p>
-        <a class="more" href="/aegis">Overview &amp; Specs →</a>
-      </div>
-      <div class="feature-item">
-        <h4>Proven <span class="tag green">attestor</span></h4>
-        <p><strong>Phase:</strong> Release · <strong>Cmd:</strong> <code>proven attest target/app -o app.slsa.json</code> · SHA-256, Merkle &amp; HMAC-SHA256.</p>
-        <a class="more" href="/proven">Overview &amp; Specs →</a>
-      </div>
-      <div class="feature-item">
-        <h4>Boneyard <span class="tag green">tech-debt</span></h4>
-        <p><strong>Phase:</strong> Governance · <strong>Cmd:</strong> <code>boneyard enrich -i repos.json</code> · 5-axis debt ranking &amp; budgets.</p>
-        <a class="more" href="/boneyard">Overview &amp; Specs →</a>
-      </div>
+    <p class="eyebrow num">05 · 5-TOOL MATRIX</p>
+    <h2>Security tools &amp; open-source lab.</h2>
+    <div class="grid-2">
+      <a class="product" href="/snip">
+        <div><span class="meta-label">v0.2.12 · Vibe-Code Gate</span><h3>Snip</h3>
+          <p class="product-body"><strong>Phase:</strong> Pre-commit diff · <strong>Cmd:</strong> <code>git diff --staged | snip audit</code> · Strips secrets &amp; fixes RLS/CORS.</p></div>
+        <span class="more">Overview &amp; Specs →</span>
+      </a>
+      <a class="product" href="/vigil">
+        <div><span class="meta-label">v0.2.14 · Dormancy</span><h3>Vigil</h3>
+          <p class="product-body"><strong>Phase:</strong> Manifest review · <strong>Cmd:</strong> <code>vigil policy check --max-dormancy 180</code> · Halts PRs on abandoned deps.</p></div>
+        <span class="more">Overview &amp; Specs →</span>
+      </a>
+      <a class="product" href="/aegis">
+        <div><span class="meta-label">v0.2.13 · PQC SDK</span><h3>Aegis</h3>
+          <p class="product-body"><strong>Phase:</strong> Crypto sweeps · <strong>Cmd:</strong> <code>aegis scan --format json ./src</code> · Emits OMB M-26-15 PQC shims.</p></div>
+        <span class="more">Overview &amp; Specs →</span>
+      </a>
+      <a class="product" href="/proven">
+        <div><span class="meta-label">v0.2.12 · Attestor</span><h3>Proven</h3>
+          <p class="product-body"><strong>Phase:</strong> Release · <strong>Cmd:</strong> <code>proven attest target/app -o app.slsa.json</code> · SHA-256, Merkle &amp; HMAC-SHA256.</p></div>
+        <span class="more">Overview &amp; Specs →</span>
+      </a>
+      <a class="product" href="/boneyard">
+        <div><span class="meta-label">v0.2.13 · Tech-Debt Radar</span><h3>Boneyard</h3>
+          <p class="product-body"><strong>Phase:</strong> Governance · <strong>Cmd:</strong> <code>boneyard enrich -i repos.json</code> · 5-axis debt ranking &amp; budgets.</p></div>
+        <span class="more">Overview &amp; Specs →</span>
+      </a>
+      <a class="product" href="lab.html">
+        <div><span class="meta-label">14 Active Repos · &le;256 LOC</span><h3>Open-Source Lab</h3>
+          <p class="product-body"><strong>Overview:</strong> Browse all seven Wayland GNOME Shell extensions alongside the five pure-Rust CI/CD security gates.</p></div>
+        <span class="more">Explore the Lab →</span>
+      </a>
     </div>
   </section>
 
+  <section class="cta-band">
+    <div>
+      <p class="eyebrow">CUSTOM AUTOMATION</p>
+      <h2>Need custom MCP tools or CI gates?</h2>
+      <p>We wire real-world data, security checks, and deterministic agents directly into engineering workflows.</p>
+    </div>
+    <a class="btn primary" href="/#contact">Start a Project →</a>
+  </section>
+
   <footer class="foot">
-    <p>studio2201 · Apache-2.0 · pure Rust, std:: only · <a href="https://ubermetroid.github.io/tuition-not-coffee">🎓 Tuition, Not Coffee</a></p>
-    <p class="small">Updated 2026-10-27 · <a href="https://github.com/UberMetroid">@UberMetroid</a> · source: <a href="https://github.com/studio2201/studio2201.com">studio2201/studio2201.com</a></p>
+    <p>studio2201 · Websites, Custom Tools &amp; Real-World AI</p>
+    <p class="small"><a href="/">Agency Home</a> · <a href="mailto:hello@studio2201.com">hello@studio2201.com</a> · <a href="web.html">Web</a> · <a href="tools.html">Tools</a> · <a href="ai.html">Real-World AI</a> · <a href="infrastructure.html">Infrastructure</a> · <a href="lab.html">Lab</a> · <a href="https://github.com/studio2201">@studio2201</a></p>
   </footer>
 </main>
-<div class="chibi-dock">
-  <a class="dock-pill" href="https://ubermetroid.github.io/tuition-not-coffee" title="Tuition, Not Coffee">🎓</a>
-  <div class="dock-bubble">
-    <strong>STUDIO 2201 // AGENTS &amp; MCP</strong><br>
-    <a href="/lab#gnome">GNOME Suite</a> · <a href="/lab#products">CI/CD Gates</a> · <a href="https://github.com/UberMetroid">@UberMetroid</a><br>
-    <a href="https://ubermetroid.github.io/tuition-not-coffee">🎓 Tuition, Not Coffee →</a>
-  </div>
-</div>
 </body>
 </html>

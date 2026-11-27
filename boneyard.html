@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta name="description" content="Boneyard — org-wide tech-debt radar. Ranks internal repos by dormancy, risk, exposure, dependency depth, and AI-agent surface. Apache-2.0." />
-<meta name="theme-color" content="#070a0f" />
+<meta name="theme-color" content="#f6f3ec" />
 <title>Boneyard — org-wide tech-debt radar · studio2201</title>
 <link rel="canonical" href="https://studio2201.com/boneyard" />
 <meta property="og:site_name" content="studio2201" />
@@ -18,83 +18,60 @@
 <meta name="twitter:description" content="Org-wide tech-debt radar. Ranks internal repos by dormancy, risk, exposure, dependency depth, and AI-agent surface." />
 <meta name="twitter:image" content="https://studio2201.com/assets/og-image.png" />
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Outfit:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css" />
-<link rel="stylesheet" href="components.css" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Outfit:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="styles.css?v=5" />
+<link rel="stylesheet" href="components.css?v=5" />
+<link rel="stylesheet" href="agency.css?v=5" />
 <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" /><link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png" />
 <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png" />
-<script>
-(function(){var T={cyan:["#6ad7e1","106,215,225"],emerald:["#2ec27e","46,194,126"],amber:["#fbb86c","251,184,108"],coral:["#ff5555","255,85,85"]},O=["cyan","emerald","amber","coral"];window.setSuiteTheme=function(n){var c=T[n]||T.emerald,r=document.documentElement;r.style.setProperty("--primary",c[0]);r.style.setProperty("--accent",c[0]);r.style.setProperty("--primary-rgb",c[1]);r.style.setProperty("--primary-soft","rgba("+c[1]+",0.14)");try{localStorage.setItem("studio2201_theme",n);}catch(e){}var s=document.querySelectorAll(".swatch");for(var i=0;i<s.length;i++)s[i].classList.toggle("active",s[i].dataset.t===n);};window.cycleSuiteTheme=function(){var k="emerald";try{k=localStorage.getItem("studio2201_theme")||"emerald";}catch(e){}window.setSuiteTheme(O[(O.indexOf(k)+1)%4]);};try{var s=localStorage.getItem("studio2201_theme");if(s&&T[s]){window.setSuiteTheme(s);document.addEventListener("DOMContentLoaded",function(){window.setSuiteTheme(s);});}}catch(e){}})();
-</script>
+<script src="theme.js?v=3"></script>
 </head>
-<body>
+<body class="agency">
 <main class="page">
-  <nav class="top-nav" aria-label="Studio 2201 Omni-Bar">
-    <div class="brand-cluster">
-      <a class="brand-pill" href="/">studio2201</a>
-      <span class="status-pill">● 16 REPOS · &le;256 LOC</span>
-    </div>
-    <div class="nav-pills">
-      <a href="/lab#gnome">GNOME Suite</a>
-      <a href="/lab#products">CI/CD Gates</a>
-      <a href="/agents">Agents &amp; MCP</a>
-      <a href="/#contact">Start a Project</a>
-      <a href="https://github.com/UberMetroid">@UberMetroid</a>
-    </div>
-    <div class="theme-cluster" aria-label="Suite Theme Switcher">
-      <button type="button" class="swatch" data-t="cyan" style="background:#6ad7e1" title="Cyan #6ad7e1" onclick="setSuiteTheme('cyan')"></button>
-      <button type="button" class="swatch active" data-t="emerald" style="background:#2ec27e" title="Emerald #2ec27e" onclick="setSuiteTheme('emerald')"></button>
-      <button type="button" class="swatch" data-t="amber" style="background:#fbb86c" title="Amber #fbb86c" onclick="setSuiteTheme('amber')"></button>
-      <button type="button" class="swatch" data-t="coral" style="background:#ff5555" title="Coral #ff5555" onclick="setSuiteTheme('coral')"></button>
-      <button type="button" class="cycle-btn" title="Cycle Suite Theme" onclick="cycleSuiteTheme()">↻</button>
-    </div>
-  </nav>
-
-  <details class="agent-brief">
-    <summary>[ // AI AGENT &amp; CLI BRIEF — cargo install --git https://github.com/studio2201/boneyard ]</summary>
-    <p>Boneyard org-wide tech-debt radar (`v0.2.13`). Scores repository catalogs across dormancy, risk, exposure, dependency depth, and AI-agent surface into a 0–100 index · <a href="/agents">Agent &amp; MCP Guide</a>.</p>
-  </details>
-
-  <header class="hero">
-    <div class="badge-bar">
-      <a href="https://studio2201.com"><img src="https://img.shields.io/badge/secured%20by-studio2201-2ec27e?logo=shield" alt="secured by studio2201"></a>
-      <a href="/boneyard"><img src="https://img.shields.io/badge/boneyard-maintained-2ec27e" alt="boneyard: maintained (Active Asset Ownership)"></a>
-      <span class="eyebrow" style="margin-bottom:0;">studio2201 / product 05</span>
-      <span class="tag green">v0.2.13</span>
-      <span class="tag green">Apache-2.0</span>
-      <span class="tag green">Boneyard Index 0/100</span>
-    </div>
-    <h1>Boneyard</h1>
-    <p class="lede">Org-wide tech-debt radar. Discovers and ranks internal repositories by dormancy, exposure, dependency depth, and AI-agent attack surface to emit actionable remediation budgets.</p>
-    <div class="cta">
-      <a class="btn primary" href="https://github.com/studio2201/boneyard">View on GitHub →</a>
-      <a class="btn ghost" href="/lab#products">All Security Actions →</a>
-    </div>
+  <header class="agency-nav">
+    <a class="agency-wordmark" href="/">studio2201</a>
+    <nav class="agency-links" aria-label="Primary Navigation">
+      <a href="/#services">Services</a>
+      <a href="/#work">Work</a>
+      <a href="lab.html">Open-Source Lab</a>
+      <a href="agents.html">Agents &amp; MCP</a>
+      <button type="button" class="theme-toggle" id="theme-toggle" aria-pressed="false">Charcoal</button>
+      <a class="nav-hire" href="/#contact">Hire Us</a>
+    </nav>
   </header>
 
-  <aside class="ticker" aria-label="Boneyard Telemetry">
-    <div class="ticker-track">
-      <span class="chip">BONEYARD v0.2.13 · TECH-DEBT RADAR</span><span class="chip">5-AXIS FLEET SCORING</span><span class="chip">0–100 BONEYARD INDEX</span><span class="chip">REPO-WEEK BUDGETING</span><span class="chip">TOML POLICY GATE</span><span class="chip">BONEYARD v0.2.13 · TECH-DEBT RADAR</span><span class="chip">5-AXIS FLEET SCORING</span>
+  <section class="hero-minimal">
+    <p class="eyebrow">BONEYARD · v0.2.13 · APACHE-2.0 · PURE STD:: RUST</p>
+    <h1>Boneyard — <em>org-wide tech-debt radar</em>.</h1>
+    <p class="lede">Discovers and ranks repositories by dormancy, exposure, dependency depth, and AI-agent attack surface to emit actionable remediation budgets.</p>
+    <div class="cta">
+      <a class="btn primary" href="https://github.com/studio2201/boneyard">View on GitHub ↗</a>
+      <a class="btn ghost" href="/lab#products">All Security Actions →</a>
+      <a class="btn ghost" href="agents.html">Agents &amp; MCP →</a>
     </div>
-  </aside>
+  </section>
 
   <section>
-    <p class="eyebrow num">01</p>
-    <h2>What it does</h2>
-    <div class="card-grid">
-      <div class="feature-item">
+    <p class="eyebrow num">01 · CAPABILITIES</p>
+    <h2>What it does across your repository fleet.</h2>
+    <div class="grid-2">
+      <div class="pipeline-step">
+        <span class="meta-label">Ranking</span>
         <h4>Five-Axis Repo Scoring</h4>
         <p>Evaluates repos across <strong>dormancy</strong>, <strong>risk</strong>, <strong>exposure</strong>, <strong>dependency depth</strong>, and <strong>AI-agent surface</strong>.</p>
       </div>
-      <div class="feature-item">
+      <div class="pipeline-step">
+        <span class="meta-label">Triage</span>
         <h4>Composite Boneyard Index</h4>
         <p>Computes an org-wide health score in [0, 100] categorized into unambiguous Red, Amber, and Green risk tiers.</p>
       </div>
-      <div class="feature-item">
+      <div class="pipeline-step">
+        <span class="meta-label">Planning</span>
         <h4>Remediation Budgets</h4>
         <p>Quantifies tech debt into concrete engineering work units, generating estimates in <em>repo-weeks</em> for sprint planning.</p>
       </div>
-      <div class="feature-item">
+      <div class="pipeline-step">
+        <span class="meta-label">Policy Gate</span>
         <h4>TOML Policy Gate</h4>
         <p>Enforces org-wide security and maintenance policies in CI, preventing unreviewed orphan repos from going public.</p>
       </div>
@@ -102,11 +79,11 @@
   </section>
 
   <section>
-    <p class="eyebrow num">02</p>
-    <h2>GitHub Actions &amp; CI Enforcement</h2>
-    <p class="lede small">Audit repository debt catalogs on pull requests and scheduled cron runs using the Boneyard action.</p>
+    <p class="eyebrow num">02 · GITHUB ACTIONS &amp; CLI</p>
+    <h2>GitHub Actions &amp; CI enforcement.</h2>
+    <p class="lede small">Audit repository debt catalogs on pull requests and scheduled runs using the standalone Boneyard action.</p>
     <div class="code-box">
-      <pre><code># .github/workflows/boneyard.yml (Prompt your AI Agent or copy directly)
+      <pre><code># .github/workflows/boneyard.yml
 name: boneyard
 on:
   push: { branches: [ master, main ] }
@@ -135,23 +112,27 @@ boneyard enrich --input repos.json --output scored.json</code></pre>
   </section>
 
   <section>
-    <p class="eyebrow num">03</p>
-    <h2>Why This Matters &amp; Authoritative Mandates</h2>
+    <p class="eyebrow num">03 · STANDARDS &amp; MANDATES</p>
+    <h2>Why this matters &amp; authoritative mandates.</h2>
     <p class="lede small">Enforces Active Asset Ownership and eliminates zero-liability zombie repository debt.</p>
-    <div class="card-grid">
-      <div class="feature-item">
+    <div class="grid-2">
+      <div class="pipeline-step">
+        <span class="meta-label">Economics</span>
         <h4><a href="https://stripe.com/reports/developer-coefficient-2018" target="_blank" rel="noopener">Stripe Developer Report ↗</a></h4>
         <p>Bad code and technical debt drain $300 billion annually in global GDP, consuming 42% of engineer workweeks.</p>
       </div>
-      <div class="feature-item">
+      <div class="pipeline-step">
+        <span class="meta-label">CVE Density</span>
         <h4><a href="https://dl.acm.org/journal/tosem" target="_blank" rel="noopener">ACM Empirical Research ↗</a></h4>
         <p>Research confirms abandoned repositories harbor 4x higher critical CVE density and unpatched dependencies.</p>
       </div>
-      <div class="feature-item">
+      <div class="pipeline-step">
+        <span class="meta-label">Governance</span>
         <h4><a href="https://www.gartner.com/en/articles/what-is-technical-debt" target="_blank" rel="noopener">Active Asset Ownership ↗</a></h4>
         <p>Establishes active governance to eradicate zombie repos, ensuring every software asset has accountable maintainers.</p>
       </div>
-      <div class="feature-item">
+      <div class="pipeline-step">
+        <span class="meta-label">OWASP</span>
         <h4><a href="https://owasp.org" target="_blank" rel="noopener">OWASP A06: Outdated Comps ↗</a></h4>
         <p>Internal orphan repositories are primary targets for lateral movement and shadow credential harvesting.</p>
       </div>
@@ -159,40 +140,45 @@ boneyard enrich --input repos.json --output scored.json</code></pre>
   </section>
 
   <section>
-    <p class="eyebrow num">04</p>
-    <h2>How It Works Under the Hood</h2>
-    <div class="card-grid">
-      <div class="feature-item">
+    <p class="eyebrow num">04 · ARCHITECTURE</p>
+    <h2>How it works under the hood.</h2>
+    <div class="grid-2">
+      <div class="pipeline-step">
+        <span class="meta-label">Ingestion</span>
         <h4>Catalog Ingestion</h4>
         <p>Parses multi-repository catalog dumps in JSON or NDJSON format with zero external crates.</p>
       </div>
-      <div class="feature-item">
+      <div class="pipeline-step">
+        <span class="meta-label">Scoring</span>
         <h4>Five-Axis Scoring Engine</h4>
         <p>Calculates weighted dormancy, risk, exposure, depth, and AI-generated surface into a composite [0, 100] index.</p>
       </div>
-      <div class="feature-item">
+      <div class="pipeline-step">
+        <span class="meta-label">Capacity</span>
         <h4>Repo-Week Budgeting</h4>
         <p>Models human remediation capacity based on codebase volume, dependency branching, and age of last commit.</p>
       </div>
-      <div class="feature-item">
+      <div class="pipeline-step">
+        <span class="meta-label">Enforcement</span>
         <h4>TOML Policy Enforcement</h4>
         <p>Asserts deterministic exit code 1 when any repo exceeds maximum allowed debt index in CI pull requests.</p>
       </div>
     </div>
   </section>
 
+  <section class="cta-band">
+    <div>
+      <p class="eyebrow">REPO CLEANUP</p>
+      <h2>Carrying dead repos or legacy debt?</h2>
+      <p>We audit, consolidate, and archive sprawling GitHub organizations down to maintainable codebases.</p>
+    </div>
+    <a class="btn primary" href="/#contact">Start a Project →</a>
+  </section>
+
   <footer class="foot">
-    <p>studio2201 · Apache-2.0 · <a href="https://github.com/studio2201/boneyard">github.com/studio2201/boneyard</a> · <a href="https://ubermetroid.github.io/tuition-not-coffee">🎓 Tuition, Not Coffee</a></p>
-    <p class="small">Updated 2026-10-27 · <a href="https://github.com/UberMetroid">@UberMetroid</a> · source: <a href="https://github.com/studio2201/studio2201.com">studio2201/studio2201.com</a></p>
+    <p>studio2201 · Websites, Custom Tools &amp; Real-World AI</p>
+    <p class="small"><a href="/">Agency Home</a> · <a href="mailto:hello@studio2201.com">hello@studio2201.com</a> · <a href="web.html">Web</a> · <a href="tools.html">Tools</a> · <a href="ai.html">Real-World AI</a> · <a href="infrastructure.html">Infrastructure</a> · <a href="lab.html">Lab</a> · <a href="https://github.com/studio2201">@studio2201</a></p>
   </footer>
 </main>
-<div class="chibi-dock">
-  <a class="dock-pill" href="https://ubermetroid.github.io/tuition-not-coffee" title="Tuition, Not Coffee">🎓</a>
-  <div class="dock-bubble">
-    <strong>STUDIO 2201 // BONEYARD</strong><br>
-    <a href="/lab#gnome">GNOME Suite</a> · <a href="/lab#products">CI/CD Gates</a> · <a href="https://github.com/UberMetroid">@UberMetroid</a><br>
-    <a href="https://ubermetroid.github.io/tuition-not-coffee">🎓 Tuition, Not Coffee →</a>
-  </div>
-</div>
 </body>
 </html>

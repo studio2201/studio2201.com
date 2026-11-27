@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta name="description" content="Vigil — supply-chain dormancy scanner. Detects dead libraries and unmaintained dependencies. Apache-2.0." />
-<meta name="theme-color" content="#070a0f" />
+<meta name="theme-color" content="#f6f3ec" />
 <title>Vigil — supply-chain dormancy scanner · studio2201</title>
 <link rel="canonical" href="https://studio2201.com/vigil" />
 <meta property="og:site_name" content="studio2201" />
@@ -19,94 +19,71 @@
 <meta name="twitter:image" content="https://studio2201.com/assets/og-image.png" />
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Outfit:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap">
-<link rel="stylesheet" href="styles.css" />
-<link rel="stylesheet" href="components.css" />
+<link rel="stylesheet" href="styles.css?v=5" />
+<link rel="stylesheet" href="components.css?v=5" />
+<link rel="stylesheet" href="agency.css?v=5" />
 <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" /><link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png" />
 <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png" />
-<script>
-(function(){var T={cyan:["#6ad7e1","106,215,225"],emerald:["#2ec27e","46,194,126"],amber:["#fbb86c","251,184,108"],coral:["#ff5555","255,85,85"]},O=["cyan","emerald","amber","coral"];window.setSuiteTheme=function(n){var c=T[n]||T.emerald,r=document.documentElement;r.style.setProperty("--primary",c[0]);r.style.setProperty("--accent",c[0]);r.style.setProperty("--primary-rgb",c[1]);r.style.setProperty("--primary-soft","rgba("+c[1]+",0.14)");try{localStorage.setItem("studio2201_theme",n);}catch(e){}var s=document.querySelectorAll(".swatch");for(var i=0;i<s.length;i++)s[i].classList.toggle("active",s[i].dataset.t===n);};window.cycleSuiteTheme=function(){var k="emerald";try{k=localStorage.getItem("studio2201_theme")||"emerald";}catch(e){}window.setSuiteTheme(O[(O.indexOf(k)+1)%4]);};try{var s=localStorage.getItem("studio2201_theme");if(s&&T[s]){window.setSuiteTheme(s);document.addEventListener("DOMContentLoaded",function(){window.setSuiteTheme(s);});}}catch(e){}})();
-</script>
+<script src="theme.js?v=3"></script>
 </head>
-<body>
+<body class="agency">
 <main class="page">
-  <nav class="top-nav" aria-label="Studio 2201 Omni-Bar">
-    <div class="brand-cluster">
-      <a class="brand-pill" href="/">studio2201</a>
-      <span class="status-pill">● 16 REPOS · &le;256 LOC</span>
-    </div>
-    <div class="nav-pills">
-      <a href="/lab#gnome">GNOME Suite</a>
-      <a href="/lab#products">CI/CD Gates</a>
-      <a href="/agents">Agents &amp; MCP</a>
-      <a href="/#contact">Start a Project</a>
-      <a href="https://github.com/UberMetroid">@UberMetroid</a>
-    </div>
-    <div class="theme-cluster" aria-label="Suite Theme Switcher">
-      <button type="button" class="swatch" data-t="cyan" style="background:#6ad7e1" title="Cyan #6ad7e1" onclick="setSuiteTheme('cyan')"></button>
-      <button type="button" class="swatch active" data-t="emerald" style="background:#2ec27e" title="Emerald #2ec27e" onclick="setSuiteTheme('emerald')"></button>
-      <button type="button" class="swatch" data-t="amber" style="background:#fbb86c" title="Amber #fbb86c" onclick="setSuiteTheme('amber')"></button>
-      <button type="button" class="swatch" data-t="coral" style="background:#ff5555" title="Coral #ff5555" onclick="setSuiteTheme('coral')"></button>
-      <button type="button" class="cycle-btn" title="Cycle Suite Theme" onclick="cycleSuiteTheme()">↻</button>
-    </div>
-  </nav>
-
-  <details class="agent-brief">
-    <summary>[ // AI AGENT &amp; CLI BRIEF — cargo install --git https://github.com/studio2201/vigil ]</summary>
-    <p>Vigil supply-chain dormancy scanner (`v0.2.14`). Parses lockfiles with zero external crates, scores upstream commit velocity, and gates CI via `studio2201/vigil@v1` · <a href="/agents">Agent &amp; MCP Guide</a>.</p>
-  </details>
-
-  <header class="hero">
-    <div class="badge-bar">
-      <a href="https://studio2201.com"><img src="https://img.shields.io/badge/secured%20by-studio2201-2ec27e?logo=shield" alt="secured by studio2201"></a>
-      <a href="/vigil"><img src="https://img.shields.io/badge/vigil-0%20dependencies-2ec27e" alt="vigil: 0 dependencies (NIST SP 800-218)"></a>
-      <span class="eyebrow" style="margin-bottom:0;">studio2201 / product 01</span>
-      <span class="tag green">v0.2.14</span>
-      <span class="tag green">Apache-2.0</span>
-      <span class="tag green">Dormancy Healthy</span>
-    </div>
-    <h1>Vigil</h1>
-    <p class="lede">Supply-chain dormancy scanner. Reads your project manifest, scores each dependency by how long it has been since the upstream moved, and emits <code>SUPPLY-CHAIN.md</code> and a badge.</p>
-    <div class="cta">
-      <a class="btn primary" href="https://github.com/studio2201/vigil">View on GitHub →</a>
-      <a class="btn ghost" href="/lab#products">All Security Actions →</a>
-    </div>
+  <header class="agency-nav">
+    <a class="agency-wordmark" href="/">studio2201</a>
+    <nav class="agency-links" aria-label="Primary Navigation">
+      <a href="/#services">Services</a>
+      <a href="/#work">Work</a>
+      <a href="lab.html">Open-Source Lab</a>
+      <a href="agents.html">Agents &amp; MCP</a>
+      <button type="button" class="theme-toggle" id="theme-toggle" aria-pressed="false">Charcoal</button>
+      <a class="nav-hire" href="/#contact">Hire Us</a>
+    </nav>
   </header>
 
-  <aside class="ticker" aria-label="Vigil Telemetry">
-    <div class="ticker-track">
-      <span class="chip">VIGIL v0.2.14 · DORMANCY SCANNER</span><span class="chip">CARGO.LOCK · PACKAGE.JSON · REQUIREMENTS.TXT · GO.MOD</span><span class="chip">NIST SP 800-218 SSDF</span><span class="chip">LIVE REGISTRY PROBES</span><span class="chip">PURE STD:: RUST · 0 CRATES</span><span class="chip">VIGIL v0.2.14 · DORMANCY SCANNER</span><span class="chip">CARGO.LOCK · PACKAGE.JSON · REQUIREMENTS.TXT · GO.MOD</span><span class="chip">NIST SP 800-218 SSDF</span>
+  <section class="hero-minimal">
+    <p class="eyebrow">VIGIL · v0.2.14 · APACHE-2.0 · PURE STD:: RUST</p>
+    <h1>Vigil — <em>supply-chain dormancy scanner</em>.</h1>
+    <p class="lede">Reads your project manifest, queries live registries, scores each dependency by how long it has been since the upstream moved, and emits <code>SUPPLY-CHAIN.md</code> and an SVG badge.</p>
+    <div class="cta">
+      <a class="btn primary" href="https://github.com/studio2201/vigil">View on GitHub ↗</a>
+      <a class="btn ghost" href="/lab#products">All Security Actions →</a>
+      <a class="btn ghost" href="agents.html">Agents &amp; MCP →</a>
     </div>
-  </aside>
+  </section>
 
   <section>
-    <p class="eyebrow num">01</p>
-    <h2>What it does</h2>
-    <div class="card-grid">
-      <div class="feature-item">
-        <h4>Auto-detect Manifests</h4>
+    <p class="eyebrow num">01 · CAPABILITIES</p>
+    <h2>What it does across your dependency tree.</h2>
+    <div class="grid-2">
+      <div class="pipeline-step">
+        <span class="meta-label">Manifests</span>
+        <h4>Auto-Detect Manifests</h4>
         <p>Parses <code>package.json</code>, <code>Cargo.lock</code>, <code>Cargo.toml</code>, <code>requirements.txt</code>, and <code>go.mod</code>, and queries npm, crates.io, PyPI, and proxy.golang.org directly.</p>
       </div>
-      <div class="feature-item">
+      <div class="pipeline-step">
+        <span class="meta-label">Signals</span>
         <h4>Upstream Activity Heuristic</h4>
         <p>Cross-references dependencies against upstream commit velocity, release cadence, maintainer activity, and dormancy thresholds.</p>
       </div>
-      <div class="feature-item">
+      <div class="pipeline-step">
+        <span class="meta-label">Reporting</span>
         <h4>SUPPLY-CHAIN.md</h4>
         <p>Emits an actionable audit ranking packages from dormant risk to actively maintained, with remediation budgets in repo-weeks.</p>
       </div>
-      <div class="feature-item">
+      <div class="pipeline-step">
+        <span class="meta-label">Visibility</span>
         <h4>README Badge</h4>
-        <p>Generates an SVG badge for your repository to display supply-chain health and attestation state in real-time.</p>
+        <p>Generates an SVG badge for your repository to display supply-chain health and attestation state in real time.</p>
       </div>
     </div>
   </section>
 
   <section>
-    <p class="eyebrow num">02</p>
-    <h2>GitHub Actions &amp; CI Enforcement</h2>
-    <p class="lede small">Automate dependency dormancy checks on every pull request and push using the Vigil GitHub Action.</p>
+    <p class="eyebrow num">02 · GITHUB ACTIONS &amp; CLI</p>
+    <h2>GitHub Actions &amp; CI enforcement.</h2>
+    <p class="lede small">Automate dependency dormancy checks on every pull request and push using the standalone Vigil GitHub Action.</p>
     <div class="code-box">
-      <pre><code># .github/workflows/vigil.yml (Prompt your AI Agent or copy directly)
+      <pre><code># .github/workflows/vigil.yml
 name: vigil
 on:
   push: { branches: [ master, main ] }
@@ -130,28 +107,32 @@ jobs:
     <div class="code-box">
       <pre><code># Workstation CLI installation:
 cargo install --git https://github.com/studio2201/vigil
-vigil scan && vigil policy check --max-dormancy 180d</code></pre>
+vigil scan &amp;&amp; vigil policy check --max-dormancy 180d</code></pre>
     </div>
   </section>
 
   <section>
-    <p class="eyebrow num">03</p>
-    <h2>Why This Matters &amp; Authoritative Mandates</h2>
+    <p class="eyebrow num">03 · STANDARDS &amp; MANDATES</p>
+    <h2>Why this matters &amp; authoritative mandates.</h2>
     <p class="lede small">Enforces NIST SP 800-218 Secure Software Development Framework (SSDF) mandates on software supply-chain integrity.</p>
-    <div class="card-grid">
-      <div class="feature-item">
+    <div class="grid-2">
+      <div class="pipeline-step">
+        <span class="meta-label">Federal Guidance</span>
         <h4><a href="https://csrc.nist.gov/publications/detail/sp/800-218/final" target="_blank" rel="noopener">NIST SP 800-218 SSDF ↗</a></h4>
         <p>Federal Secure Software Development Framework requiring continuous verification of third-party software integrity and supply-chain surface reduction.</p>
       </div>
-      <div class="feature-item">
+      <div class="pipeline-step">
+        <span class="meta-label">Empirical Data</span>
         <h4><a href="https://www.linuxfoundation.org/research/census-iii" target="_blank" rel="noopener">Harvard / LF Census III ↗</a></h4>
-        <p>Finds that 96% of critical open source software applications rely on packages with fewer than 2 active maintainers.</p>
+        <p>Finds that 96% of critical open-source applications rely on packages with fewer than two active maintainers.</p>
       </div>
-      <div class="feature-item">
+      <div class="pipeline-step">
+        <span class="meta-label">OpenSSF</span>
         <h4><a href="https://scorecard.dev" target="_blank" rel="noopener">OpenSSF Scorecards ↗</a></h4>
         <p>Identifies maintenance velocity and commit freshness as key indicators of open-source software security and health.</p>
       </div>
-      <div class="feature-item">
+      <div class="pipeline-step">
+        <span class="meta-label">Case Study</span>
         <h4><a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2024-3094" target="_blank" rel="noopener">CVE-2024-3094 (XZ Utils) ↗</a></h4>
         <p>Demonstrates how social engineering over years targeted a single exhausted maintainer of a critical dormant library.</p>
       </div>
@@ -159,40 +140,45 @@ vigil scan && vigil policy check --max-dormancy 180d</code></pre>
   </section>
 
   <section>
-    <p class="eyebrow num">04</p>
-    <h2>How It Works Under the Hood</h2>
-    <div class="card-grid">
-      <div class="feature-item">
+    <p class="eyebrow num">04 · ARCHITECTURE</p>
+    <h2>How it works under the hood.</h2>
+    <div class="grid-2">
+      <div class="pipeline-step">
+        <span class="meta-label">Zero Crates</span>
         <h4>Multi-Manifest Parsing</h4>
         <p>Scans project trees to locate lockfiles, extracting package names, versions, and repository coordinates with zero external crates.</p>
       </div>
-      <div class="feature-item">
+      <div class="pipeline-step">
+        <span class="meta-label">Live Registries</span>
         <h4>Commit Velocity Scoring</h4>
         <p>Computes dormancy as days elapsed since the latest release or upstream commit, mapping scores to Red/Amber/Green tiers.</p>
       </div>
-      <div class="feature-item">
+      <div class="pipeline-step">
+        <span class="meta-label">Pure Rust</span>
         <h4>Native SVG Badge Emission</h4>
         <p>Generates standalone SVG badges directly in pure Rust without headless browser or image rendering dependencies.</p>
       </div>
-      <div class="feature-item">
+      <div class="pipeline-step">
+        <span class="meta-label">Policy Gate</span>
         <h4>Automated CI Gating</h4>
         <p>Fails builds with exit code 1 when dependencies exceed dormancy policies (e.g. <code>--max-dormancy 180d</code>).</p>
       </div>
     </div>
   </section>
 
+  <section class="cta-band">
+    <div>
+      <p class="eyebrow">SUPPLY-CHAIN AUDITS</p>
+      <h2>Want cleaner dependencies across your stack?</h2>
+      <p>We help engineering teams cut abandoned packages, lock down releases, and ship faster.</p>
+    </div>
+    <a class="btn primary" href="/#contact">Start a Project →</a>
+  </section>
+
   <footer class="foot">
-    <p>studio2201 · Apache-2.0 · <a href="https://github.com/studio2201/vigil">github.com/studio2201/vigil</a> · <a href="https://ubermetroid.github.io/tuition-not-coffee">🎓 Tuition, Not Coffee</a></p>
-    <p class="small">Updated 2026-10-27 · <a href="https://github.com/UberMetroid">@UberMetroid</a> · source: <a href="https://github.com/studio2201/studio2201.com">studio2201/studio2201.com</a></p>
+    <p>studio2201 · Websites, Custom Tools &amp; Real-World AI</p>
+    <p class="small"><a href="/">Agency Home</a> · <a href="mailto:hello@studio2201.com">hello@studio2201.com</a> · <a href="web.html">Web</a> · <a href="tools.html">Tools</a> · <a href="ai.html">Real-World AI</a> · <a href="infrastructure.html">Infrastructure</a> · <a href="lab.html">Lab</a> · <a href="https://github.com/studio2201">@studio2201</a></p>
   </footer>
 </main>
-<div class="chibi-dock">
-  <a class="dock-pill" href="https://ubermetroid.github.io/tuition-not-coffee" title="Tuition, Not Coffee">🎓</a>
-  <div class="dock-bubble">
-    <strong>STUDIO 2201 // VIGIL</strong><br>
-    <a href="/lab#gnome">GNOME Suite</a> · <a href="/lab#products">CI/CD Gates</a> · <a href="https://github.com/UberMetroid">@UberMetroid</a><br>
-    <a href="https://ubermetroid.github.io/tuition-not-coffee">🎓 Tuition, Not Coffee →</a>
-  </div>
-</div>
 </body>
 </html>

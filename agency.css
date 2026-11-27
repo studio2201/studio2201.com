@@ -172,6 +172,18 @@ body.agency .foot a { color: var(--accent); }
 body.agency .foot a:hover { border-bottom-color: var(--accent); }
 body.agency .code-box { background: var(--card-alt); border: 1px solid var(--line); border-radius: 10px; padding: 16px 20px; }
 body.agency .code-box pre, body.agency .code-box code { color: var(--ink); font-family: 'JetBrains Mono', monospace; font-size: 13px; }
+body.agency .lede code,
+body.agency .pipeline-step code {
+  font-family: 'JetBrains Mono', monospace; font-size: 12.5px;
+  background: var(--line-soft); color: var(--primary); padding: 1px 6px; border-radius: 4px;
+}
+body.agency .pipeline-step a { color: var(--accent); text-decoration: none; }
+body.agency .pipeline-step a:hover { text-decoration: underline; }
+body.agency .scorecard-wrap { justify-content: flex-start; }
+body.agency .scorecard-table { width: 100%; max-width: 680px; background: var(--card); border: 1px solid var(--line); border-radius: 12px; }
+body.agency .scorecard-table th { background: var(--card-alt); color: var(--ink); }
+body.agency .scorecard-table td { color: var(--ink-2); }
+body.agency .scorecard-table td b { color: var(--ink); font-weight: 600; }
 
 @media (max-width: 760px) {
   .agency-nav { margin-bottom: 30px; }

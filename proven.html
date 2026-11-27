@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta name="description" content="Proven — Supply-chain artifact attestor. Computes SHA-256, 64 KiB Merkle roots, and RFC 2104 HMAC-SHA256 in-toto v1 envelopes in pure std:: Rust. Apache-2.0." />
-<meta name="theme-color" content="#070a0f" />
+<meta name="theme-color" content="#f6f3ec" />
 <title>Proven — Supply-chain artifact attestor · studio2201</title>
 <link rel="canonical" href="https://studio2201.com/proven" />
 <meta property="og:site_name" content="studio2201" />
@@ -18,83 +18,60 @@
 <meta name="twitter:description" content="Supply-chain artifact attestor computing SHA-256 digests, Merkle roots, and HMAC-SHA256 in-toto v1 envelopes offline." />
 <meta name="twitter:image" content="https://studio2201.com/assets/og-image.png" />
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Outfit:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css" />
-<link rel="stylesheet" href="components.css" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Outfit:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="styles.css?v=5" />
+<link rel="stylesheet" href="components.css?v=5" />
+<link rel="stylesheet" href="agency.css?v=5" />
 <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" /><link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png" />
 <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png" />
-<script>
-(function(){var T={cyan:["#6ad7e1","106,215,225"],emerald:["#2ec27e","46,194,126"],amber:["#fbb86c","251,184,108"],coral:["#ff5555","255,85,85"]},O=["cyan","emerald","amber","coral"];window.setSuiteTheme=function(n){var c=T[n]||T.emerald,r=document.documentElement;r.style.setProperty("--primary",c[0]);r.style.setProperty("--accent",c[0]);r.style.setProperty("--primary-rgb",c[1]);r.style.setProperty("--primary-soft","rgba("+c[1]+",0.14)");try{localStorage.setItem("studio2201_theme",n);}catch(e){}var s=document.querySelectorAll(".swatch");for(var i=0;i<s.length;i++)s[i].classList.toggle("active",s[i].dataset.t===n);};window.cycleSuiteTheme=function(){var k="emerald";try{k=localStorage.getItem("studio2201_theme")||"emerald";}catch(e){}window.setSuiteTheme(O[(O.indexOf(k)+1)%4]);};try{var s=localStorage.getItem("studio2201_theme");if(s&&T[s]){window.setSuiteTheme(s);document.addEventListener("DOMContentLoaded",function(){window.setSuiteTheme(s);});}}catch(e){}})();
-</script>
+<script src="theme.js?v=3"></script>
 </head>
-<body>
+<body class="agency">
 <main class="page">
-  <nav class="top-nav" aria-label="Studio 2201 Omni-Bar">
-    <div class="brand-cluster">
-      <a class="brand-pill" href="/">studio2201</a>
-      <span class="status-pill">● 16 REPOS · &le;256 LOC</span>
-    </div>
-    <div class="nav-pills">
-      <a href="/lab#gnome">GNOME Suite</a>
-      <a href="/lab#products">CI/CD Gates</a>
-      <a href="/agents">Agents &amp; MCP</a>
-      <a href="/#contact">Start a Project</a>
-      <a href="https://github.com/UberMetroid">@UberMetroid</a>
-    </div>
-    <div class="theme-cluster" aria-label="Suite Theme Switcher">
-      <button type="button" class="swatch" data-t="cyan" style="background:#6ad7e1" title="Cyan #6ad7e1" onclick="setSuiteTheme('cyan')"></button>
-      <button type="button" class="swatch active" data-t="emerald" style="background:#2ec27e" title="Emerald #2ec27e" onclick="setSuiteTheme('emerald')"></button>
-      <button type="button" class="swatch" data-t="amber" style="background:#fbb86c" title="Amber #fbb86c" onclick="setSuiteTheme('amber')"></button>
-      <button type="button" class="swatch" data-t="coral" style="background:#ff5555" title="Coral #ff5555" onclick="setSuiteTheme('coral')"></button>
-      <button type="button" class="cycle-btn" title="Cycle Suite Theme" onclick="cycleSuiteTheme()">↻</button>
-    </div>
-  </nav>
-
-  <details class="agent-brief">
-    <summary>[ // AI AGENT &amp; CLI BRIEF — cargo install --git https://github.com/studio2201/proven ]</summary>
-    <p>Proven supply-chain artifact attestor (`v0.2.12`). Computes SHA-256 digests, 64 KiB Merkle roots, and RFC 2104 HMAC-SHA256 in-toto v1 envelopes · <a href="/agents">Agent &amp; MCP Guide</a>.</p>
-  </details>
-
-  <header class="hero">
-    <div class="badge-bar">
-      <a href="https://studio2201.com"><img src="https://img.shields.io/badge/secured%20by-studio2201-2ec27e?logo=shield" alt="secured by studio2201"></a>
-      <a href="/proven"><img src="https://img.shields.io/badge/proven-HMAC--SHA256%20verified-2ec27e" alt="proven: HMAC-SHA256 verified"></a>
-      <span class="eyebrow" style="margin-bottom:0;">studio2201 / product 04</span>
-      <span class="tag green">v0.2.12</span>
-      <span class="tag green">Apache-2.0</span>
-      <span class="tag green">in-toto v1</span>
-    </div>
-    <h1>Proven</h1>
-    <p class="lede">Supply-chain artifact attestor. Computes FIPS 180-4 SHA-256 digests, 64 KiB Merkle roots, and RFC 2104 HMAC-SHA256 signatures inside in-toto Statement v1 envelopes with zero external crates.</p>
-    <div class="cta">
-      <a class="btn primary" href="https://github.com/studio2201/proven">View on GitHub →</a>
-      <a class="btn ghost" href="/lab#products">All Security Actions →</a>
-    </div>
+  <header class="agency-nav">
+    <a class="agency-wordmark" href="/">studio2201</a>
+    <nav class="agency-links" aria-label="Primary Navigation">
+      <a href="/#services">Services</a>
+      <a href="/#work">Work</a>
+      <a href="lab.html">Open-Source Lab</a>
+      <a href="agents.html">Agents &amp; MCP</a>
+      <button type="button" class="theme-toggle" id="theme-toggle" aria-pressed="false">Charcoal</button>
+      <a class="nav-hire" href="/#contact">Hire Us</a>
+    </nav>
   </header>
 
-  <aside class="ticker" aria-label="Proven Telemetry">
-    <div class="ticker-track">
-      <span class="chip">PROVEN v0.2.12 · ARTIFACT ATTESTOR</span><span class="chip">RFC 2104 HMAC-SHA256 (FIPS 198-1)</span><span class="chip">SHA-256 64K MERKLE ROOT</span><span class="chip">IN-TOTO STATEMENT v1</span><span class="chip">OFFLINE PURE STD:: RUST</span><span class="chip">PROVEN v0.2.12 · ARTIFACT ATTESTOR</span><span class="chip">RFC 2104 HMAC-SHA256 (FIPS 198-1)</span>
+  <section class="hero-minimal">
+    <p class="eyebrow">PROVEN · v0.2.12 · APACHE-2.0 · PURE STD:: RUST</p>
+    <h1>Proven — <em>supply-chain artifact attestor</em>.</h1>
+    <p class="lede">Computes FIPS 180-4 SHA-256 digests, 64 KiB Merkle roots, and RFC 2104 HMAC-SHA256 signatures inside in-toto Statement v1 envelopes with zero external crates.</p>
+    <div class="cta">
+      <a class="btn primary" href="https://github.com/studio2201/proven">View on GitHub ↗</a>
+      <a class="btn ghost" href="/lab#products">All Security Actions →</a>
+      <a class="btn ghost" href="agents.html">Agents &amp; MCP →</a>
     </div>
-  </aside>
+  </section>
 
   <section>
-    <p class="eyebrow num">01</p>
-    <h2>What it does</h2>
-    <div class="card-grid">
-      <div class="feature-item">
-        <h4>RFC 2104 HMAC-SHA256 Signatures</h4>
+    <p class="eyebrow num">01 · CAPABILITIES</p>
+    <h2>What it does for release provenance.</h2>
+    <div class="grid-2">
+      <div class="pipeline-step">
+        <span class="meta-label">Signatures</span>
+        <h4>RFC 2104 HMAC-SHA256</h4>
         <p>Signs canonical <code>sha256:merkleRoot:keyId</code> payloads using constant-time pure <code>std::</code> HMAC-SHA256 keyed from <code>PROVEN_SIGNING_KEY</code> or key identity.</p>
       </div>
-      <div class="feature-item">
+      <div class="pipeline-step">
+        <span class="meta-label">Attestations</span>
         <h4>in-toto v1 Provenance Envelopes</h4>
         <p>Generates verifiable in-toto Statement v1 JSON binding release binaries to exact cryptographic digests and Merkle roots.</p>
       </div>
-      <div class="feature-item">
-        <h4>AST Merkle Tree Root</h4>
-        <p>Streams source files in 64 KiB chunks to compute a deterministic SHA-256 Merkle root, binding compiled binaries directly to verified source commits.</p>
+      <div class="pipeline-step">
+        <span class="meta-label">Integrity</span>
+        <h4>64 KiB Merkle Tree Root</h4>
+        <p>Streams source and binary files in 64 KiB chunks to compute a deterministic SHA-256 Merkle root binding compiled artifacts to verified builds.</p>
       </div>
-      <div class="feature-item">
+      <div class="pipeline-step">
+        <span class="meta-label">Offline</span>
         <h4>Air-Gappable &amp; Zero Dependencies</h4>
         <p>Built purely in Rust standard library (<code>std::</code>). Validates provenance air-gapped without requiring calls to central transparency logs.</p>
       </div>
@@ -102,11 +79,11 @@
   </section>
 
   <section>
-    <p class="eyebrow num">02</p>
-    <h2>GitHub Actions &amp; CI Enforcement</h2>
+    <p class="eyebrow num">02 · GITHUB ACTIONS &amp; CLI</p>
+    <h2>GitHub Actions &amp; CI enforcement.</h2>
     <p class="lede small">Verify artifact byte-identity and attach HMAC-SHA256 in-toto attestations in CI.</p>
     <div class="code-box">
-      <pre><code># .github/workflows/proven.yml (Prompt your AI Agent or copy directly)
+      <pre><code># .github/workflows/proven.yml
 name: proven
 on:
   push: { branches: [ master, main ] }
@@ -131,28 +108,32 @@ jobs:
     <div class="code-box">
       <pre><code># Workstation CLI installation:
 cargo install --git https://github.com/studio2201/proven
-proven attest --target target/release/app --key identity.pqc</code></pre>
+PROVEN_SIGNING_KEY="your-secret" proven attest --target target/release/app --key release-key</code></pre>
     </div>
   </section>
 
   <section>
-    <p class="eyebrow num">03</p>
-    <h2>Why This Matters &amp; Authoritative Mandates</h2>
+    <p class="eyebrow num">03 · STANDARDS &amp; MANDATES</p>
+    <h2>Why this matters &amp; authoritative mandates.</h2>
     <p class="lede small">Deterministic artifact integrity aligned with OpenSSF in-toto Statement v1, White House EO 14028, and FIPS 198-1.</p>
-    <div class="card-grid">
-      <div class="feature-item">
+    <div class="grid-2">
+      <div class="pipeline-step">
+        <span class="meta-label">Provenance</span>
         <h4><a href="https://slsa.dev/spec/v1.0/" target="_blank" rel="noopener">OpenSSF SLSA &amp; in-toto ↗</a></h4>
         <p>Emits structured provenance statements binding artifact hashes to build predicate metadata.</p>
       </div>
-      <div class="feature-item">
+      <div class="pipeline-step">
+        <span class="meta-label">Cryptographic MAC</span>
         <h4><a href="https://csrc.nist.gov/pubs/fips/198-1/final" target="_blank" rel="noopener">NIST FIPS 198-1 (HMAC) ↗</a></h4>
         <p>Keyed-Hash Message Authentication Code over SHA-256 verifying both payload integrity and key ownership in constant time.</p>
       </div>
-      <div class="feature-item">
+      <div class="pipeline-step">
+        <span class="meta-label">Federal Mandate</span>
         <h4><a href="https://www.whitehouse.gov/briefing-room/presidential-actions/2021/05/12/executive-order-on-improving-the-nations-cybersecurity/" target="_blank" rel="noopener">White House EO 14028 ↗</a></h4>
         <p>Executive Order on Improving the Nation's Cybersecurity mandating cryptographically verified software provenance across federal vendors.</p>
       </div>
-      <div class="feature-item">
+      <div class="pipeline-step">
+        <span class="meta-label">Envelope Schema</span>
         <h4><a href="https://in-toto.io/Statement/v1" target="_blank" rel="noopener">in-toto Statement v1 ↗</a></h4>
         <p>Standardized attestation format binding subjects (binary hashes) to predicate metadata with verifiable cryptographic signatures.</p>
       </div>
@@ -160,40 +141,45 @@ proven attest --target target/release/app --key identity.pqc</code></pre>
   </section>
 
   <section>
-    <p class="eyebrow num">04</p>
-    <h2>How It Works Under the Hood</h2>
-    <div class="card-grid">
-      <div class="feature-item">
+    <p class="eyebrow num">04 · ARCHITECTURE</p>
+    <h2>How it works under the hood.</h2>
+    <div class="grid-2">
+      <div class="pipeline-step">
+        <span class="meta-label">Hashing</span>
         <h4>Pure std:: SHA-256</h4>
         <p>Processes binaries in 64 KiB chunks using a pure standard library SHA-256 implementation with zero external crates.</p>
       </div>
-      <div class="feature-item">
+      <div class="pipeline-step">
+        <span class="meta-label">Serialization</span>
         <h4>in-toto Envelope Generation</h4>
-        <p>Constructs valid in-toto Statement v1 JSON encapsulating the artifact digest, builder identity, and AST Merkle root.</p>
+        <p>Constructs valid in-toto Statement v1 JSON encapsulating the artifact digest, builder identity, and Merkle root.</p>
       </div>
-      <div class="feature-item">
+      <div class="pipeline-step">
+        <span class="meta-label">Verification</span>
         <h4>Deterministic Verification</h4>
         <p><code>proven verify</code> recalculates SHA-256, Merkle root, and constant-time HMAC-SHA256 offline with zero network calls.</p>
       </div>
-      <div class="feature-item">
+      <div class="pipeline-step">
+        <span class="meta-label">Reproducibility</span>
         <h4>Reproducible Build Guarantee</h4>
-        <p>Verifies byte-identity keyed on compiler host, rustc version, and Cargo.lock across any CI/CD environment.</p>
+        <p>Verifies byte-identity keyed on compiler host, rustc version, and Cargo.lock across CI/CD environments.</p>
       </div>
     </div>
   </section>
 
+  <section class="cta-band">
+    <div>
+      <p class="eyebrow">RELEASE ENGINEERING</p>
+      <h2>Want verifiable builds &amp; release gates?</h2>
+      <p>We wire deterministic builds, checksums, and attestation pipelines into existing CI setups.</p>
+    </div>
+    <a class="btn primary" href="/#contact">Start a Project →</a>
+  </section>
+
   <footer class="foot">
-    <p>studio2201 · Apache-2.0 · <a href="https://github.com/studio2201/proven">github.com/studio2201/proven</a> · <a href="https://ubermetroid.github.io/tuition-not-coffee">🎓 Tuition, Not Coffee</a></p>
-    <p class="small">Updated 2026-10-27 · <a href="https://github.com/UberMetroid">@UberMetroid</a> · source: <a href="https://github.com/studio2201/studio2201.com">studio2201/studio2201.com</a></p>
+    <p>studio2201 · Websites, Custom Tools &amp; Real-World AI</p>
+    <p class="small"><a href="/">Agency Home</a> · <a href="mailto:hello@studio2201.com">hello@studio2201.com</a> · <a href="web.html">Web</a> · <a href="tools.html">Tools</a> · <a href="ai.html">Real-World AI</a> · <a href="infrastructure.html">Infrastructure</a> · <a href="lab.html">Lab</a> · <a href="https://github.com/studio2201">@studio2201</a></p>
   </footer>
 </main>
-<div class="chibi-dock">
-  <a class="dock-pill" href="https://ubermetroid.github.io/tuition-not-coffee" title="Tuition, Not Coffee">🎓</a>
-  <div class="dock-bubble">
-    <strong>STUDIO 2201 // PROVEN</strong><br>
-    <a href="/lab#gnome">GNOME Suite</a> · <a href="/lab#products">CI/CD Gates</a> · <a href="https://github.com/UberMetroid">@UberMetroid</a><br>
-    <a href="https://ubermetroid.github.io/tuition-not-coffee">🎓 Tuition, Not Coffee →</a>
-  </div>
-</div>
 </body>
 </html>
