@@ -1,6 +1,6 @@
 (function () {
   var KEY = "studio2201_agency_theme";
-  var COLORS = { light: "#f7f5f0", dark: "#111214" };
+  var COLORS = { light: "#f6f3ec", dark: "#121514" };
 
   function getInitial() {
     try {
