@@ -109,27 +109,27 @@
     <p class="lede small">Every tool compiles from pure <code>std::</code> Rust in seconds, runs independently as a standalone GitHub Action (<code>studio2201/&lt;tool&gt;@v1</code>) with pinned SHA-256 release verification, and returns deterministic tri-state exit codes.</p>
     <div class="grid-2">
       <a class="product" href="/vigil">
-        <div><span class="meta-label">v0.2.11 · Dormancy</span><h3>Vigil</h3>
-          <p class="product-body">Supply-chain dormancy scanner. Reads <code>package.json</code>, <code>Cargo.lock</code>, and <code>pyproject.toml</code>, scores abandonment risk, and emits <code>SUPPLY-CHAIN.md</code>.</p></div>
+        <div><span class="meta-label">v0.2.14 · Dormancy</span><h3>Vigil</h3>
+          <p class="product-body">Supply-chain dormancy scanner. Reads <code>package.json</code>, <code>Cargo.lock</code>, <code>Cargo.toml</code>, <code>requirements.txt</code>, and <code>go.mod</code>, checks live registries, and flags stale packages.</p></div>
         <span class="more">Overview &amp; Action Specs →</span>
       </a>
       <a class="product" href="/snip">
-        <div><span class="meta-label">v0.2.9 · Vibe-Code Gate</span><h3>Snip</h3>
-          <p class="product-body">Audits AI-generated diffs for leaked secrets, PII, missing CORS, and broken Supabase RLS. Runs as an MCP server, pre-commit hook, and PR gate.</p></div>
+        <div><span class="meta-label">v0.2.12 · Vibe-Code Gate</span><h3>Snip</h3>
+          <p class="product-body">Audits AI-generated diffs for leaked secrets, broken Supabase RLS, and wildcard CORS. Runs as an MCP server, pre-commit hook, and PR gate.</p></div>
         <span class="more">Overview &amp; Action Specs →</span>
       </a>
       <a class="product" href="/aegis">
-        <div><span class="meta-label">v0.2.10 · Post-Quantum</span><h3>Aegis</h3>
+        <div><span class="meta-label">v0.2.13 · Post-Quantum</span><h3>Aegis</h3>
           <p class="product-body">Post-Quantum Cryptography migration scanner. Flags classical RSA/ECC call sites breaching OMB M-26-15 and emits ML-KEM-768 / ML-DSA-65 plans.</p></div>
         <span class="more">Overview &amp; Action Specs →</span>
       </a>
       <a class="product" href="/proven">
-        <div><span class="meta-label">v0.2.9 · Attestation</span><h3>Proven</h3>
-          <p class="product-body">PQC-signed SLSA L3+ supply-chain attestor. Verifies reproducible Rust binary byte-identity signed with pure <code>std::</code> FIPS 204 ML-DSA-65.</p></div>
+        <div><span class="meta-label">v0.2.12 · Attestation</span><h3>Proven</h3>
+          <p class="product-body">Supply-chain artifact attestor. Computes SHA-256 and 64 KiB Merkle roots, signs in-toto v1 envelopes with pure <code>std::</code> HMAC-SHA256, and verifies offline.</p></div>
         <span class="more">Overview &amp; Action Specs →</span>
       </a>
       <a class="product" href="/boneyard">
-        <div><span class="meta-label">v0.2.9 · Tech-Debt Radar</span><h3>Boneyard</h3>
+        <div><span class="meta-label">v0.2.13 · Tech-Debt Radar</span><h3>Boneyard</h3>
           <p class="product-body">Org-wide repository health radar. Ranks repositories into a 0–100 Boneyard Index by dormancy, exposure, dependency depth, and maintenance budget.</p></div>
         <span class="more">Overview &amp; Action Specs →</span>
       </a>
