@@ -51,7 +51,7 @@
   </nav>
 
   <details class="agent-brief">
-    <summary>[ // AI AGENT &amp; CLI BRIEF — curl -fsSL https://studio2201.com/install.sh | sh -s proven ]</summary>
+    <summary>[ // AI AGENT &amp; CLI BRIEF — cargo install --git https://github.com/studio2201/proven ]</summary>
     <p>Proven SLSA L3+ supply-chain attestor (`v0.2.11`). Signs reproducible builds with pure `std::` FIPS 204 ML-DSA-65 lattice signatures and SHA-256 AST Merkle roots · <a href="/agents">Agent &amp; MCP Guide</a> · <a href="/canary">Canary Testbed</a>.</p>
   </details>
 
@@ -129,8 +129,8 @@ jobs:
         with: { name: proven-report, path: proven_report.md, if-no-files-found: ignore }</code></pre>
     </div>
     <div class="code-box">
-      <pre><code># Workstation CLI installation (unprivileged, installs to ~/.local/bin):
-curl -fsSL https://studio2201.com/install.sh | sh -s proven
+      <pre><code># Workstation CLI installation:
+cargo install --git https://github.com/studio2201/proven
 proven attest --target target/release/app --key identity.pqc</code></pre>
     </div>
   </section>

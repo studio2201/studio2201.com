@@ -51,7 +51,7 @@
   </nav>
 
   <details class="agent-brief">
-    <summary>[ // AI AGENT &amp; CLI BRIEF — curl -fsSL https://studio2201.com/install.sh | sh -s snip ]</summary>
+    <summary>[ // AI AGENT &amp; CLI BRIEF — cargo install --git https://github.com/studio2201/snip ]</summary>
     <p>Snip vibe-code security gate (`v0.2.11`). Audits staged diffs (`git diff --staged | snip audit`) and runs as a stdio MCP server (`snip serve --mcp`) in &lt;5ms · <a href="/agents">Agent &amp; MCP Guide</a> · <a href="/canary">Canary Testbed</a>.</p>
   </details>
 
@@ -129,8 +129,8 @@ jobs:
         with: { name: snip-report, path: snip_report.md, if-no-files-found: ignore }</code></pre>
     </div>
     <div class="code-box">
-      <pre><code># Workstation CLI &amp; MCP installation (installs to ~/.local/bin):
-curl -fsSL https://studio2201.com/install.sh | sh -s snip
+      <pre><code># Workstation CLI &amp; MCP installation:
+cargo install --git https://github.com/studio2201/snip
 git diff --staged | snip audit && snip serve --mcp</code></pre>
     </div>
   </section>

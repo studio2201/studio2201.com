@@ -146,8 +146,8 @@
     <h2>256-line page rule. Fail-closed verification.</h2>
     <p class="lede small">Every source file across all 17 repositories fits on a single human-auditable page (&le; 256 lines) with zero hidden dependencies.</p>
     <div class="code-box">
-      <pre><code># Install the unified studio2201 Rust security toolchain into ~/.local/bin:
-curl -fsSL https://studio2201.com/install.sh | sh -s all &amp;&amp; studio2201 check
+      <pre><code># Install the unified studio2201 Rust security toolchain from source:
+cargo install --git https://github.com/studio2201/cli &amp;&amp; studio2201 install all &amp;&amp; studio2201 check
 # Or install any studio2201 GNOME Shell extension from its latest release zip:
 <!--email_off-->gnome-extensions install --force sonar@studio2201.github.io.shell-extension.zip<!--/email_off--></code></pre>
     </div>

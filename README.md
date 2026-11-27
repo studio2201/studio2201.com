@@ -31,7 +31,6 @@ studio2201.com/
 ├── theme.js          # Warm Light / Neutral Charcoal theme toggle (<= 256 LOC)
 ├── contact.js        # Zero-dependency project inquiry & email copy handler (<= 256 LOC)
 ├── worker/           # Free Cloudflare Worker (/api/contact) sending via Email Routing
-├── install.sh        # Universal installer script (<= 256 LOC)
 ├── sitemap.xml       # Search engine sitemap
 └── CNAME             # Custom domain studio2201.com
 ```

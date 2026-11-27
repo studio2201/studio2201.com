@@ -51,7 +51,7 @@
   </nav>
 
   <details class="agent-brief">
-    <summary>[ // AI AGENT &amp; CLI BRIEF — curl -fsSL https://studio2201.com/install.sh | sh -s aegis ]</summary>
+    <summary>[ // AI AGENT &amp; CLI BRIEF — cargo install --git https://github.com/studio2201/aegis ]</summary>
     <p>Aegis Post-Quantum Cryptography migration SDK (`v0.2.12`). Sweeps ASTs for classical RSA/ECC call sites, emits OMB M-26-15 plans, and enforces NIST FIPS 203/204 · <a href="/agents">Agent &amp; MCP Guide</a> · <a href="/canary">Canary Testbed</a>.</p>
   </details>
 
@@ -129,8 +129,8 @@ jobs:
         with: { name: aegis-report, path: aegis_report.md, if-no-files-found: ignore }</code></pre>
     </div>
     <div class="code-box">
-      <pre><code># Workstation CLI installation (unprivileged, installs to ~/.local/bin):
-curl -fsSL https://studio2201.com/install.sh | sh -s aegis
+      <pre><code># Workstation CLI installation:
+cargo install --git https://github.com/studio2201/aegis
 aegis scan --src ./src && aegis check --policy strict-pqc</code></pre>
     </div>
   </section>

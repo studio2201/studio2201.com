@@ -51,7 +51,7 @@
   </nav>
 
   <details class="agent-brief">
-    <summary>[ // AI AGENT &amp; CLI BRIEF — curl -fsSL https://studio2201.com/install.sh | sh -s vigil ]</summary>
+    <summary>[ // AI AGENT &amp; CLI BRIEF — cargo install --git https://github.com/studio2201/vigil ]</summary>
     <p>Vigil supply-chain dormancy scanner (`v0.2.13`). Parses lockfiles with zero external crates, scores upstream commit velocity, and gates CI via `studio2201/studio2201@v1` (`tools: 'vigil'`) · <a href="/agents">Agent &amp; MCP Guide</a> · <a href="/canary">Canary Testbed</a>.</p>
   </details>
 
@@ -129,8 +129,8 @@ jobs:
         with: { name: vigil-report, path: vigil_report.md, if-no-files-found: ignore }</code></pre>
     </div>
     <div class="code-box">
-      <pre><code># Workstation CLI installation (unprivileged, installs to ~/.local/bin):
-curl -fsSL https://studio2201.com/install.sh | sh -s vigil
+      <pre><code># Workstation CLI installation:
+cargo install --git https://github.com/studio2201/vigil
 vigil scan && vigil policy check --max-dormancy 180d</code></pre>
     </div>
   </section>

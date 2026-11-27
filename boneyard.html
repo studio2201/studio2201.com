@@ -51,7 +51,7 @@
   </nav>
 
   <details class="agent-brief">
-    <summary>[ // AI AGENT &amp; CLI BRIEF — curl -fsSL https://studio2201.com/install.sh | sh -s boneyard ]</summary>
+    <summary>[ // AI AGENT &amp; CLI BRIEF — cargo install --git https://github.com/studio2201/boneyard ]</summary>
     <p>Boneyard org-wide tech-debt radar (`v0.2.12`). Scores repository catalogs across dormancy, risk, exposure, dependency depth, and AI-agent surface into a 0–100 index · <a href="/agents">Agent &amp; MCP Guide</a> · <a href="/canary">Canary Testbed</a>.</p>
   </details>
 
@@ -129,8 +129,8 @@ jobs:
         with: { name: boneyard-report, path: boneyard_report.md, if-no-files-found: ignore }</code></pre>
     </div>
     <div class="code-box">
-      <pre><code># Workstation CLI installation (unprivileged, installs to ~/.local/bin):
-curl -fsSL https://studio2201.com/install.sh | sh -s boneyard
+      <pre><code># Workstation CLI installation:
+cargo install --git https://github.com/studio2201/boneyard
 boneyard enrich --input repos.json --output scored.json</code></pre>
     </div>
   </section>
