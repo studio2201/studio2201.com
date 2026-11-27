@@ -26,6 +26,7 @@ studio2201.com/
 ├── components.css    # Shared cards, badges, buttons (<= 256 LOC)
 ├── agency.css        # Minimal agency nav, grids, and inquiry form (<= 256 LOC)
 ├── contact.js        # Zero-dependency project inquiry & email copy handler (<= 256 LOC)
+├── worker/           # Free Cloudflare Worker (/api/contact) sending via Email Routing
 ├── install.sh        # Universal installer script (<= 256 LOC)
 ├── sitemap.xml       # Search engine sitemap
 └── CNAME             # Custom domain studio2201.com

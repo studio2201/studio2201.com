@@ -1,0 +1,9 @@
+{
+  "name": "studio2201-contact",
+  "private": true,
+  "type": "module",
+  "devDependencies": {
+    "cf": "^1.0.0-rc.6",
+    "wrangler": "^4.168.0"
+  }
+}

@@ -48,6 +48,7 @@
     var email = String(data.get("email") || "").trim();
     var service = String(data.get("service") || "").trim();
     var details = String(data.get("details") || "").trim();
+    var website = String(data.get("website") || "").trim();
 
     if (!name || !email || !details) {
       showStatus("Please enter your name, email, and a short summary of your project.", true);
@@ -57,21 +58,26 @@
     var subject = "[studio2201] " + service + " — " + name;
     var body = "Name: " + name + "\nEmail: " + email + "\nService: " + service + "\n\nProject Details:\n" + details;
     var endpoint = (form.dataset.endpoint || "").trim();
+    var submitBtn = form.querySelector('button[type="submit"]');
 
     if (endpoint) {
+      var prevLabel = submitBtn ? submitBtn.textContent : "";
+      if (submitBtn) { submitBtn.disabled = true; submitBtn.textContent = "Sending..."; }
       try {
         var res = await fetch(endpoint, {
           method: "POST",
           headers: { "Content-Type": "application/json", "Accept": "application/json" },
-          body: JSON.stringify({ name: name, email: email, service: service, details: details })
+          body: JSON.stringify({ name: name, email: email, service: service, details: details, website: website })
         });
         if (!res.ok) throw new Error("Request failed");
         form.reset();
-        showStatus("Inquiry sent. We will reply within 1–2 business days.", false);
+        showStatus("Inquiry sent! We will reply within 1–2 business days.", false);
         return;
       } catch (err) {
-        showStatus("Could not submit directly. Email " + ADDR + " or copy your inquiry below.", true, body);
+        showStatus("Could not send automatically. Email " + ADDR + " or copy your inquiry below.", true, body);
         return;
+      } finally {
+        if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = prevLabel; }
       }
     }
 
