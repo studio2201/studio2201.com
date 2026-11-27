@@ -11,9 +11,12 @@ The static source for [**studio2201.com**](https://studio2201.com) — an indepe
 
 ```
 studio2201.com/
-├── index.html        # Minimal agency storefront: services, selected work, contact form
-├── ai.html           # Real-World AI showcase: hardware telemetry & automated sentinels
-├── lab.html          # Open-Source Lab: Wayland GNOME suite, Rust CI/CD gates, doctrine
+├── index.html          # Minimal agency storefront: services, selected work, contact form
+├── web.html            # Websites, web services, migrations, and DNS/email
+├── tools.html          # Custom tools, applications, OS/systems engineering, and audits
+├── ai.html             # Real-World AI showcase: hardware telemetry & automated sentinels
+├── infrastructure.html # Private cloud, multi-site NAS storage, and lab management
+├── lab.html            # Open-Source Lab: Wayland GNOME suite, Rust CI/CD gates, doctrine
 ├── agents.html       # Agent & Automation Guide (MCP, Cursor, CI/CD)
 ├── canary.html       # Canary reference failure showcase
 ├── vigil.html        # Vigil product page
