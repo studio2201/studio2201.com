@@ -16,9 +16,7 @@ export default defineConfig({
 			}),
 		],
 		env: {
-			EMAIL: bindings.sendEmail({
-				destinationAddress: "jerydleuck@gmail.com",
-			}),
+			EMAIL: bindings.sendEmail({}),
 		},
 	},
 });

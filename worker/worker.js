@@ -5,7 +5,6 @@ const ALLOWED_ORIGINS = new Set([
   "https://www.studio2201.com",
 ]);
 const SENDER = "hello@studio2201.com";
-const RECIPIENT = "jerydleuck@gmail.com";
 const MAX_BODY_BYTES = 10240;
 
 function corsHeaders(origin) {
@@ -27,12 +26,12 @@ function cleanHeader(val, maxLen) {
   return String(val || "").replace(/[\r\n]+/g, " ").trim().slice(0, maxLen);
 }
 
-function buildRawMime(name, email, service, textBody) {
+function buildRawMime(recipient, name, email, service, textBody) {
   const safeName = name.replace(/["\\]/g, "");
   const msgId = `<${crypto.randomUUID()}@studio2201.com>`;
   const headers = [
     `From: "studio2201 Website" <${SENDER}>`,
-    `To: <${RECIPIENT}>`,
+    `To: <${recipient}>`,
     `Reply-To: "${safeName}" <${email}>`,
     `Subject: [studio2201] ${service} - ${name}`,
     `Date: ${new Date().toUTCString()}`,
@@ -52,6 +51,9 @@ export default {
     }
     if (request.method !== "POST") return json({ error: "Method not allowed" }, 405, origin);
     if (origin && !ALLOWED_ORIGINS.has(origin)) return json({ error: "Forbidden origin" }, 403, origin);
+
+    const recipient = String(env.RECIPIENT_EMAIL || "").trim();
+    if (!recipient) return json({ error: "Service not configured" }, 500, origin);
 
     let raw;
     try {
@@ -83,7 +85,7 @@ export default {
     try {
       await env.EMAIL.send({
         from: { email: SENDER, name: "studio2201 Website" },
-        to: RECIPIENT,
+        to: recipient,
         replyTo: { email, name },
         subject: `[studio2201] ${service} — ${name}`,
         text: textBody,
@@ -91,8 +93,8 @@ export default {
       return json({ ok: true }, 200, origin);
     } catch (err) {
       try {
-        const mime = buildRawMime(name, email, service, textBody);
-        await env.EMAIL.send(new EmailMessage(SENDER, RECIPIENT, mime));
+        const mime = buildRawMime(recipient, name, email, service, textBody);
+        await env.EMAIL.send(new EmailMessage(SENDER, recipient, mime));
         return json({ ok: true }, 200, origin);
       } catch (err2) {
         return json({ error: err2?.message || err?.message || "Failed to send email" }, 502, origin);
