@@ -6,12 +6,15 @@ on:
   pull_request:
     branches: [ master ]
 
+permissions:
+  contents: read
+
 jobs:
   test:
     name: Verify Website, Links & Line Counts
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
 
       - name: Validate XML Sitemap
         run: python3 -c "import xml.etree.ElementTree as ET; ET.parse('sitemap.xml')"
